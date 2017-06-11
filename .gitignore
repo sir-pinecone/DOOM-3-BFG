@@ -1,0 +1,9 @@
+build/
+Debug/
+Release/
+*.vcxproj.*
+*.sdf
+*.opensdf
+*.suo
+*.pdb
+*.tlog
