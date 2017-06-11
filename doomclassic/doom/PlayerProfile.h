@@ -32,9 +32,9 @@ If you have questions concerning this license or the applicable additional terms
 #include "Serializer.h"
 //#include "SaveGameManager.h"
 
-#define	MAX_PROFILE_SIZE			( 1024 * 1000 ) // High number for the key bindings
+#define MAX_PROFILE_SIZE      ( 1024 * 1000 ) // High number for the key bindings
 
-#define SAVEGAME_PROFILE_FILENAME			"_PROF"
+#define SAVEGAME_PROFILE_FILENAME     "_PROF"
 
 
 extern idCVar s_volume_sound;
@@ -52,24 +52,24 @@ idProfileMgr
 */
 class idProfileMgr {
 public:
-	idProfileMgr();
-	~idProfileMgr();
+  idProfileMgr();
+  ~idProfileMgr();
 
-	// Called the first time it's asked to load
-	void				Init( idPlayerProfile * profile );
+  // Called the first time it's asked to load
+  void        Init( idPlayerProfile * profile );
 
-	void 				Pump();
-	idPlayerProfile *	GetProfile();
-
-private:
-	void				LoadSettings();
-	void				SaveSettings();
+  void        Pump();
+  idPlayerProfile * GetProfile();
 
 private:
-	idSaveGameProcessorSaveProfile *	profileSaveProcessor;
-	idSaveGameProcessorLoadProfile *	profileLoadProcessor;
-	idPlayerProfile *					profile;
-	saveGameHandle_t					handle;
+  void        LoadSettings();
+  void        SaveSettings();
+
+private:
+  idSaveGameProcessorSaveProfile *  profileSaveProcessor;
+  idSaveGameProcessorLoadProfile *  profileLoadProcessor;
+  idPlayerProfile *         profile;
+  saveGameHandle_t          handle;
 };
 
 /*
@@ -79,17 +79,17 @@ idSaveGameProcessorSaveProfile
 */
 class idSaveGameProcessorSaveProfile : public idSaveGameProcessor {
 public:
-	DEFINE_CLASS( idSaveGameProcessorSaveProfile );
+  DEFINE_CLASS( idSaveGameProcessorSaveProfile );
 
-	idSaveGameProcessorSaveProfile();
+  idSaveGameProcessorSaveProfile();
 
-	bool			InitSaveProfile( idPlayerProfile * profile, const char * folder );
-	virtual bool	Process();
+  bool      InitSaveProfile( idPlayerProfile * profile, const char * folder );
+  virtual bool  Process();
 
 private:
-	idFile_Memory *		profileFile;
-	idFile_Memory *		staticScreenshotFile;
-	idPlayerProfile *	profile;
+  idFile_Memory *   profileFile;
+  idFile_Memory *   staticScreenshotFile;
+  idPlayerProfile * profile;
 };
 
 /*
@@ -99,18 +99,18 @@ idSaveGameProcessorLoadProfile
 */
 class idSaveGameProcessorLoadProfile: public idSaveGameProcessor {
 public:
-	DEFINE_CLASS( idSaveGameProcessorLoadProfile );
+  DEFINE_CLASS( idSaveGameProcessorLoadProfile );
 
-	idSaveGameProcessorLoadProfile();
-	~idSaveGameProcessorLoadProfile();
+  idSaveGameProcessorLoadProfile();
+  ~idSaveGameProcessorLoadProfile();
 
-	bool			InitLoadProfile( idPlayerProfile * profile, const char * folder );
-	virtual bool	Process();
-	virtual void	PostProcess();
+  bool      InitLoadProfile( idPlayerProfile * profile, const char * folder );
+  virtual bool  Process();
+  virtual void  PostProcess();
 
 private:
-	idFile_Memory *		profileFile;
-	idPlayerProfile *	profile;
+  idFile_Memory *   profileFile;
+  idPlayerProfile * profile;
 };
 
 /*
@@ -119,8 +119,8 @@ profileStatValue_t
 ================================================
 */
 union profileStatValue_t {
-	int		i; 
-	float	f;
+  int   i; 
+  float f;
 };
 
 /*
@@ -133,135 +133,135 @@ of the game before there is a player associated with the game, use cvars.  Examp
 */
 class idPlayerProfile {
 public: 
-	static const int MAX_PLAYER_PROFILE_STATS = 500;
+  static const int MAX_PLAYER_PROFILE_STATS = 500;
 
-	enum state_t {
-		IDLE = 0,
-		SAVING,
-		LOADING,
-		SAVE_REQUESTED,
-		LOAD_REQUESTED,
-		ERR
-	};
+  enum state_t {
+    IDLE = 0,
+    SAVING,
+    LOADING,
+    SAVE_REQUESTED,
+    LOAD_REQUESTED,
+    ERR
+  };
 
-	enum displayMode_t {
-		DISPLAY_INVALID = -1,
-		DISPLAY_WINDOWED,
-		DISPLAY_FULLSCREEN,
-		MAX_DISPLAY_MODES
-	};
+  enum displayMode_t {
+    DISPLAY_INVALID = -1,
+    DISPLAY_WINDOWED,
+    DISPLAY_FULLSCREEN,
+    MAX_DISPLAY_MODES
+  };
 
-	enum syncTypes_t {
-		SYNC_INVALID = -1,
-		SYNC_TEAR,
-		SYNC_ON,
-		SYNC_SMART,
-		MAX_SYNC_COUNT,
-	};
+  enum syncTypes_t {
+    SYNC_INVALID = -1,
+    SYNC_TEAR,
+    SYNC_ON,
+    SYNC_SMART,
+    MAX_SYNC_COUNT,
+  };
 
 public:
-					idPlayerProfile(); // don't instantiate. we static_cast the child all over the place
-	virtual			~idPlayerProfile();
+          idPlayerProfile(); // don't instantiate. we static_cast the child all over the place
+  virtual     ~idPlayerProfile();
 
-	//------------------------
-	// each game can override but call the parent serialize first
-	//------------------------
-	virtual void	SetDefaults();
-	virtual void	Init();
-	virtual bool	SerializeSettings( idSerializer & ser );
+  //------------------------
+  // each game can override but call the parent serialize first
+  //------------------------
+  virtual void  SetDefaults();
+  virtual void  Init();
+  virtual bool  SerializeSettings( idSerializer & ser );
 
-	//------------------------
-	// each game must override, not an abstract method because we have a static object as a hack... ugh.
-	//------------------------
-	virtual int32	GetProfileTag() { return -1; }
+  //------------------------
+  // each game must override, not an abstract method because we have a static object as a hack... ugh.
+  //------------------------
+  virtual int32 GetProfileTag() { return -1; }
 
-	int				GetDeviceNumForProfile() { return deviceNum; }
-	void			SetDeviceNumForProfile( int num ) { deviceNum = num; }
+  int       GetDeviceNumForProfile() { return deviceNum; }
+  void      SetDeviceNumForProfile( int num ) { deviceNum = num; }
 
-	//------------------------
-	void			SaveSettings();
-	void			LoadSettings();
+  //------------------------
+  void      SaveSettings();
+  void      LoadSettings();
 
-	state_t			GetState() const { return state; }
-	state_t			GetRequestedState() const { return requestedState; }
-	
-	//------------------------
-	// settings
-	//------------------------
-	float			GetFrameScaleX() const { return frameScaleX; }
-	float			GetFrameScaleY() const { return frameScaleY; }
-	void			SetFrameScaleX( float scale ) { frameScaleX = scale; }
-	void			SetFrameScaleY( float scale ) { frameScaleY = scale; } 
+  state_t     GetState() const { return state; }
+  state_t     GetRequestedState() const { return requestedState; }
+  
+  //------------------------
+  // settings
+  //------------------------
+  float     GetFrameScaleX() const { return frameScaleX; }
+  float     GetFrameScaleY() const { return frameScaleY; }
+  void      SetFrameScaleX( float scale ) { frameScaleX = scale; }
+  void      SetFrameScaleY( float scale ) { frameScaleY = scale; } 
 
-	int				GetMusicVolume() const;
-	int				GetSoundVolume() const;
-	void			SetMusicVolume( int volume );
-	void			SetSoundVolume( int volume );
+  int       GetMusicVolume() const;
+  int       GetSoundVolume() const;
+  void      SetMusicVolume( int volume );
+  void      SetSoundVolume( int volume );
 
-	bool			GetAlwaysRun() const { return alwaysRun; }
-	void			SetAlwaysRun( bool set ) { alwaysRun = set; }
+  bool      GetAlwaysRun() const { return alwaysRun; }
+  void      SetAlwaysRun( bool set ) { alwaysRun = set; }
 
-	//------------------------
-	// misc
-	//------------------------
-	virtual int		GetLevel() const;
+  //------------------------
+  // misc
+  //------------------------
+  virtual int   GetLevel() const;
 
-	void			ClearAchievementBit( const int id );		// Should only be called by idLocalUser
-	bool			GetAchievementBit( const int id ) const;
-	void			SetAchievementBit( const int id );			// Should only be called by idLocalUser
+  void      ClearAchievementBit( const int id );    // Should only be called by idLocalUser
+  bool      GetAchievementBit( const int id ) const;
+  void      SetAchievementBit( const int id );      // Should only be called by idLocalUser
 
-	bool			GetSeenInstallMessage() const { return seenInstallMessage; }
-	void			SetSeenInstallMessage( bool seen ) { seenInstallMessage = seen; }
+  bool      GetSeenInstallMessage() const { return seenInstallMessage; }
+  void      SetSeenInstallMessage( bool seen ) { seenInstallMessage = seen; }
 
-	bool			HasSavedGame() const { return hasSavedGame; }
-	void			SetHasSavedGame() { hasSavedGame = true; }
+  bool      HasSavedGame() const { return hasSavedGame; }
+  void      SetHasSavedGame() { hasSavedGame = true; }
 
 protected:
-	friend class idLocalUser;
-	friend class idProfileMgr;
+  friend class idLocalUser;
+  friend class idProfileMgr;
 
-	// used by idLocalUser and internally
-	void			StatSetInt( int s, int v );
-	void			StatSetFloat( int s, float v );
-	int				StatGetInt( int s ) const;
-	float			StatGetFloat( int s ) const;
+  // used by idLocalUser and internally
+  void      StatSetInt( int s, int v );
+  void      StatSetFloat( int s, float v );
+  int       StatGetInt( int s ) const;
+  float     StatGetFloat( int s ) const;
 
 private:
-	void			SetState( state_t value ) { state = value; }
-	void			SetRequestedState( state_t value ) { requestedState = value; }
+  void      SetState( state_t value ) { state = value; }
+  void      SetRequestedState( state_t value ) { requestedState = value; }
 
 protected:
-	//------------------------
-	// settings
-	//------------------------
-	bool				alwaysRun;
-	int					musicVolume;
-	int					soundVolume;
+  //------------------------
+  // settings
+  //------------------------
+  bool        alwaysRun;
+  int         musicVolume;
+  int         soundVolume;
 
-	//------------------------
-	// video settings
-	//------------------------
-	float				frameScaleX;
-	float				frameScaleY;
+  //------------------------
+  // video settings
+  //------------------------
+  float       frameScaleX;
+  float       frameScaleY;
 
-	//------------------------
-	// state management
-	//------------------------
-	state_t				state;
-	state_t				requestedState;
+  //------------------------
+  // state management
+  //------------------------
+  state_t       state;
+  state_t       requestedState;
 
-	//------------------------
-	// stats are stored in the profile
-	//------------------------
-	idStaticList< profileStatValue_t, MAX_PLAYER_PROFILE_STATS > stats;
-	
-	//------------------------
-	// misc
-	//------------------------
-	int					deviceNum;
-	bool				seenInstallMessage;
-	uint64				achievementBits;
-	bool				hasSavedGame;
+  //------------------------
+  // stats are stored in the profile
+  //------------------------
+  idStaticList< profileStatValue_t, MAX_PLAYER_PROFILE_STATS > stats;
+  
+  //------------------------
+  // misc
+  //------------------------
+  int         deviceNum;
+  bool        seenInstallMessage;
+  uint64        achievementBits;
+  bool        hasSavedGame;
 };
 
 #endif

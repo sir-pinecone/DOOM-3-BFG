@@ -34,39 +34,39 @@ If you have questions concerning this license or the applicable additional terms
 #ifdef LINUX
 #include <math.h>
 #else
-const float PI = 				3.141592657f;
+const float PI =        3.141592657f;
 #endif
 
 
 #include "m_fixed.h"
-	
-#define FINEANGLES		8192
-#define FINEMASK		(FINEANGLES-1)
+  
+#define FINEANGLES    8192
+#define FINEMASK    (FINEANGLES-1)
 
 
 // 0x100000000 to 0x2000
-#define ANGLETOFINESHIFT	19		
+#define ANGLETOFINESHIFT  19    
 
 // Effective size is 10240.
-const extern  fixed_t		finesine[5*FINEANGLES/4];
+const extern  fixed_t   finesine[5*FINEANGLES/4];
 
 // Re-use data, is just PI/2 pahse shift.
-const extern  fixed_t*	finecosine;
+const extern  fixed_t*  finecosine;
 
 
 // Effective size is 4096.
-const extern fixed_t		finetangent[FINEANGLES/2];
+const extern fixed_t    finetangent[FINEANGLES/2];
 
 // Binary Angle Measument, BAM.
-#define ANG45			0x20000000u
-#define ANG90			0x40000000u
-#define ANG180		0x80000000u
-#define ANG270		0xc0000000u
+#define ANG45     0x20000000u
+#define ANG90     0x40000000u
+#define ANG180    0x80000000u
+#define ANG270    0xc0000000u
 
 
-#define SLOPERANGE		2048
-#define SLOPEBITS		11
-#define DBITS			(FRACBITS-SLOPEBITS)
+#define SLOPERANGE    2048
+#define SLOPEBITS   11
+#define DBITS     (FRACBITS-SLOPEBITS)
 
 typedef unsigned angle_t;
 
@@ -74,15 +74,15 @@ typedef unsigned angle_t;
 // Effective size is 2049;
 // The +1 size is to handle the case when x==y
 //  without additional checking.
-const extern angle_t		tantoangle[SLOPERANGE+1];
+const extern angle_t    tantoangle[SLOPERANGE+1];
 
 
 // Utility function,
 //  called by R_PointToAngle.
 int
 SlopeDiv
-( unsigned	num,
-  unsigned	den);
+( unsigned  num,
+  unsigned  den);
 
 
 #endif

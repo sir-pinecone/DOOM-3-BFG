@@ -37,7 +37,7 @@ idDedicatedServerSearch::idDedicatedServerSearch
 ========================
 */
 idDedicatedServerSearch::idDedicatedServerSearch() :
-	callback( NULL ) {
+  callback( NULL ) {
 }
 
 /*
@@ -46,9 +46,9 @@ idDedicatedServerSearch::~idDedicatedServerSearch
 ========================
 */
 idDedicatedServerSearch::~idDedicatedServerSearch() {
-	if ( callback != NULL ) {
-		delete callback;
-	}
+  if ( callback != NULL ) {
+    delete callback;
+  }
 }
 
 
@@ -59,8 +59,8 @@ idDedicatedServerSearch::StartSearch
 ========================
 */
 void idDedicatedServerSearch::StartSearch( const idCallback & cb ) {
-	Clear();
-	callback = cb.Clone();
+  Clear();
+  callback = cb.Clone();
 }
 
 /*
@@ -69,11 +69,11 @@ idDedicatedServerSearch::Clear
 ========================
 */
 void idDedicatedServerSearch::Clear() {
-	if ( callback != NULL ) {
-		delete callback;
-		callback = NULL;
-	}
-	list.Clear();
+  if ( callback != NULL ) {
+    delete callback;
+    callback = NULL;
+  }
+  list.Clear();
 }
 
 /*
@@ -82,58 +82,58 @@ idDedicatedServerSearch::Clear
 ========================
 */
 void idDedicatedServerSearch::HandleQueryAck( lobbyAddress_t & addr, idBitMsg & msg ) {
-	bool found = false;
-	// Find the server this ack belongs to
-	for ( int i = 0; i < list.Num(); i++ ) {
-		serverInfoDedicated_t & query = list[i];
+  bool found = false;
+  // Find the server this ack belongs to
+  for ( int i = 0; i < list.Num(); i++ ) {
+    serverInfoDedicated_t & query = list[i];
 
 
-		if ( query.addr.Compare( addr ) ) {
-			// Found the server
-			found = true;
-				
-			bool canJoin = msg.ReadBool();
-				
-			if ( !canJoin ) {
-				// If we can't join this server, then remove it
-				list.RemoveIndex( i-- );
-				break;
-			}
-				
-			query.serverInfo.Read( msg );
-			query.connectedPlayers.Clear();
-			for ( int i = 0; i < query.serverInfo.numPlayers; i++ ) {
-				idStr user;
-				msg.ReadString( user );
-				query.connectedPlayers.Append( user );
-			}
-			break;
-		}
-	}
+    if ( query.addr.Compare( addr ) ) {
+      // Found the server
+      found = true;
+        
+      bool canJoin = msg.ReadBool();
+        
+      if ( !canJoin ) {
+        // If we can't join this server, then remove it
+        list.RemoveIndex( i-- );
+        break;
+      }
+        
+      query.serverInfo.Read( msg );
+      query.connectedPlayers.Clear();
+      for ( int i = 0; i < query.serverInfo.numPlayers; i++ ) {
+        idStr user;
+        msg.ReadString( user );
+        query.connectedPlayers.Append( user );
+      }
+      break;
+    }
+  }
 
-	if ( !found ) {
-		bool canJoin = msg.ReadBool();
-		if ( canJoin ) {
-			serverInfoDedicated_t newServer;
-			newServer.addr = addr;
-			newServer.serverInfo.Read( msg );
-			if ( newServer.serverInfo.serverName.IsEmpty() ) {
-				newServer.serverInfo.serverName = addr.ToString();
-			}
-			newServer.connectedPlayers.Clear();
-			for ( int i = 0; i < newServer.serverInfo.numPlayers; i++ ) {
-				idStr user;
-				msg.ReadString( user );
-				newServer.connectedPlayers.Append( user );
-			}
-			list.Append( newServer );
-		}
-	}
+  if ( !found ) {
+    bool canJoin = msg.ReadBool();
+    if ( canJoin ) {
+      serverInfoDedicated_t newServer;
+      newServer.addr = addr;
+      newServer.serverInfo.Read( msg );
+      if ( newServer.serverInfo.serverName.IsEmpty() ) {
+        newServer.serverInfo.serverName = addr.ToString();
+      }
+      newServer.connectedPlayers.Clear();
+      for ( int i = 0; i < newServer.serverInfo.numPlayers; i++ ) {
+        idStr user;
+        msg.ReadString( user );
+        newServer.connectedPlayers.Append( user );
+      }
+      list.Append( newServer );
+    }
+  }
 
 
-	if ( callback != NULL ) {
-		callback->Call();
-	}
+  if ( callback != NULL ) {
+    callback->Call();
+  }
 }
 
 /*
@@ -142,11 +142,11 @@ idDedicatedServerSearch::GetAddrAtIndex
 ========================
 */
 bool idDedicatedServerSearch::GetAddrAtIndex( netadr_t & addr, int i ) {
-	if ( i >= 0 && i < list.Num() ) {
-		addr = list[i].addr.netAddr;
-		return true;
-	}
-	return false;
+  if ( i >= 0 && i < list.Num() ) {
+    addr = list[i].addr.netAddr;
+    return true;
+  }
+  return false;
 }
 
 /*
@@ -155,10 +155,10 @@ idDedicatedServerSearch::DescribeServerAtIndex
 ========================
 */
 const serverInfo_t * idDedicatedServerSearch::DescribeServerAtIndex( int i ) const {
-	if ( i >= 0 && i < list.Num() ) {
-		return &list[i].serverInfo;
-	}
-	return NULL;
+  if ( i >= 0 && i < list.Num() ) {
+    return &list[i].serverInfo;
+  }
+  return NULL;
 }
 
 /*
@@ -167,10 +167,10 @@ idDedicatedServerSearch::GetServerPlayersAtIndex
 ========================
 */
 const idList< idStr > * idDedicatedServerSearch::GetServerPlayersAtIndex( int i ) const {
-	if ( i >= 0 && i < list.Num() ) {
-		return &list[i].connectedPlayers;
-	}
-	return NULL;
+  if ( i >= 0 && i < list.Num() ) {
+    return &list[i].connectedPlayers;
+  }
+  return NULL;
 }
 
 /*
@@ -179,5 +179,5 @@ idDedicatedServerSearch::NumServers
 ========================
 */
 int idDedicatedServerSearch::NumServers() const {
-	return list.Num();
+  return list.Num();
 }

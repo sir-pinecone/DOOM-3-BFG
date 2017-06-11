@@ -36,13 +36,13 @@ If you have questions concerning this license or the applicable additional terms
 
 
 void idBindWindow::CommonInit() {
-	bindName = "";
-	waitingOnKey = false;
+  bindName = "";
+  waitingOnKey = false;
 }
 
 idBindWindow::idBindWindow(idUserInterfaceLocal *g) : idWindow(g) {
-	gui = g;
-	CommonInit();
+  gui = g;
+  CommonInit();
 }
 
 idBindWindow::~idBindWindow() {
@@ -51,72 +51,72 @@ idBindWindow::~idBindWindow() {
 
 
 const char *idBindWindow::HandleEvent(const sysEvent_t *event, bool *updateVisuals) {
-	static char ret[ 256 ];
-	
-	if (!(event->evType == SE_KEY && event->evValue2)) {
-		return "";
-	}
+  static char ret[ 256 ];
+  
+  if (!(event->evType == SE_KEY && event->evValue2)) {
+    return "";
+  }
 
-	int key = event->evValue;
+  int key = event->evValue;
 
-	if (waitingOnKey) {
-		waitingOnKey = false;
-		if (key == K_ESCAPE) {
-			idStr::snPrintf( ret, sizeof( ret ), "clearbind \"%s\"", bindName.GetName());
-		} else {
-			idStr::snPrintf( ret, sizeof( ret ), "bind %i \"%s\"", key, bindName.GetName());
-		}
-		return ret;
-	} else {
-		if (key == K_MOUSE1) {
-			waitingOnKey = true;
-			gui->SetBindHandler(this);
-			return "";
-		}
-	}
+  if (waitingOnKey) {
+    waitingOnKey = false;
+    if (key == K_ESCAPE) {
+      idStr::snPrintf( ret, sizeof( ret ), "clearbind \"%s\"", bindName.GetName());
+    } else {
+      idStr::snPrintf( ret, sizeof( ret ), "bind %i \"%s\"", key, bindName.GetName());
+    }
+    return ret;
+  } else {
+    if (key == K_MOUSE1) {
+      waitingOnKey = true;
+      gui->SetBindHandler(this);
+      return "";
+    }
+  }
 
-	return "";
+  return "";
 }
 
 idWinVar *idBindWindow::GetWinVarByName(const char *_name, bool fixup, drawWin_t** owner) {
 
-	if (idStr::Icmp(_name, "bind") == 0) {
-		return &bindName;
-	}
+  if (idStr::Icmp(_name, "bind") == 0) {
+    return &bindName;
+  }
 
-	return idWindow::GetWinVarByName(_name, fixup,owner);
+  return idWindow::GetWinVarByName(_name, fixup,owner);
 }
 
 void idBindWindow::PostParse() {
-	idWindow::PostParse();
-	bindName.SetGuiInfo( gui->GetStateDict(), bindName );
-	bindName.Update();
-	//bindName = state.GetString("bind");
-	flags |= (WIN_HOLDCAPTURE | WIN_CANFOCUS);
+  idWindow::PostParse();
+  bindName.SetGuiInfo( gui->GetStateDict(), bindName );
+  bindName.Update();
+  //bindName = state.GetString("bind");
+  flags |= (WIN_HOLDCAPTURE | WIN_CANFOCUS);
 }
 
 void idBindWindow::Draw(int time, float x, float y) {
-	idVec4 color = foreColor;
+  idVec4 color = foreColor;
 
-	idStr str;
-	if ( waitingOnKey ) {
-		str = idLocalization::GetString( "#str_07000" );
-	} else if ( bindName.Length() ) {
-		str = bindName.c_str();
-	} else {
-		str = idLocalization::GetString( "#str_07001" );
-	}
+  idStr str;
+  if ( waitingOnKey ) {
+    str = idLocalization::GetString( "#str_07000" );
+  } else if ( bindName.Length() ) {
+    str = bindName.c_str();
+  } else {
+    str = idLocalization::GetString( "#str_07001" );
+  }
 
-	if ( waitingOnKey || ( hover && !noEvents && Contains(gui->CursorX(), gui->CursorY()) ) ) {
-		color = hoverColor;
-	} else {
-		hover = false;
-	}
+  if ( waitingOnKey || ( hover && !noEvents && Contains(gui->CursorX(), gui->CursorY()) ) ) {
+    color = hoverColor;
+  } else {
+    hover = false;
+  }
 
-	dc->DrawText(str, textScale, textAlign, color, textRect, false, -1);
+  dc->DrawText(str, textScale, textAlign, color, textRect, false, -1);
 }
 
 void idBindWindow::Activate( bool activate, idStr &act ) {
-	idWindow::Activate( activate, act );
-	bindName.Update();
+  idWindow::Activate( activate, act );
+  bindName.Update();
 }

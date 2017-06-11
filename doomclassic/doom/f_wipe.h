@@ -35,27 +35,27 @@ If you have questions concerning this license or the applicable additional terms
 
 int
 wipe_StartScreen
-( int		x,
-  int		y,
-  int		width,
-  int		height );
+( int   x,
+  int   y,
+  int   width,
+  int   height );
 
 
 int
 wipe_EndScreen
-( int		x,
-  int		y,
-  int		width,
-  int		height );
+( int   x,
+  int   y,
+  int   width,
+  int   height );
 
 
 int
 wipe_ScreenWipe
-( int		x,
-  int		y,
-  int		width,
-  int		height,
-  int		ticks );
+( int   x,
+  int   y,
+  int   width,
+  int   height,
+  int   ticks );
 
 #endif
 

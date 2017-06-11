@@ -54,6 +54,6 @@ If you have questions concerning this license or the applicable additional terms
 // For some odd reason...
 
 
-void	NetSend (void);
+void  NetSend (void);
 qboolean NetListen (void);
 

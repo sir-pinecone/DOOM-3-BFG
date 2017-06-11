@@ -38,10 +38,10 @@ idSoundEngineCallback
 */
 class idSoundEngineCallback : public IXAudio2EngineCallback {
 public:
-	idSoundHardware_XAudio2 * hardware;
+  idSoundHardware_XAudio2 * hardware;
 
 private:
-	    // Called by XAudio2 just before an audio processing pass begins.
+      // Called by XAudio2 just before an audio processing pass begins.
     STDMETHOD_( void, OnProcessingPassStart ) ( THIS ) {}
 
     // Called just after an audio processing pass ends.
@@ -60,45 +60,45 @@ idSoundHardware_XAudio2
 
 class idSoundHardware_XAudio2 {
 public:
-					idSoundHardware_XAudio2();
+          idSoundHardware_XAudio2();
 
-	void			Init();
-	void			Shutdown();
+  void      Init();
+  void      Shutdown();
 
-	void 			Update();
+  void      Update();
 
-	idSoundVoice *	AllocateVoice( const idSoundSample * leadinSample, const idSoundSample * loopingSample );
-	void			FreeVoice( idSoundVoice * voice );
+  idSoundVoice *  AllocateVoice( const idSoundSample * leadinSample, const idSoundSample * loopingSample );
+  void      FreeVoice( idSoundVoice * voice );
 
-	// video playback needs this
-	IXAudio2 *		GetIXAudio2() const { return pXAudio2; };
+  // video playback needs this
+  IXAudio2 *    GetIXAudio2() const { return pXAudio2; };
 
-	int				GetNumZombieVoices() const { return zombieVoices.Num(); }
-	int				GetNumFreeVoices() const { return freeVoices.Num(); }
+  int       GetNumZombieVoices() const { return zombieVoices.Num(); }
+  int       GetNumFreeVoices() const { return freeVoices.Num(); }
 
 protected:
-	friend class idSoundSample_XAudio2;
-	friend class idSoundVoice_XAudio2;
+  friend class idSoundSample_XAudio2;
+  friend class idSoundVoice_XAudio2;
 
 private:
-	IXAudio2 * pXAudio2;
-	IXAudio2MasteringVoice * pMasterVoice;
-	IXAudio2SubmixVoice * pSubmixVoice;
+  IXAudio2 * pXAudio2;
+  IXAudio2MasteringVoice * pMasterVoice;
+  IXAudio2SubmixVoice * pSubmixVoice;
 
-	idSoundEngineCallback	soundEngineCallback;
-	int					lastResetTime;
+  idSoundEngineCallback soundEngineCallback;
+  int         lastResetTime;
 
-	int					outputChannels;
-	int					channelMask;
+  int         outputChannels;
+  int         channelMask;
 
-	idDebugGraph *		vuMeterRMS;
-	idDebugGraph *		vuMeterPeak;
-	int					vuMeterPeakTimes[ 8 ];
+  idDebugGraph *    vuMeterRMS;
+  idDebugGraph *    vuMeterPeak;
+  int         vuMeterPeakTimes[ 8 ];
 
-	// Can't stop and start a voice on the same frame, so we have to double this to handle the worst case scenario of stopping all voices and starting a full new set
-	idStaticList<idSoundVoice_XAudio2, MAX_HARDWARE_VOICES * 2 > voices;
-	idStaticList<idSoundVoice_XAudio2 *, MAX_HARDWARE_VOICES * 2 > zombieVoices;
-	idStaticList<idSoundVoice_XAudio2 *, MAX_HARDWARE_VOICES * 2 > freeVoices;
+  // Can't stop and start a voice on the same frame, so we have to double this to handle the worst case scenario of stopping all voices and starting a full new set
+  idStaticList<idSoundVoice_XAudio2, MAX_HARDWARE_VOICES * 2 > voices;
+  idStaticList<idSoundVoice_XAudio2 *, MAX_HARDWARE_VOICES * 2 > zombieVoices;
+  idStaticList<idSoundVoice_XAudio2 *, MAX_HARDWARE_VOICES * 2 > freeVoices;
 };
 
 /*

@@ -40,10 +40,10 @@ idPhysics_Base::idPhysics_Base
 ================
 */
 idPhysics_Base::idPhysics_Base() {
-	self = NULL;
-	clipMask = 0;
-	SetGravity( gameLocal.GetGravity() );
-	ClearContacts();
+  self = NULL;
+  clipMask = 0;
+  SetGravity( gameLocal.GetGravity() );
+  ClearContacts();
 }
 
 /*
@@ -52,11 +52,11 @@ idPhysics_Base::~idPhysics_Base
 ================
 */
 idPhysics_Base::~idPhysics_Base() {
-	if ( self && self->GetPhysics() == this ) {
-		self->SetPhysics( NULL );
-	}
-	idForce::DeletePhysics( this );
-	ClearContacts();
+  if ( self && self->GetPhysics() == this ) {
+    self->SetPhysics( NULL );
+  }
+  idForce::DeletePhysics( this );
+  ClearContacts();
 }
 
 /*
@@ -65,22 +65,22 @@ idPhysics_Base::Save
 ================
 */
 void idPhysics_Base::Save( idSaveGame *savefile ) const {
-	int i;
+  int i;
 
-	savefile->WriteObject( self );
-	savefile->WriteInt( clipMask );
-	savefile->WriteVec3( gravityVector );
-	savefile->WriteVec3( gravityNormal );
+  savefile->WriteObject( self );
+  savefile->WriteInt( clipMask );
+  savefile->WriteVec3( gravityVector );
+  savefile->WriteVec3( gravityNormal );
 
-	savefile->WriteInt( contacts.Num() );
-	for ( i = 0; i < contacts.Num(); i++ ) {
-		savefile->WriteContactInfo( contacts[i] );
-	}
+  savefile->WriteInt( contacts.Num() );
+  for ( i = 0; i < contacts.Num(); i++ ) {
+    savefile->WriteContactInfo( contacts[i] );
+  }
 
-	savefile->WriteInt( contactEntities.Num() );
-	for ( i = 0; i < contactEntities.Num(); i++ ) {
-		contactEntities[i].Save( savefile );
-	}
+  savefile->WriteInt( contactEntities.Num() );
+  for ( i = 0; i < contactEntities.Num(); i++ ) {
+    contactEntities[i].Save( savefile );
+  }
 }
 
 /*
@@ -89,24 +89,24 @@ idPhysics_Base::Restore
 ================
 */
 void idPhysics_Base::Restore( idRestoreGame *savefile ) {
-	int i, num;
+  int i, num;
 
-	savefile->ReadObject( reinterpret_cast<idClass *&>( self ) );
-	savefile->ReadInt( clipMask );
-	savefile->ReadVec3( gravityVector );
-	savefile->ReadVec3( gravityNormal );
+  savefile->ReadObject( reinterpret_cast<idClass *&>( self ) );
+  savefile->ReadInt( clipMask );
+  savefile->ReadVec3( gravityVector );
+  savefile->ReadVec3( gravityNormal );
 
-	savefile->ReadInt( num );
-	contacts.SetNum( num );
-	for ( i = 0; i < contacts.Num(); i++ ) {
-		savefile->ReadContactInfo( contacts[i] );
-	}
+  savefile->ReadInt( num );
+  contacts.SetNum( num );
+  for ( i = 0; i < contacts.Num(); i++ ) {
+    savefile->ReadContactInfo( contacts[i] );
+  }
 
-	savefile->ReadInt( num );
-	contactEntities.SetNum( num );
-	for ( i = 0; i < contactEntities.Num(); i++ ) {
-		contactEntities[i].Restore( savefile );
-	}
+  savefile->ReadInt( num );
+  contactEntities.SetNum( num );
+  for ( i = 0; i < contactEntities.Num(); i++ ) {
+    contactEntities[i].Restore( savefile );
+  }
 }
 
 /*
@@ -115,8 +115,8 @@ idPhysics_Base::SetSelf
 ================
 */
 void idPhysics_Base::SetSelf( idEntity *e ) {
-	assert( e );
-	self = e;
+  assert( e );
+  self = e;
 }
 
 /*
@@ -133,7 +133,7 @@ idPhysics_Base::GetClipModel
 ================
 */
 idClipModel *idPhysics_Base::GetClipModel( int id ) const {
-	return NULL;
+  return NULL;
 }
 
 /*
@@ -142,7 +142,7 @@ idPhysics_Base::GetNumClipModels
 ================
 */
 int idPhysics_Base::GetNumClipModels() const {
-	return 0;
+  return 0;
 }
 
 /*
@@ -159,7 +159,7 @@ idPhysics_Base::GetMass
 ================
 */
 float idPhysics_Base::GetMass( int id ) const {
-	return 0.0f;
+  return 0.0f;
 }
 
 /*
@@ -176,7 +176,7 @@ idPhysics_Base::SetClipMask
 ================
 */
 int idPhysics_Base::GetContents( int id ) const {
-	return 0;
+  return 0;
 }
 
 /*
@@ -185,7 +185,7 @@ idPhysics_Base::SetClipMask
 ================
 */
 void idPhysics_Base::SetClipMask( int mask, int id ) {
-	clipMask = mask;
+  clipMask = mask;
 }
 
 /*
@@ -194,7 +194,7 @@ idPhysics_Base::GetClipMask
 ================
 */
 int idPhysics_Base::GetClipMask( int id ) const {
-	return clipMask;
+  return clipMask;
 }
 
 /*
@@ -203,7 +203,7 @@ idPhysics_Base::GetBounds
 ================
 */
 const idBounds &idPhysics_Base::GetBounds( int id ) const {
-	return bounds_zero;
+  return bounds_zero;
 }
 
 /*
@@ -212,7 +212,7 @@ idPhysics_Base::GetAbsBounds
 ================
 */
 const idBounds &idPhysics_Base::GetAbsBounds( int id ) const {
-	return bounds_zero;
+  return bounds_zero;
 }
 
 /*
@@ -221,7 +221,7 @@ idPhysics_Base::Evaluate
 ================
 */
 bool idPhysics_Base::Evaluate( int timeStepMSec, int endTimeMSec ) {
-	return false;
+  return false;
 }
 
 /*
@@ -230,7 +230,7 @@ idPhysics_Base::Interpolate
 ================
 */
 bool idPhysics_Base::Interpolate( const float fraction ) {
-	return false;
+  return false;
 }
 
 /*
@@ -256,7 +256,7 @@ idPhysics_Base::GetTime
 ================
 */
 int idPhysics_Base::GetTime() const {
-	return 0;
+  return 0;
 }
 
 /*
@@ -265,7 +265,7 @@ idPhysics_Base::GetImpactInfo
 ================
 */
 void idPhysics_Base::GetImpactInfo( const int id, const idVec3 &point, impactInfo_t *info ) const {
-	memset( info, 0, sizeof( *info ) );
+  memset( info, 0, sizeof( *info ) );
 }
 
 /*
@@ -306,7 +306,7 @@ idPhysics_Base::IsAtRest
 ================
 */
 bool idPhysics_Base::IsAtRest() const {
-	return true;
+  return true;
 }
 
 /*
@@ -315,7 +315,7 @@ idPhysics_Base::GetRestStartTime
 ================
 */
 int idPhysics_Base::GetRestStartTime() const {
-	return 0;
+  return 0;
 }
 
 /*
@@ -324,7 +324,7 @@ idPhysics_Base::IsPushable
 ================
 */
 bool idPhysics_Base::IsPushable() const {
-	return true;
+  return true;
 }
 
 /*
@@ -381,7 +381,7 @@ idPhysics_Base::GetOrigin
 ================
 */
 const idVec3 &idPhysics_Base::GetOrigin( int id ) const {
-	return vec3_origin;
+  return vec3_origin;
 }
 
 /*
@@ -390,7 +390,7 @@ idPhysics_Base::GetAxis
 ================
 */
 const idMat3 &idPhysics_Base::GetAxis( int id ) const {
-	return mat3_identity;
+  return mat3_identity;
 }
 
 /*
@@ -415,7 +415,7 @@ idPhysics_Base::GetLinearVelocity
 ================
 */
 const idVec3 &idPhysics_Base::GetLinearVelocity( int id ) const {
-	return vec3_origin;
+  return vec3_origin;
 }
 
 /*
@@ -424,7 +424,7 @@ idPhysics_Base::GetAngularVelocity
 ================
 */
 const idVec3 &idPhysics_Base::GetAngularVelocity( int id ) const {
-	return vec3_origin;
+  return vec3_origin;
 }
 
 /*
@@ -433,9 +433,9 @@ idPhysics_Base::SetGravity
 ================
 */
 void idPhysics_Base::SetGravity( const idVec3 &newGravity ) {
-	gravityVector = newGravity;
-	gravityNormal = newGravity;
-	gravityNormal.Normalize();
+  gravityVector = newGravity;
+  gravityNormal = newGravity;
+  gravityNormal.Normalize();
 }
 
 /*
@@ -444,7 +444,7 @@ idPhysics_Base::GetGravity
 ================
 */
 const idVec3 &idPhysics_Base::GetGravity() const {
-	return gravityVector;
+  return gravityVector;
 }
 
 /*
@@ -453,7 +453,7 @@ idPhysics_Base::GetGravityNormal
 ================
 */
 const idVec3 &idPhysics_Base::GetGravityNormal() const {
-	return gravityNormal;
+  return gravityNormal;
 }
 
 /*
@@ -462,7 +462,7 @@ idPhysics_Base::ClipTranslation
 ================
 */
 void idPhysics_Base::ClipTranslation( trace_t &results, const idVec3 &translation, const idClipModel *model ) const {
-	memset( &results, 0, sizeof( trace_t ) );
+  memset( &results, 0, sizeof( trace_t ) );
 }
 
 /*
@@ -471,7 +471,7 @@ idPhysics_Base::ClipRotation
 ================
 */
 void idPhysics_Base::ClipRotation( trace_t &results, const idRotation &rotation, const idClipModel *model ) const {
-	memset( &results, 0, sizeof( trace_t ) );
+  memset( &results, 0, sizeof( trace_t ) );
 }
 
 /*
@@ -480,7 +480,7 @@ idPhysics_Base::ClipContents
 ================
 */
 int idPhysics_Base::ClipContents( const idClipModel *model ) const {
-	return 0;
+  return 0;
 }
 
 /*
@@ -521,7 +521,7 @@ idPhysics_Base::EvaluateContacts
 ================
 */
 bool idPhysics_Base::EvaluateContacts() {
-	return false;
+  return false;
 }
 
 /*
@@ -530,7 +530,7 @@ idPhysics_Base::GetNumContacts
 ================
 */
 int idPhysics_Base::GetNumContacts() const {
-	return contacts.Num();
+  return contacts.Num();
 }
 
 /*
@@ -539,7 +539,7 @@ idPhysics_Base::GetContact
 ================
 */
 const contactInfo_t &idPhysics_Base::GetContact( int num ) const {
-	return contacts[num];
+  return contacts[num];
 }
 
 /*
@@ -548,16 +548,16 @@ idPhysics_Base::ClearContacts
 ================
 */
 void idPhysics_Base::ClearContacts() {
-	int i;
-	idEntity *ent;
+  int i;
+  idEntity *ent;
 
-	for ( i = 0; i < contacts.Num(); i++ ) {
-		ent = gameLocal.entities[ contacts[i].entityNum ];
-		if ( ent ) {
-			ent->RemoveContactEntity( self );
-		}
-	}
-	contacts.SetNum( 0 );
+  for ( i = 0; i < contacts.Num(); i++ ) {
+    ent = gameLocal.entities[ contacts[i].entityNum ];
+    if ( ent ) {
+      ent->RemoveContactEntity( self );
+    }
+  }
+  contacts.SetNum( 0 );
 }
 
 /*
@@ -566,22 +566,22 @@ idPhysics_Base::AddContactEntity
 ================
 */
 void idPhysics_Base::AddContactEntity( idEntity *e ) {
-	int i;
-	idEntity *ent;
-	bool found = false;
+  int i;
+  idEntity *ent;
+  bool found = false;
 
-	for ( i = 0; i < contactEntities.Num(); i++ ) {
-		ent = contactEntities[i].GetEntity();
-		if ( ent == NULL ) {
-			contactEntities.RemoveIndex( i-- );
-		}
-		if ( ent == e ) {
-			found = true;
-		}
-	}
-	if ( !found ) {
-		contactEntities.Alloc() = e;
-	}
+  for ( i = 0; i < contactEntities.Num(); i++ ) {
+    ent = contactEntities[i].GetEntity();
+    if ( ent == NULL ) {
+      contactEntities.RemoveIndex( i-- );
+    }
+    if ( ent == e ) {
+      found = true;
+    }
+  }
+  if ( !found ) {
+    contactEntities.Alloc() = e;
+  }
 }
 
 /*
@@ -590,20 +590,20 @@ idPhysics_Base::RemoveContactEntity
 ================
 */
 void idPhysics_Base::RemoveContactEntity( idEntity *e ) {
-	int i;
-	idEntity *ent;
+  int i;
+  idEntity *ent;
 
-	for ( i = 0; i < contactEntities.Num(); i++ ) {
-		ent = contactEntities[i].GetEntity();
-		if ( !ent ) {
-			contactEntities.RemoveIndex( i-- );
-			continue;
-		}
-		if ( ent == e ) {
-			contactEntities.RemoveIndex( i-- );
-			return;
-		}
-	}
+  for ( i = 0; i < contactEntities.Num(); i++ ) {
+    ent = contactEntities[i].GetEntity();
+    if ( !ent ) {
+      contactEntities.RemoveIndex( i-- );
+      continue;
+    }
+    if ( ent == e ) {
+      contactEntities.RemoveIndex( i-- );
+      return;
+    }
+  }
 }
 
 /*
@@ -612,14 +612,14 @@ idPhysics_Base::HasGroundContacts
 ================
 */
 bool idPhysics_Base::HasGroundContacts() const {
-	int i;
+  int i;
 
-	for ( i = 0; i < contacts.Num(); i++ ) {
-		if ( contacts[i].normal * -gravityNormal > 0.0f ) {
-			return true;
-		}
-	}
-	return false;
+  for ( i = 0; i < contacts.Num(); i++ ) {
+    if ( contacts[i].normal * -gravityNormal > 0.0f ) {
+      return true;
+    }
+  }
+  return false;
 }
 
 /*
@@ -628,14 +628,14 @@ idPhysics_Base::IsGroundEntity
 ================
 */
 bool idPhysics_Base::IsGroundEntity( int entityNum ) const {
-	int i;
+  int i;
 
-	for ( i = 0; i < contacts.Num(); i++ ) {
-		if ( contacts[i].entityNum == entityNum && ( contacts[i].normal * -gravityNormal > 0.0f ) ) {
-			return true;
-		}
-	}
-	return false;
+  for ( i = 0; i < contacts.Num(); i++ ) {
+    if ( contacts[i].entityNum == entityNum && ( contacts[i].normal * -gravityNormal > 0.0f ) ) {
+      return true;
+    }
+  }
+  return false;
 }
 
 /*
@@ -644,14 +644,14 @@ idPhysics_Base::IsGroundClipModel
 ================
 */
 bool idPhysics_Base::IsGroundClipModel( int entityNum, int id ) const {
-	int i;
+  int i;
 
-	for ( i = 0; i < contacts.Num(); i++ ) {
-		if ( contacts[i].entityNum == entityNum && contacts[i].id == id && ( contacts[i].normal * -gravityNormal > 0.0f ) ) {
-			return true;
-		}
-	}
-	return false;
+  for ( i = 0; i < contacts.Num(); i++ ) {
+    if ( contacts[i].entityNum == entityNum && contacts[i].id == id && ( contacts[i].normal * -gravityNormal > 0.0f ) ) {
+      return true;
+    }
+  }
+  return false;
 }
 
 /*
@@ -668,7 +668,7 @@ idPhysics_Base::GetPushedLinearVelocity
 ================
 */
 const idVec3 &idPhysics_Base::GetPushedLinearVelocity( const int id ) const {
-	return vec3_origin;
+  return vec3_origin;
 }
 
 /*
@@ -677,7 +677,7 @@ idPhysics_Base::GetPushedAngularVelocity
 ================
 */
 const idVec3 &idPhysics_Base::GetPushedAngularVelocity( const int id ) const {
-	return vec3_origin;
+  return vec3_origin;
 }
 
 /*
@@ -694,7 +694,7 @@ idPhysics_Base::GetBlockingInfo
 ================
 */
 const trace_t *idPhysics_Base::GetBlockingInfo() const {
-	return NULL;
+  return NULL;
 }
 
 /*
@@ -703,7 +703,7 @@ idPhysics_Base::GetBlockingEntity
 ================
 */
 idEntity *idPhysics_Base::GetBlockingEntity() const {
-	return NULL;
+  return NULL;
 }
 
 /*
@@ -712,7 +712,7 @@ idPhysics_Base::GetLinearEndTime
 ================
 */
 int idPhysics_Base::GetLinearEndTime() const {
-	return 0;
+  return 0;
 }
 
 /*
@@ -721,7 +721,7 @@ idPhysics_Base::GetAngularEndTime
 ================
 */
 int idPhysics_Base::GetAngularEndTime() const {
-	return 0;
+  return 0;
 }
 
 /*
@@ -730,17 +730,17 @@ idPhysics_Base::AddGroundContacts
 ================
 */
 void idPhysics_Base::AddGroundContacts( const idClipModel *clipModel ) {
-	idVec6 dir;
-	int index, num;
+  idVec6 dir;
+  int index, num;
 
-	index = contacts.Num();
-	contacts.SetNum( index + 10 );
+  index = contacts.Num();
+  contacts.SetNum( index + 10 );
 
-	dir.SubVec3(0) = gravityNormal;
-	dir.SubVec3(1) = vec3_origin;
-	num = gameLocal.clip.Contacts( &contacts[index], 10, clipModel->GetOrigin(),
-					dir, CONTACT_EPSILON, clipModel, clipModel->GetAxis(), clipMask, self );
-	contacts.SetNum( index + num );
+  dir.SubVec3(0) = gravityNormal;
+  dir.SubVec3(1) = vec3_origin;
+  num = gameLocal.clip.Contacts( &contacts[index], 10, clipModel->GetOrigin(),
+          dir, CONTACT_EPSILON, clipModel, clipModel->GetAxis(), clipMask, self );
+  contacts.SetNum( index + num );
 }
 
 /*
@@ -749,15 +749,15 @@ idPhysics_Base::AddContactEntitiesForContacts
 ================
 */
 void idPhysics_Base::AddContactEntitiesForContacts() {
-	int i;
-	idEntity *ent;
+  int i;
+  idEntity *ent;
 
-	for ( i = 0; i < contacts.Num(); i++ ) {
-		ent = gameLocal.entities[ contacts[i].entityNum ];
-		if ( ent && ent != self ) {
-			ent->AddContactEntity( self );
-		}
-	}
+  for ( i = 0; i < contacts.Num(); i++ ) {
+    ent = gameLocal.entities[ contacts[i].entityNum ];
+    if ( ent && ent != self ) {
+      ent->AddContactEntity( self );
+    }
+  }
 }
 
 /*
@@ -766,17 +766,17 @@ idPhysics_Base::ActivateContactEntities
 ================
 */
 void idPhysics_Base::ActivateContactEntities() {
-	int i;
-	idEntity *ent;
+  int i;
+  idEntity *ent;
 
-	for ( i = 0; i < contactEntities.Num(); i++ ) {
-		ent = contactEntities[i].GetEntity();
-		if ( ent ) {
-			ent->ActivatePhysics( self );
-		} else {
-			contactEntities.RemoveIndex( i-- );
-		}
-	}
+  for ( i = 0; i < contactEntities.Num(); i++ ) {
+    ent = contactEntities[i].GetEntity();
+    if ( ent ) {
+      ent->ActivatePhysics( self );
+    } else {
+      contactEntities.RemoveIndex( i-- );
+    }
+  }
 }
 
 /*
@@ -785,10 +785,10 @@ idPhysics_Base::IsOutsideWorld
 ================
 */
 bool idPhysics_Base::IsOutsideWorld() const {
-	if ( !gameLocal.clip.GetWorldBounds().Expand( 128.0f ).IntersectsBounds( GetAbsBounds() ) ) {
-		return true;
-	}
-	return false;
+  if ( !gameLocal.clip.GetWorldBounds().Expand( 128.0f ).IntersectsBounds( GetAbsBounds() ) ) {
+    return true;
+  }
+  return false;
 }
 
 /*
@@ -797,45 +797,45 @@ idPhysics_Base::DrawVelocity
 ================
 */
 void idPhysics_Base::DrawVelocity( int id, float linearScale, float angularScale ) const {
-	idVec3 dir, org, vec, start, end;
-	idMat3 axis;
-	float length, a;
+  idVec3 dir, org, vec, start, end;
+  idMat3 axis;
+  float length, a;
 
-	dir = GetLinearVelocity( id );
-	dir *= linearScale;
-	if ( dir.LengthSqr() > Square( 0.1f ) ) {
-		dir = dir.Truncate( 10.0f );
-		org = GetOrigin( id );
-		gameRenderWorld->DebugArrow( colorRed, org, org + dir, 1 );
-	}
+  dir = GetLinearVelocity( id );
+  dir *= linearScale;
+  if ( dir.LengthSqr() > Square( 0.1f ) ) {
+    dir = dir.Truncate( 10.0f );
+    org = GetOrigin( id );
+    gameRenderWorld->DebugArrow( colorRed, org, org + dir, 1 );
+  }
 
-	dir = GetAngularVelocity( id );
-	length = dir.Normalize();
-	length *= angularScale;
-	if ( length > 0.1f ) {
-		if ( length < 60.0f ) {
-			length = 60.0f;
-		}
-		else if ( length > 360.0f ) {
-			length = 360.0f;
-		}
-		axis = GetAxis( id );
-		vec = axis[2];
-		if ( idMath::Fabs( dir * vec ) > 0.99f ) {
-			vec = axis[0];
-		}
-		vec -= vec * dir * vec;
-		vec.Normalize();
-		vec *= 4.0f;
-		start = org + vec;
-		for ( a = 20.0f; a < length; a += 20.0f ) {
-			end = org + idRotation( vec3_origin, dir, -a ).ToMat3() * vec;
-			gameRenderWorld->DebugLine( colorBlue, start, end, 1 );
-			start = end;
-		}
-		end = org + idRotation( vec3_origin, dir, -length ).ToMat3() * vec;
-		gameRenderWorld->DebugArrow( colorBlue, start, end, 1 );
-	}
+  dir = GetAngularVelocity( id );
+  length = dir.Normalize();
+  length *= angularScale;
+  if ( length > 0.1f ) {
+    if ( length < 60.0f ) {
+      length = 60.0f;
+    }
+    else if ( length > 360.0f ) {
+      length = 360.0f;
+    }
+    axis = GetAxis( id );
+    vec = axis[2];
+    if ( idMath::Fabs( dir * vec ) > 0.99f ) {
+      vec = axis[0];
+    }
+    vec -= vec * dir * vec;
+    vec.Normalize();
+    vec *= 4.0f;
+    start = org + vec;
+    for ( a = 20.0f; a < length; a += 20.0f ) {
+      end = org + idRotation( vec3_origin, dir, -a ).ToMat3() * vec;
+      gameRenderWorld->DebugLine( colorBlue, start, end, 1 );
+      start = end;
+    }
+    end = org + idRotation( vec3_origin, dir, -length ).ToMat3() * vec;
+    gameRenderWorld->DebugArrow( colorBlue, start, end, 1 );
+  }
 }
 
 /*

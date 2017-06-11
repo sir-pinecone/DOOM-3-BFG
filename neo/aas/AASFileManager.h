@@ -32,19 +32,19 @@ If you have questions concerning this license or the applicable additional terms
 /*
 ===============================================================================
 
-	AAS File Manager
+  AAS File Manager
 
 ===============================================================================
 */
 
 class idAASFileManager {
 public:
-	virtual						~idAASFileManager() {}
+  virtual           ~idAASFileManager() {}
 
-	virtual idAASFile *			LoadAAS( const char *fileName, unsigned int mapFileCRC ) = 0;
-	virtual void				FreeAAS( idAASFile *file ) = 0;
+  virtual idAASFile *     LoadAAS( const char *fileName, unsigned int mapFileCRC ) = 0;
+  virtual void        FreeAAS( idAASFile *file ) = 0;
 };
 
-extern idAASFileManager *		AASFileManager;
+extern idAASFileManager *   AASFileManager;
 
 #endif /* !__AASFILEMANAGER_H__ */

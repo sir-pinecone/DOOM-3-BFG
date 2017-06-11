@@ -33,7 +33,7 @@ If you have questions concerning this license or the applicable additional terms
 
 extern idCVar achievements_Verbose;
 
-#define STEAM_ACHIEVEMENT_PREFIX		"ach_"
+#define STEAM_ACHIEVEMENT_PREFIX    "ach_"
 
 /*
 ========================
@@ -49,7 +49,7 @@ idAchievementSystemWin::IsInitialized
 ========================
 */
 bool idAchievementSystemWin::IsInitialized() {
-	return false;
+  return false;
 }
 
 /*
@@ -82,7 +82,7 @@ idAchievementSystemWin::GetAchievementDescription
 ========================
 */
 bool idAchievementSystemWin::GetAchievementDescription( idLocalUser * user, const int achievementID, achievementDescription_t & data ) const {
-	return false;
+  return false;
 }
 
 /*
@@ -91,7 +91,7 @@ idAchievementSystemWin::GetAchievementState
 ========================
 */
 bool idAchievementSystemWin::GetAchievementState( idLocalUser * user, idArray< bool, idAchievementSystem::MAX_ACHIEVEMENTS > & achievements ) const {
-	return false;
+  return false;
 }
 
 /*

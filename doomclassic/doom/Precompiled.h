@@ -47,23 +47,23 @@ typedef unsigned int dword;
 #include <Math.h>
 #include <Assert.h>
 
-#define ACTUALTEXTUREWIDTH	1024		// should always be equal to or larger
-#define ACTUALTEXTUREHEIGHT	1024
+#define ACTUALTEXTUREWIDTH  1024    // should always be equal to or larger
+#define ACTUALTEXTUREHEIGHT 1024
 
-#define GLOBAL_IMAGE_SCALER	3
+#define GLOBAL_IMAGE_SCALER 3
 
-#define ORIGINAL_WIDTH		320
-#define ORIGINAL_HEIGHT		200
+#define ORIGINAL_WIDTH    320
+#define ORIGINAL_HEIGHT   200
 
-#define WIDTH				( ORIGINAL_WIDTH * GLOBAL_IMAGE_SCALER )
-#define HEIGHT				( ORIGINAL_HEIGHT * GLOBAL_IMAGE_SCALER )
+#define WIDTH       ( ORIGINAL_WIDTH * GLOBAL_IMAGE_SCALER )
+#define HEIGHT        ( ORIGINAL_HEIGHT * GLOBAL_IMAGE_SCALER )
 
-#define TEXTUREWIDTH		WIDTH
-#define TEXTUREHEIGHT		HEIGHT
+#define TEXTUREWIDTH    WIDTH
+#define TEXTUREHEIGHT   HEIGHT
 
-#define	BASE_WIDTH			WIDTH
-#define SCREENWIDTH			WIDTH
-#define SCREENHEIGHT		HEIGHT
+#define BASE_WIDTH      WIDTH
+#define SCREENWIDTH     WIDTH
+#define SCREENHEIGHT    HEIGHT
 
-#define MAXWIDTH			1120
-#define MAXHEIGHT			832
+#define MAXWIDTH      1120
+#define MAXHEIGHT     832

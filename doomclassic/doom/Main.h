@@ -41,59 +41,59 @@ If you have questions concerning this license or the applicable additional terms
 #define _DEMO_RECORDING
 
 #ifdef _DEBUG
-	#define safeOutputDebug(x) printf( "%s", x );
+  #define safeOutputDebug(x) printf( "%s", x );
 #else
-	#define safeOutputDebug(x)
+  #define safeOutputDebug(x)
 #endif
 
 struct SplitscreenData {
-	int		PLAYERCOUNT;
-	int		globalSkill;
-	int		globalEpisode;
-	int		globalLevel;
-	int		globalTimeLimit;
-	int		globalFragLimit;
+  int   PLAYERCOUNT;
+  int   globalSkill;
+  int   globalEpisode;
+  int   globalLevel;
+  int   globalTimeLimit;
+  int   globalFragLimit;
 };
 
-void			DL_InitNetworking( DoomInterface *pdi );
+void      DL_InitNetworking( DoomInterface *pdi );
 
-extern int		PLAYERCOUNT;
-extern bool		globalNetworking;
-extern bool		debugOutput;
-extern BOOL		globalLicenseFullGame;
-extern int		globalRichPresenceState;  // values from spa.h X_CONTEXT_PRESENCE
-extern int		globalNeedUpsell;
+extern int    PLAYERCOUNT;
+extern bool   globalNetworking;
+extern bool   debugOutput;
+extern BOOL   globalLicenseFullGame;
+extern int    globalRichPresenceState;  // values from spa.h X_CONTEXT_PRESENCE
+extern int    globalNeedUpsell;
 // PS3
 //extern HXUISTRINGTABLE globalStrings;     // gStrings for short
-extern bool		globalPauseTime;
+extern bool   globalPauseTime;
 
 
 enum MenuStates{
-	MENU_NONE,
-	MENU_XBOX_SYSTEM,
-	MENU_PAUSE,
-	MENU_UPSELL,
-	MENU_UPSELL_INVITE,
-	MENU_ENDLEVEL_UPSELL,
-	MENU_ERROR_MESSAGE,
-	MENU_ERROR_MESSAGE_FATAL,
-	MENU_END_LEVEL,
-	MENU_END_EPISODE,
-	MENU_END_CAST,
-	MENU_END_LEVEL_COOP,
-	MENU_END_LEVEL_DM,
-	MENU_END_GAME_LOBBY,
-	MENU_END_GAME_LOBBY_PLAYER,
-	MENU_LOBBY,
-	MENU_LOBBY_PLAYER,
-	MENU_INVITE,
-	MENU_COUNT
+  MENU_NONE,
+  MENU_XBOX_SYSTEM,
+  MENU_PAUSE,
+  MENU_UPSELL,
+  MENU_UPSELL_INVITE,
+  MENU_ENDLEVEL_UPSELL,
+  MENU_ERROR_MESSAGE,
+  MENU_ERROR_MESSAGE_FATAL,
+  MENU_END_LEVEL,
+  MENU_END_EPISODE,
+  MENU_END_CAST,
+  MENU_END_LEVEL_COOP,
+  MENU_END_LEVEL_DM,
+  MENU_END_GAME_LOBBY,
+  MENU_END_GAME_LOBBY_PLAYER,
+  MENU_LOBBY,
+  MENU_LOBBY_PLAYER,
+  MENU_INVITE,
+  MENU_COUNT
 };
 
 typedef struct {
-	int maxPing;
-	
-	const wchar_t *	image;
+  int maxPing;
+  
+  const wchar_t * image;
 } PingImage_t;
 
 extern PingImage_t pingsImages[];

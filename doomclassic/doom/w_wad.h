@@ -41,18 +41,18 @@ If you have questions concerning this license or the applicable additional terms
 typedef struct
 {
     // Should be "IWAD" or "PWAD".
-    char		identification[4];		
-    int			numlumps;
-    int			infotableofs;
+    char    identification[4];    
+    int     numlumps;
+    int     infotableofs;
     
 } wadinfo_t;
 
 
 typedef struct
 {
-    int			filepos;
-    int			size;
-    char		name[8];
+    int     filepos;
+    int     size;
+    char    name[8];
     
 } filelump_t;
 
@@ -61,32 +61,32 @@ typedef struct
 //
 typedef struct
 {
-    char	name[8];
-    idFile *	handle;
-    int		position;
-    int		size;
+    char  name[8];
+    idFile *  handle;
+    int   position;
+    int   size;
 } lumpinfo_t;
 
 
-extern	void**		lumpcache;
-extern	lumpinfo_t*	lumpinfo;
-extern	int		numlumps;
+extern  void**    lumpcache;
+extern  lumpinfo_t* lumpinfo;
+extern  int   numlumps;
 
 void    W_InitMultipleFiles (const char** filenames);
 void    W_Reload (void);
-void	W_FreeLumps();
-void	W_FreeWadFiles();
+void  W_FreeLumps();
+void  W_FreeWadFiles();
 
-int	W_CheckNumForName (const char* name);
-int	W_GetNumForName (const char* name);
+int W_CheckNumForName (const char* name);
+int W_GetNumForName (const char* name);
 
-int	W_LumpLength (int lump);
+int W_LumpLength (int lump);
 void    W_ReadLump (int lump, void *dest);
 
-void*	W_CacheLumpNum (int lump, int tag);
-void*	W_CacheLumpName (const char* name, int tag);
+void* W_CacheLumpNum (int lump, int tag);
+void* W_CacheLumpName (const char* name, int tag);
 
-void	W_Shutdown( void );
+void  W_Shutdown( void );
 
 
 #endif

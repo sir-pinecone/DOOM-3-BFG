@@ -26,14 +26,14 @@ extern char *program_name, current_filename[];
 extern FILE *msgfp;
 
 typedef struct {
-	char *path;
-	void *next;
+  char *path;
+  void *next;
 } PathList;
 
 /* Noise modes for open_file */
-#define OF_SILENT	0
-#define OF_NORMAL	1
-#define OF_VERBOSE	2
+#define OF_SILENT 0
+#define OF_NORMAL 1
+#define OF_VERBOSE  2
 
 extern idFile * open_file(const char *name, int decompress, int noise_mode);
 extern void add_to_pathlist(char *s);

@@ -32,11 +32,11 @@ If you have questions concerning this license or the applicable additional terms
 #include "sys\sys_stats_misc.h"
 
 enum Leaderboard_type_t {
-	
-	LEADERBOARD_TYPE_TIME_TRIAL,
-	LEADERBOARD_TYPE_FRAGS,
+  
+  LEADERBOARD_TYPE_TIME_TRIAL,
+  LEADERBOARD_TYPE_FRAGS,
 
-	LEADERBOARD_MAX_TYPES
+  LEADERBOARD_MAX_TYPES
 };
 
 void InitLeaderboards();

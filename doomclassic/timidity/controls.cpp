@@ -33,9 +33,9 @@ extern ControlMode sdl_control_mode;
 
 ControlMode *ctl_list[]={
 #ifdef SDL
-	&sdl_control_mode,
+  &sdl_control_mode,
 #endif
-		0
+    0
 };
 
 ControlMode *ctl=DEFAULT_CONTROL_MODE;

@@ -34,14 +34,14 @@ idSWF::DefineShape
 ========================
 */
 void idSWF::DefineShape( idSWFBitStream & bitstream ) {
-	uint16 characterID = bitstream.ReadU16();
-	idSWFDictionaryEntry * entry = AddDictionaryEntry( characterID, SWF_DICT_SHAPE );
-	if ( entry == NULL ) {
-		return;
-	}
+  uint16 characterID = bitstream.ReadU16();
+  idSWFDictionaryEntry * entry = AddDictionaryEntry( characterID, SWF_DICT_SHAPE );
+  if ( entry == NULL ) {
+    return;
+  }
 
-	idSWFShapeParser swfShapeParser;
-	swfShapeParser.Parse( bitstream, *entry->shape, 1 );
+  idSWFShapeParser swfShapeParser;
+  swfShapeParser.Parse( bitstream, *entry->shape, 1 );
 }
 
 /*
@@ -50,14 +50,14 @@ idSWF::DefineShape2
 ========================
 */
 void idSWF::DefineShape2( idSWFBitStream & bitstream ) {
-	uint16 characterID = bitstream.ReadU16();
-	idSWFDictionaryEntry * entry = AddDictionaryEntry( characterID, SWF_DICT_SHAPE );
-	if ( entry == NULL ) {
-		return;
-	}
+  uint16 characterID = bitstream.ReadU16();
+  idSWFDictionaryEntry * entry = AddDictionaryEntry( characterID, SWF_DICT_SHAPE );
+  if ( entry == NULL ) {
+    return;
+  }
 
-	idSWFShapeParser swfShapeParser;
-	swfShapeParser.Parse( bitstream, *entry->shape, 2 );
+  idSWFShapeParser swfShapeParser;
+  swfShapeParser.Parse( bitstream, *entry->shape, 2 );
 }
 
 /*
@@ -66,14 +66,14 @@ idSWF::DefineShape3
 ========================
 */
 void idSWF::DefineShape3( idSWFBitStream & bitstream ) {
-	uint16 characterID = bitstream.ReadU16();
-	idSWFDictionaryEntry * entry = AddDictionaryEntry( characterID, SWF_DICT_SHAPE );
-	if ( entry == NULL ) {
-		return;
-	}
+  uint16 characterID = bitstream.ReadU16();
+  idSWFDictionaryEntry * entry = AddDictionaryEntry( characterID, SWF_DICT_SHAPE );
+  if ( entry == NULL ) {
+    return;
+  }
 
-	idSWFShapeParser swfShapeParser;
-	swfShapeParser.Parse( bitstream, *entry->shape, 3 );
+  idSWFShapeParser swfShapeParser;
+  swfShapeParser.Parse( bitstream, *entry->shape, 3 );
 }
 
 /*
@@ -82,14 +82,14 @@ idSWF::DefineShape4
 ========================
 */
 void idSWF::DefineShape4( idSWFBitStream & bitstream ) {
-	uint16 characterID = bitstream.ReadU16();
-	idSWFDictionaryEntry * entry = AddDictionaryEntry( characterID, SWF_DICT_SHAPE );
-	if ( entry == NULL ) {
-		return;
-	}
+  uint16 characterID = bitstream.ReadU16();
+  idSWFDictionaryEntry * entry = AddDictionaryEntry( characterID, SWF_DICT_SHAPE );
+  if ( entry == NULL ) {
+    return;
+  }
 
-	idSWFShapeParser swfShapeParser;
-	swfShapeParser.Parse( bitstream, *entry->shape, 4 );
+  idSWFShapeParser swfShapeParser;
+  swfShapeParser.Parse( bitstream, *entry->shape, 4 );
 }
 
 
@@ -99,12 +99,12 @@ idSWF::DefineMorphShape
 ========================
 */
 void idSWF::DefineMorphShape( idSWFBitStream & bitstream ) {
-	uint16 characterID = bitstream.ReadU16();
-	idSWFDictionaryEntry * entry = AddDictionaryEntry( characterID, SWF_DICT_MORPH );
-	if ( entry == NULL ) {
-		return;
-	}
+  uint16 characterID = bitstream.ReadU16();
+  idSWFDictionaryEntry * entry = AddDictionaryEntry( characterID, SWF_DICT_MORPH );
+  if ( entry == NULL ) {
+    return;
+  }
 
-	idSWFShapeParser swfShapeParser;
-	swfShapeParser.ParseMorph( bitstream, *entry->shape );
+  idSWFShapeParser swfShapeParser;
+  swfShapeParser.ParseMorph( bitstream, *entry->shape );
 }

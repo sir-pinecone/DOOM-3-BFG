@@ -32,7 +32,7 @@ If you have questions concerning this license or the applicable additional terms
 /*
 ===============================================================================
 
-	Plane Set
+  Plane Set
 
 ===============================================================================
 */
@@ -40,42 +40,42 @@ If you have questions concerning this license or the applicable additional terms
 class idPlaneSet : public idList<idPlane> {
 public:
 
-	void					Clear() { idList<idPlane>::Clear(); hash.Free(); }
+  void          Clear() { idList<idPlane>::Clear(); hash.Free(); }
 
-	int						FindPlane( const idPlane &plane, const float normalEps, const float distEps );
+  int           FindPlane( const idPlane &plane, const float normalEps, const float distEps );
 
 private:
-	idHashIndex				hash;
+  idHashIndex       hash;
 };
 
 ID_INLINE int idPlaneSet::FindPlane( const idPlane &plane, const float normalEps, const float distEps ) {
-	int i, border, hashKey;
+  int i, border, hashKey;
 
-	assert( distEps <= 0.125f );
+  assert( distEps <= 0.125f );
 
-	hashKey = (int)( idMath::Fabs( plane.Dist() ) * 0.125f );
-	for ( border = -1; border <= 1; border++ ) {
-		for ( i = hash.First( hashKey + border ); i >= 0; i = hash.Next( i ) ) {
-			if ( (*this)[i].Compare( plane, normalEps, distEps ) ) {
-				return i;
-			}
-		}
-	}
+  hashKey = (int)( idMath::Fabs( plane.Dist() ) * 0.125f );
+  for ( border = -1; border <= 1; border++ ) {
+    for ( i = hash.First( hashKey + border ); i >= 0; i = hash.Next( i ) ) {
+      if ( (*this)[i].Compare( plane, normalEps, distEps ) ) {
+        return i;
+      }
+    }
+  }
 
-	if ( plane.Type() >= PLANETYPE_NEGX && plane.Type() < PLANETYPE_TRUEAXIAL ) {
-		Append( -plane );
-		hash.Add( hashKey, Num()-1 );
-		Append( plane );
-		hash.Add( hashKey, Num()-1 );
-		return ( Num() - 1 );
-	}
-	else {
-		Append( plane );
-		hash.Add( hashKey, Num()-1 );
-		Append( -plane );
-		hash.Add( hashKey, Num()-1 );
-		return ( Num() - 2 );
-	}
+  if ( plane.Type() >= PLANETYPE_NEGX && plane.Type() < PLANETYPE_TRUEAXIAL ) {
+    Append( -plane );
+    hash.Add( hashKey, Num()-1 );
+    Append( plane );
+    hash.Add( hashKey, Num()-1 );
+    return ( Num() - 1 );
+  }
+  else {
+    Append( plane );
+    hash.Add( hashKey, Num()-1 );
+    Append( -plane );
+    hash.Add( hashKey, Num()-1 );
+    return ( Num() - 2 );
+  }
 }
 
 #endif /* !__PLANESET_H__ */

@@ -44,8 +44,8 @@ If you have questions concerning this license or the applicable additional terms
 
 #include "doomdef.h"
 
-//#include <d3d8.h>			// SMF
-//#include <xgraphics.h>	// SMF
+//#include <d3d8.h>     // SMF
+//#include <xgraphics.h>  // SMF
 
 
 
@@ -68,61 +68,61 @@ void I_StartFrame (void)
 
 static void I_CombineMouseEvent(const event_t* in, event_t* out)
 {
-	if (fabs((float)in->data1) > fabs((float)out->data1))
-		out->data1 = in->data1;
-	if (fabs((float)in->data2) > fabs((float)out->data2))
-		out->data2 = in->data2;
-	if (fabs((float)in->data3) > fabs((float)out->data3))
-		out->data3 = in->data3;
+  if (fabs((float)in->data1) > fabs((float)out->data1))
+    out->data1 = in->data1;
+  if (fabs((float)in->data2) > fabs((float)out->data2))
+    out->data2 = in->data2;
+  if (fabs((float)in->data3) > fabs((float)out->data3))
+    out->data3 = in->data3;
 }
 
 void I_GetEvents( controller_t *controller )
 {
-	event_t e_mouse, e_joystick;
-	int numEvents;
+  event_t e_mouse, e_joystick;
+  int numEvents;
 
-	e_mouse.type = ev_mouse;
-	e_mouse.data1 = e_mouse.data2 = e_mouse.data3 = 0;
-	e_joystick.type = ev_joystick;
-	e_joystick.data1 = e_joystick.data2 = e_joystick.data3 = 0;
+  e_mouse.type = ev_mouse;
+  e_mouse.data1 = e_mouse.data2 = e_mouse.data3 = 0;
+  e_joystick.type = ev_joystick;
+  e_joystick.data1 = e_joystick.data2 = e_joystick.data3 = 0;
 
-	numEvents = I_PollMouseInputEvents( controller );
-	if (numEvents) 
-	{
-		int i;
-		event_t e;
-	
-		// right thumb stick
-		for (i = 0; i < numEvents; ++i)
-		{
-			I_ReturnMouseInputEvent(i, &e);
-			if (e.type == ev_mouse)
-				I_CombineMouseEvent(&e, &e_mouse);
-			else if (e.type == ev_joystick)
-				I_CombineMouseEvent(&e, &e_joystick);
-		}
-	}
+  numEvents = I_PollMouseInputEvents( controller );
+  if (numEvents) 
+  {
+    int i;
+    event_t e;
+  
+    // right thumb stick
+    for (i = 0; i < numEvents; ++i)
+    {
+      I_ReturnMouseInputEvent(i, &e);
+      if (e.type == ev_mouse)
+        I_CombineMouseEvent(&e, &e_mouse);
+      else if (e.type == ev_joystick)
+        I_CombineMouseEvent(&e, &e_joystick);
+    }
+  }
 
-	numEvents = I_PollJoystickInputEvents( controller );
-	if (numEvents) 
-	{
-		int i;
-		event_t e;
-		for (i = 0; i < numEvents; ++i)
-		{
-			I_ReturnJoystickInputEvent(i, &e);
-			if (e.type == ev_keydown || e.type == ev_keyup) {
-				D_PostEvent(&e);
-			} else if (e.type == ev_joystick) {
-				I_CombineMouseEvent(&e, &e_joystick);
-			} else if (e.type == ev_mouse) {
-				I_CombineMouseEvent(&e, &e_mouse);
-			}
-		}
-	}
+  numEvents = I_PollJoystickInputEvents( controller );
+  if (numEvents) 
+  {
+    int i;
+    event_t e;
+    for (i = 0; i < numEvents; ++i)
+    {
+      I_ReturnJoystickInputEvent(i, &e);
+      if (e.type == ev_keydown || e.type == ev_keyup) {
+        D_PostEvent(&e);
+      } else if (e.type == ev_joystick) {
+        I_CombineMouseEvent(&e, &e_joystick);
+      } else if (e.type == ev_mouse) {
+        I_CombineMouseEvent(&e, &e_mouse);
+      }
+    }
+  }
 
-	D_PostEvent(&e_mouse);
-	D_PostEvent(&e_joystick);
+  D_PostEvent(&e_mouse);
+  D_PostEvent(&e_joystick);
 }
 
 //
@@ -155,17 +155,17 @@ void I_ReadScreen (byte* scr)
 //
 void I_SetPalette (byte* palette)
 {
-	int i;
+  int i;
 
-	// set the X colormap entries
-	for (i=0 ; i<256 ; i++)
-	{
-		int r,b,g;
-		r = gammatable[::g->usegamma][*palette++];
-		g = gammatable[::g->usegamma][*palette++];
-		b = gammatable[::g->usegamma][*palette++];
-		::g->XColorMap[i] = D3DCOLOR_ARGB(0xff, r, g, b);
-	}
+  // set the X colormap entries
+  for (i=0 ; i<256 ; i++)
+  {
+    int r,b,g;
+    r = gammatable[::g->usegamma][*palette++];
+    g = gammatable[::g->usegamma][*palette++];
+    b = gammatable[::g->usegamma][*palette++];
+    ::g->XColorMap[i] = D3DCOLOR_ARGB(0xff, r, g, b);
+  }
 }
 
 void I_InitGraphics()

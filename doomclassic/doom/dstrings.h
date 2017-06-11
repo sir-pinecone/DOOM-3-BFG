@@ -37,7 +37,7 @@ If you have questions concerning this license or the applicable additional terms
 #include "d_englsh.h"
 
 // Misc. other strings.
-#define SAVEGAMENAME	"doomsav"
+#define SAVEGAMENAME  "doomsav"
 
 
 //

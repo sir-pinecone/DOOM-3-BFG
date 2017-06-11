@@ -27,13 +27,13 @@ structs.h
 #include <stdint.h>
 
 typedef struct {
-	int32_t time;
-	uint8_t channel, type, a, b;
+  int32_t time;
+  uint8_t channel, type, a, b;
 } MidiEvent;
 
 struct _MidiSong {
-	int32_t samples;
-	MidiEvent *events;
+  int32_t samples;
+  MidiEvent *events;
 };
 
 

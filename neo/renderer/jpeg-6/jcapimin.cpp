@@ -196,14 +196,14 @@ jpeg_write_marker( j_compress_ptr cinfo, int marker,
  * To produce a pair of files containing abbreviated tables and abbreviated
  * image data, one would proceed as follows:
  *
- *		initialize JPEG object
- *		set JPEG parameters
- *		set destination to table file
- *		jpeg_write_tables(cinfo);
- *		set destination to image file
- *		jpeg_start_compress(cinfo, FALSE);
- *		write data...
- *		jpeg_finish_compress(cinfo);
+ *    initialize JPEG object
+ *    set JPEG parameters
+ *    set destination to table file
+ *    jpeg_write_tables(cinfo);
+ *    set destination to image file
+ *    jpeg_start_compress(cinfo, FALSE);
+ *    write data...
+ *    jpeg_finish_compress(cinfo);
  *
  * jpeg_write_tables has the side effect of marking all tables written
  * (same as jpeg_suppress_tables(..., TRUE)).  Thus a subsequent start_compress

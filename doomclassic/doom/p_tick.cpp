@@ -91,7 +91,7 @@ void P_RemoveThinker (thinker_t* thinker)
 // P_AllocateThinker
 // Allocates memory and adds a new thinker at the end of the list.
 //
-void P_AllocateThinker (thinker_t*	thinker)
+void P_AllocateThinker (thinker_t*  thinker)
 {
 }
 
@@ -102,24 +102,24 @@ void P_AllocateThinker (thinker_t*	thinker)
 //
 void P_RunThinkers (void)
 {
-    thinker_t*	currentthinker;
+    thinker_t*  currentthinker;
 
     currentthinker = ::g->thinkercap.next;
     while (currentthinker != &::g->thinkercap)
     {
-		 if ( currentthinker->function.acv == (actionf_v)(-1) )
-		 {
-			 // time to remove it
-			 currentthinker->next->prev = currentthinker->prev;
-			 currentthinker->prev->next = currentthinker->next;
-			 Z_Free(currentthinker);
-		 }
-		 else
-		 {
-			 if (currentthinker->function.acp1)
-				 currentthinker->function.acp1 ((mobj_t*)currentthinker);
-		 }
-	currentthinker = currentthinker->next;
+     if ( currentthinker->function.acv == (actionf_v)(-1) )
+     {
+       // time to remove it
+       currentthinker->next->prev = currentthinker->prev;
+       currentthinker->prev->next = currentthinker->next;
+       Z_Free(currentthinker);
+     }
+     else
+     {
+       if (currentthinker->function.acp1)
+         currentthinker->function.acp1 ((mobj_t*)currentthinker);
+     }
+  currentthinker = currentthinker->next;
     }
 }
 
@@ -132,38 +132,38 @@ extern byte demoversion;
 
 void P_Ticker (void)
 {
-    int		i;
+    int   i;
     
     // run the tic
     if (::g->paused)
-		return;
+    return;
 
-	// don't think during wipe
-	if ( !::g->netgame && (!::g->demoplayback || demoversion == VERSION ) && ::g->wipe ) {
-		return;
-	}
+  // don't think during wipe
+  if ( !::g->netgame && (!::g->demoplayback || demoversion == VERSION ) && ::g->wipe ) {
+    return;
+  }
 
     // pause if in menu and at least one tic has been run
     if ( !::g->netgame
-	 && ::g->menuactive
-	 && !::g->demoplayback
-	 && ::g->players[::g->consoleplayer].viewz != 1)
+   && ::g->menuactive
+   && !::g->demoplayback
+   && ::g->players[::g->consoleplayer].viewz != 1)
     {
-	return;
+  return;
     }
 
 
-	for (i=0 ; i<MAXPLAYERS ; i++) {
-		if (::g->playeringame[i]) {
-		    P_PlayerThink (&::g->players[i]);
-		}
-	}
+  for (i=0 ; i<MAXPLAYERS ; i++) {
+    if (::g->playeringame[i]) {
+        P_PlayerThink (&::g->players[i]);
+    }
+  }
 
     P_RunThinkers ();
     P_UpdateSpecials ();
     P_RespawnSpecials ();
 
     // for par times
-    ::g->leveltime++;	
+    ::g->leveltime++; 
 }
 

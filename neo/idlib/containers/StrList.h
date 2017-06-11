@@ -32,7 +32,7 @@ If you have questions concerning this license or the applicable additional terms
 /*
 ===============================================================================
 
-	idStrList
+  idStrList
 
 ===============================================================================
 */
@@ -50,7 +50,7 @@ typedef idStr *idStrPtr;
 //*/
 //template<>
 //ID_INLINE int idListSortCompare<idStrPtr, memTag_t _tag_ >( const idStrPtr *a, const idStrPtr *b ) {
-//	return ( *a )->Icmp( **b );
+//  return ( *a )->Icmp( **b );
 //}
 
 ///*
@@ -63,29 +63,29 @@ typedef idStr *idStrPtr;
 //*/
 //template<>
 //ID_INLINE void idStrList::Sort( cmp_t *compare ) {
-//	int i;
+//  int i;
 //
-//	if ( !num ) {
-//		return;
-//	}
+//  if ( !num ) {
+//    return;
+//  }
 //
-//	idList<idStr>		other;
-//	idList<idStrPtr>	pointerList;
+//  idList<idStr>   other;
+//  idList<idStrPtr>  pointerList;
 //
-//	pointerList.SetNum( num );
-//	for( i = 0; i < num; i++ ) {
-//		pointerList[ i ] = &( *this )[ i ];
-//	}
+//  pointerList.SetNum( num );
+//  for( i = 0; i < num; i++ ) {
+//    pointerList[ i ] = &( *this )[ i ];
+//  }
 //
-//	pointerList.Sort();
+//  pointerList.Sort();
 //
-//	other.SetNum( num );
-//	other.SetGranularity( granularity );
-//	for( i = 0; i < other.Num(); i++ ) {
-//		other[ i ] = *pointerList[ i ];
-//	}
+//  other.SetNum( num );
+//  other.SetGranularity( granularity );
+//  for( i = 0; i < other.Num(); i++ ) {
+//    other[ i ] = *pointerList[ i ];
+//  }
 //
-//	this->Swap( other );
+//  this->Swap( other );
 //}
 
 ///*
@@ -97,37 +97,37 @@ typedef idStr *idStrPtr;
 //*/
 //template<>
 //ID_INLINE void idStrList::SortSubSection( int startIndex, int endIndex, cmp_t *compare ) {
-//	int i, s;
+//  int i, s;
 //
-//	if ( !num ) {
-//		return;
-//	}
-//	if ( startIndex < 0 ) {
-//		startIndex = 0;
-//	}
-//	if ( endIndex >= num ) {
-//		endIndex = num - 1;
-//	}
-//	if ( startIndex >= endIndex ) {
-//		return;
-//	}
+//  if ( !num ) {
+//    return;
+//  }
+//  if ( startIndex < 0 ) {
+//    startIndex = 0;
+//  }
+//  if ( endIndex >= num ) {
+//    endIndex = num - 1;
+//  }
+//  if ( startIndex >= endIndex ) {
+//    return;
+//  }
 //
-//	idList<idStr>		other;
-//	idList<idStrPtr>	pointerList;
+//  idList<idStr>   other;
+//  idList<idStrPtr>  pointerList;
 //
-//	s = endIndex - startIndex + 1;
-//	other.SetNum( s );
-//	pointerList.SetNum( s );
-//	for( i = 0; i < s; i++ ) {
-//		other[ i ] = ( *this )[ startIndex + i ];
-//		pointerList[ i ] = &other[ i ];
-//	}
+//  s = endIndex - startIndex + 1;
+//  other.SetNum( s );
+//  pointerList.SetNum( s );
+//  for( i = 0; i < s; i++ ) {
+//    other[ i ] = ( *this )[ startIndex + i ];
+//    pointerList[ i ] = &other[ i ];
+//  }
 //
-//	pointerList.Sort();
+//  pointerList.Sort();
 //
-//	for( i = 0; i < s; i++ ) {
-//		(*this)[ startIndex + i ] = *pointerList[ i ];
-//	}
+//  for( i = 0; i < s; i++ ) {
+//    (*this)[ startIndex + i ] = *pointerList[ i ];
+//  }
 //}
 
 /*
@@ -137,21 +137,21 @@ idStrList::Size
 */
 template<>
 ID_INLINE size_t idStrList::Size() const {
-	size_t s;
-	int i;
+  size_t s;
+  int i;
 
-	s = sizeof( *this );
-	for( i = 0; i < Num(); i++ ) {
-		s += ( *this )[ i ].Size();
-	}
+  s = sizeof( *this );
+  for( i = 0; i < Num(); i++ ) {
+    s += ( *this )[ i ].Size();
+  }
 
-	return s;
+  return s;
 }
 
 /*
 ===============================================================================
 
-	idStrList path sorting
+  idStrList path sorting
 
 ===============================================================================
 */
@@ -165,7 +165,7 @@ ID_INLINE size_t idStrList::Size() const {
 //*/
 //template<class idStrPtr>
 //ID_INLINE int idListSortComparePaths( const idStrPtr *a, const idStrPtr *b ) {
-//	return ( *a )->IcmpPath( **b );
+//  return ( *a )->IcmpPath( **b );
 //}
 
 ///*
@@ -176,29 +176,29 @@ ID_INLINE size_t idStrList::Size() const {
 //================
 //*/
 //ID_INLINE void idStrListSortPaths( idStrList &list ) {
-//	int i;
+//  int i;
 //
-//	if ( !list.Num() ) {
-//		return;
-//	}
+//  if ( !list.Num() ) {
+//    return;
+//  }
 //
-//	idList<idStr>		other;
-//	idList<idStrPtr>	pointerList;
+//  idList<idStr>   other;
+//  idList<idStrPtr>  pointerList;
 //
-//	pointerList.SetNum( list.Num() );
-//	for( i = 0; i < list.Num(); i++ ) {
-//		pointerList[ i ] = &list[ i ];
-//	}
+//  pointerList.SetNum( list.Num() );
+//  for( i = 0; i < list.Num(); i++ ) {
+//    pointerList[ i ] = &list[ i ];
+//  }
 //
-//	pointerList.Sort( idListSortComparePaths<idStrPtr> );
+//  pointerList.Sort( idListSortComparePaths<idStrPtr> );
 //
-//	other.SetNum( list.Num() );
-//	other.SetGranularity( list.GetGranularity() );
-//	for( i = 0; i < other.Num(); i++ ) {
-//		other[ i ] = *pointerList[ i ];
-//	}
+//  other.SetNum( list.Num() );
+//  other.SetGranularity( list.GetGranularity() );
+//  for( i = 0; i < other.Num(); i++ ) {
+//    other[ i ] = *pointerList[ i ];
+//  }
 //
-//	list.Swap( other );
+//  list.Swap( other );
 //}
 
 #endif /* !__STRLIST_H__ */

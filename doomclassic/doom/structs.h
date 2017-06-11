@@ -31,103 +31,103 @@ If you have questions concerning this license or the applicable additional terms
 //  am_map.structs begin // 
 typedef struct
 {
-	int x, y;
+  int x, y;
 } fpoint_t;
 typedef struct
 {
-	fpoint_t a, b;
+  fpoint_t a, b;
 } fline_t;
 typedef struct
 {
-	fixed_t		x,y;
+  fixed_t   x,y;
 } mpoint_t;
 typedef struct
 {
-	mpoint_t a, b;
+  mpoint_t a, b;
 } mline_t;
 typedef struct
 {
-	fixed_t slp, islp;
+  fixed_t slp, islp;
 } islope_t;
 // am_map.structs end // 
 //  f_finale.structs begin // 
 typedef struct
 {
-    char		*name;
-    mobjtype_t	type;
+    char    *name;
+    mobjtype_t  type;
 } castinfo_t;
 // f_finale.structs end // 
 //  i_input.structs begin // 
 
 enum  {
-	J_DELTAX,
-	J_DELTAY,
+  J_DELTAX,
+  J_DELTAY,
 };
 enum InputEventType
 {
-	IETAxis,
-	IETButtonDigital,
-	IETButtonAnalog,
-	IETNone,
-} ;	
+  IETAxis,
+  IETButtonDigital,
+  IETButtonAnalog,
+  IETNone,
+} ; 
 struct InputEvent
 {
-	InputEventType type;
-	int data;
-	int action;
-	int port;
+  InputEventType type;
+  int data;
+  int action;
+  int port;
 } ;
 // i_input.structs end // 
 
 //  mus2midi.structs begin // 
 typedef struct tagMUSheader_t {
-	char    ID[4];          // identifier "MUS" 0x1A
-	WORD    scoreLen;
-	WORD    scoreStart;
-	WORD    channels;	// count of primary channels
-	WORD    sec_channels;	// count of secondary channels
-	WORD    instrCnt;
-	WORD    dummy;
-	//// variable-length part starts here
+  char    ID[4];          // identifier "MUS" 0x1A
+  WORD    scoreLen;
+  WORD    scoreStart;
+  WORD    channels; // count of primary channels
+  WORD    sec_channels; // count of secondary channels
+  WORD    instrCnt;
+  WORD    dummy;
+  //// variable-length part starts here
 } MUSheader_t ;
 typedef struct tagMidiHeaderChunk_t {
-	char name[4];
-	int  length;
+  char name[4];
+  int  length;
 
-	short format;			// make 0
-	short ntracks;			// make 1
-	short division;			// 0xe250??
+  short format;     // make 0
+  short ntracks;      // make 1
+  short division;     // 0xe250??
 } MidiHeaderChunk_t;
 typedef struct tagMidiTrackChunk_t {
-	char name[4];
-	int	length;
+  char name[4];
+  int length;
 } MidiTrackChunk_t;
 // mus2midi.structs end // 
 //  m_menu.structs begin // 
 typedef struct
 {
-	// 0 = no cursor here, 1 = ok, 2 = arrows ok
-	short	status;
+  // 0 = no cursor here, 1 = ok, 2 = arrows ok
+  short status;
 
-	char	name[10];
+  char  name[10];
 
-	// choice = menu item #.
-	// if status = 2,
-	//   choice=0:leftarrow,1:rightarrow
-	void	(*routine)(int choice);
+  // choice = menu item #.
+  // if status = 2,
+  //   choice=0:leftarrow,1:rightarrow
+  void  (*routine)(int choice);
 
-	// hotkey in menu
-	char	alphaKey;			
+  // hotkey in menu
+  char  alphaKey;     
 } menuitem_t;
 typedef struct menu_s
 {
-	short		numitems;	// # of menu items
-	struct menu_s*	prevMenu;	// previous menu
-	menuitem_t*		menuitems;	// menu items
-	void		(*routine)();	// draw routine
-	short		x;
-	short		y;		// x,y of menu
-	short		lastOn;		// last item user was on in menu
+  short   numitems; // # of menu items
+  struct menu_s*  prevMenu; // previous menu
+  menuitem_t*   menuitems;  // menu items
+  void    (*routine)(); // draw routine
+  short   x;
+  short   y;    // x,y of menu
+  short   lastOn;   // last item user was on in menu
 } menu_t;
 typedef enum
 {
@@ -140,134 +140,134 @@ typedef enum
 } main_e;
 typedef enum
 {
-	g_accept,
-	g_cancel,
-	g_change,
-	qut_end
+  g_accept,
+  g_cancel,
+  g_change,
+  qut_end
 } quit_e;
 typedef enum
 {
-	ep1,
-	ep2,
-	ep3,
-	ep4,
-	ep_end
+  ep1,
+  ep2,
+  ep3,
+  ep4,
+  ep_end
 } episodes_e;
 typedef enum
 {
-	ex1,
-	ex2,
-	ex_end
+  ex1,
+  ex2,
+  ex_end
 } expansions_e;
 typedef enum
 {
-	killthings,
-	toorough,
-	hurtme,
-	violence,
-	nightmare,
-	newg_end
+  killthings,
+  toorough,
+  hurtme,
+  violence,
+  nightmare,
+  newg_end
 } newgame_e;
 typedef enum
 {
-	endgame,
-	scrnsize,
-	messages,
-	//detail,	
-	option_empty1,
-	mousesens,
-	option_empty2,
-	soundvol,
-	opt_end
+  endgame,
+  scrnsize,
+  messages,
+  //detail, 
+  option_empty1,
+  mousesens,
+  option_empty2,
+  soundvol,
+  opt_end
 } options_e;
 typedef enum
 {
-	rdthsempty1,
-	read1_end
+  rdthsempty1,
+  read1_end
 } read_e;
 typedef enum
 {
-	rdthsempty2,
-	read2_end
+  rdthsempty2,
+  read2_end
 } read_e2;
 typedef enum
 {
-	sfx_vol,
-	sfx_empty1,
-	music_vol,
-	sfx_empty2,
-	sound_end
+  sfx_vol,
+  sfx_empty1,
+  music_vol,
+  sfx_empty2,
+  sound_end
 } sound_e;
 typedef enum
 {
-	load1,
-	load2,
-	load3,
-	load4,
-	load5,
-	load6,
-	load_end
+  load1,
+  load2,
+  load3,
+  load4,
+  load5,
+  load6,
+  load_end
 } load_e;
 // m_menu.structs end // 
 //  m_misc.structs begin // 
 struct default_t
 {
-    char*	name;
-	union {
-		int *			location;
-		const char * *	charLocation;
-	};
-	union {
-		int				defaultvalue;
-		const char *	charDefault;
-	};
-    int		scantranslate;		// PC scan code hack
-    int		untranslated;		// lousy hack
+    char* name;
+  union {
+    int *     location;
+    const char * *  charLocation;
+  };
+  union {
+    int       defaultvalue;
+    const char *  charDefault;
+  };
+    int   scantranslate;    // PC scan code hack
+    int   untranslated;   // lousy hack
 
-	default_t( ) :
-		name( NULL ),
-		location( NULL ),
-		defaultvalue( 0 ),
-		scantranslate( 0 ),
-		untranslated( 0 ) {
-	}
+  default_t( ) :
+    name( NULL ),
+    location( NULL ),
+    defaultvalue( 0 ),
+    scantranslate( 0 ),
+    untranslated( 0 ) {
+  }
 
-	default_t( char * name_, int * location_, int defaultvalue_ ) :
-		name( name_ ),
-		location( location_ ),
-		defaultvalue( defaultvalue_ ) {
-	}
+  default_t( char * name_, int * location_, int defaultvalue_ ) :
+    name( name_ ),
+    location( location_ ),
+    defaultvalue( defaultvalue_ ) {
+  }
 
-	default_t( char * name_, const char * * charLocation_, const char * charDefault_ ) :
-		name( name_ ),
-		charLocation( charLocation_ ),
-		charDefault( charDefault_ ) {
-	}
+  default_t( char * name_, const char * * charLocation_, const char * charDefault_ ) :
+    name( name_ ),
+    charLocation( charLocation_ ),
+    charDefault( charDefault_ ) {
+  }
 };
 typedef struct
 {
-    char		manufacturer;
-    char		version;
-    char		encoding;
-    char		bits_per_pixel;
+    char    manufacturer;
+    char    version;
+    char    encoding;
+    char    bits_per_pixel;
 
-    unsigned short	xmin;
-    unsigned short	ymin;
-    unsigned short	xmax;
-    unsigned short	ymax;
+    unsigned short  xmin;
+    unsigned short  ymin;
+    unsigned short  xmax;
+    unsigned short  ymax;
     
-    unsigned short	hres;
-    unsigned short	vres;
+    unsigned short  hres;
+    unsigned short  vres;
 
-    unsigned char	palette[48];
+    unsigned char palette[48];
     
-    char		reserved;
-    char		color_planes;
-    unsigned short	bytes_per_line;
-    unsigned short	palette_type;
+    char    reserved;
+    char    color_planes;
+    unsigned short  bytes_per_line;
+    unsigned short  palette_type;
     
-    char		filler[58];
-    unsigned char	data;		// unbounded
+    char    filler[58];
+    unsigned char data;   // unbounded
 } pcx_t;
 // m_misc.structs end // 
 //  p_enemy.structs begin // 
@@ -303,32 +303,32 @@ typedef enum
     tc_strobe,
     tc_glow,
     tc_endspecials,
-	tc_fire
+  tc_fire
 
-} specials_e;	
+} specials_e; 
 // p_saveg.structs end // 
 //  p_spec.structs begin // 
 typedef struct
 {
-	qboolean	istexture;
-	int		picnum;
-	int		basepic;
-	int		numpics;
-	int		speed;
+  qboolean  istexture;
+  int   picnum;
+  int   basepic;
+  int   numpics;
+  int   speed;
 
 } anim_t2;
 typedef struct
 {
-	qboolean	istexture;	// if false, it is a flat
-	char	endname[9];
-	char	startname[9];
-	int		speed;
+  qboolean  istexture;  // if false, it is a flat
+  char  endname[9];
+  char  startname[9];
+  int   speed;
 } animdef_t;
 // p_spec.structs end // 
 //  r_bsp.structs begin // 
-typedef	struct
+typedef struct
 {
-    int	first;
+    int first;
     int last;
     
 } cliprange_t;
@@ -336,54 +336,54 @@ typedef	struct
 //  r_data.structs begin // 
 typedef struct
 {
-    short	originx;
-    short	originy;
-    short	patch;
-    short	stepdir;
-    short	colormap;
+    short originx;
+    short originy;
+    short patch;
+    short stepdir;
+    short colormap;
 } mappatch_t;
 typedef struct
 {
-    char		name[8];
-    int			masked;	
-    short		width;
-    short		height;
-    void		**columndirectory;	// OBSOLETE
-    short		patchcount;
-    mappatch_t	patches[1];
+    char    name[8];
+    int     masked; 
+    short   width;
+    short   height;
+    void    **columndirectory;  // OBSOLETE
+    short   patchcount;
+    mappatch_t  patches[1];
 } maptexture_t;
 typedef struct
 {
     // Block origin (allways UL),
     // which has allready accounted
     // for the internal origin of the patch.
-    int		originx;	
-    int		originy;
-    int		patch;
+    int   originx;  
+    int   originy;
+    int   patch;
 } texpatch_t;
 typedef struct
 {
     // Keep name for switch changing, etc.
-    char	name[8];		
-    short	width;
-    short	height;
+    char  name[8];    
+    short width;
+    short height;
     
     // All the patches[patchcount]
     //  are drawn back to front into the cached texture.
-    short	patchcount;
-    texpatch_t	patches[1];		
+    short patchcount;
+    texpatch_t  patches[1];   
     
 } texture_t;
 // r_data.structs end // 
 //  r_things.structs begin // 
 typedef struct
 {
-    int		x1;
-    int		x2;
-	
-    int		column;
-    int		topclip;
-    int		bottomclip;
+    int   x1;
+    int   x2;
+  
+    int   column;
+    int   topclip;
+    int   bottomclip;
 
 } maskdraw_t;
 // r_things.structs end // 
@@ -399,14 +399,14 @@ typedef enum
 //  s_sound.structs begin // 
 typedef struct
 {
-	// sound information (if null, channel avail.)
-	sfxinfo_t*	sfxinfo;
+  // sound information (if null, channel avail.)
+  sfxinfo_t*  sfxinfo;
 
-	// origin of sound
-	void*	origin;
+  // origin of sound
+  void* origin;
 
-	// handle of the sound being played
-	int		handle;
+  // handle of the sound being played
+  int   handle;
 
 } channel_t;
 // s_sound.structs end // 
@@ -420,68 +420,68 @@ typedef enum
 } animenum_t;
 typedef struct
 {
-    int		x;
-    int		y;
+    int   x;
+    int   y;
     
 } point_t;
 typedef struct
 {
-    animenum_t	type;
+    animenum_t  type;
 
     // period in tics between animations
-    int		period;
+    int   period;
 
     // number of animation frames
-    int		nanims;
+    int   nanims;
 
     // location of animation
-    point_t	loc;
+    point_t loc;
 
     // ALWAYS: n/a,
     // RANDOM: period deviation (<256),
     // LEVEL: level
-    int		data1;
+    int   data1;
 
     // ALWAYS: n/a,
     // RANDOM: random base period,
     // LEVEL: n/a
-    int		data2; 
+    int   data2; 
 
     // actual graphics for frames of animations
-    patch_t*	p[3]; 
+    patch_t*  p[3]; 
 
     // following must be initialized to zero before use!
 
     // next value of bcnt (used in conjunction with period)
-    int		nexttic;
+    int   nexttic;
 
     // last drawn animation frame
-    int		lastdrawn;
+    int   lastdrawn;
 
     // next frame number to animate
-    int		ctr;
+    int   ctr;
     
     // used by RANDOM and LEVEL when animating
-    int		state;  
+    int   state;  
 
 } anim_t;
 // wi_stuff.structs end // 
 //  z_zone.structs begin // 
 struct lumplookup
 {
-	int lump;
-	lumplookup *next;
-	lumplookup *prev;
+  int lump;
+  lumplookup *next;
+  lumplookup *prev;
 };
 typedef struct
 {
     // total bytes malloced, including header
-    int		size;
+    int   size;
 
     // start / end cap for linked list
-    memblock_t	blocklist;
+    memblock_t  blocklist;
     
-    memblock_t*	rover;
+    memblock_t* rover;
     
 } memzone_t;
 // z_zone.structs end // 

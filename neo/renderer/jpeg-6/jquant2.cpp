@@ -158,8 +158,8 @@ typedef hist2d * hist3d;    /* type for top-level pointer */
  * Errors are accumulated into the array fserrors[], at a resolution of
  * 1/16th of a pixel count.  The error at a given pixel is propagated
  * to its not-yet-processed neighbors using the standard F-S fractions,
- *		...	(here)	7/16
- *		3/16	5/16	1/16
+ *    ... (here)  7/16
+ *    3/16  5/16  1/16
  * We work left-to-right on even rows, right-to-left on odd rows.
  *
  * We can get away with a single array (holding one row's worth of errors)

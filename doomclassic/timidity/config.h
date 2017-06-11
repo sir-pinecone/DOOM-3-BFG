@@ -46,17 +46,17 @@ a critical choice anymore. */
 /* A somewhat arbitrary frequency range. The low end of this will
 sound terrible as no lowpass filtering is performed on most
 instruments before resampling. */
-#define MIN_OUTPUT_RATE 	4000
-#define MAX_OUTPUT_RATE 	65000
+#define MIN_OUTPUT_RATE   4000
+#define MAX_OUTPUT_RATE   65000
 
 /* In percent. */
-#define DEFAULT_AMPLIFICATION 	70
+#define DEFAULT_AMPLIFICATION   70
 
 /* Default sampling rate, default polyphony, and maximum polyphony.
 All but the last can be overridden from the command line. */
-#define DEFAULT_RATE	32000
-#define DEFAULT_VOICES	32
-#define MAX_VOICES	48
+#define DEFAULT_RATE  32000
+#define DEFAULT_VOICES  32
+#define MAX_VOICES  48
 
 /* 1000 here will give a control ratio of 22:1 with 22 kHz output.
 Higher CONTROLS_PER_SECOND values allow more accurate rendering
@@ -137,9 +137,9 @@ need to do some conversions. */
 
 #define XCHG_SHORT(x) ((((x)&0xFF)<<8) | (((x)>>8)&0xFF))
 # define XCHG_LONG(x) ((((x)&0xFF)<<24) | \
-	(((x)&0xFF00)<<8) | \
-	(((x)&0xFF0000)>>8) | \
-	(((x)>>24)&0xFF))
+  (((x)&0xFF00)<<8) | \
+  (((x)&0xFF0000)>>8) | \
+  (((x)>>24)&0xFF))
 
 #ifdef LITTLE_ENDIAN
 #define LE_SHORT(x) x

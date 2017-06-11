@@ -30,23 +30,23 @@ If you have questions concerning this license or the applicable additional terms
 
 class idAutoRender : public idSysThread {
 public:
-		idAutoRender();
-		// idSysThread interface
-		int			Run();
+    idAutoRender();
+    // idSysThread interface
+    int     Run();
 
-		void		StartBackgroundAutoSwaps( autoRenderIconType_t iconType );
-		void		EndBackgroundAutoSwaps();
+    void    StartBackgroundAutoSwaps( autoRenderIconType_t iconType );
+    void    EndBackgroundAutoSwaps();
 
-		autoRenderIconType_t	GetCurrentIcon() { return autoRenderIcon; }
-		
+    autoRenderIconType_t  GetCurrentIcon() { return autoRenderIcon; }
+    
 private:
-		void		RenderFrame();
-		void		RenderBackground();
-		void		RenderLoadingIcon( float fracX, float fracY, float size, float speed );
+    void    RenderFrame();
+    void    RenderBackground();
+    void    RenderLoadingIcon( float fracX, float fracY, float size, float speed );
 
-		int			nextRotateTime;
-		float		currentRotation;
-		autoRenderIconType_t autoRenderIcon;
+    int     nextRotateTime;
+    float   currentRotation;
+    autoRenderIconType_t autoRenderIcon;
 };
 
 extern idAutoRender rAutoRender;

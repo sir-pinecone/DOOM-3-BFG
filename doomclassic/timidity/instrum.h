@@ -22,42 +22,42 @@ instrum.h
 */
 
 typedef struct {
-	 int32_t 
-		loop_start, loop_end, data_length,
-		sample_rate, low_freq, high_freq, root_freq;
-	 int32_t 
-		envelope_rate[6], envelope_offset[6];
-	float
-		volume;
-	sample_t *data;
-	 int32_t  
-		tremolo_sweep_increment, tremolo_phase_increment, 
-		vibrato_sweep_increment, vibrato_control_ratio;
-	uint8_t
-		tremolo_depth, vibrato_depth,
-		modes;
-	int8_t
-		panning, note_to_use;
+   int32_t 
+    loop_start, loop_end, data_length,
+    sample_rate, low_freq, high_freq, root_freq;
+   int32_t 
+    envelope_rate[6], envelope_offset[6];
+  float
+    volume;
+  sample_t *data;
+   int32_t  
+    tremolo_sweep_increment, tremolo_phase_increment, 
+    vibrato_sweep_increment, vibrato_control_ratio;
+  uint8_t
+    tremolo_depth, vibrato_depth,
+    modes;
+  int8_t
+    panning, note_to_use;
 } Sample;
 
 /* Bits in modes: */
-#define MODES_16BIT	(1<<0)
-#define MODES_UNSIGNED	(1<<1)
-#define MODES_LOOPING	(1<<2)
-#define MODES_PINGPONG	(1<<3)
-#define MODES_REVERSE	(1<<4)
-#define MODES_SUSTAIN	(1<<5)
-#define MODES_ENVELOPE	(1<<6)
+#define MODES_16BIT (1<<0)
+#define MODES_UNSIGNED  (1<<1)
+#define MODES_LOOPING (1<<2)
+#define MODES_PINGPONG  (1<<3)
+#define MODES_REVERSE (1<<4)
+#define MODES_SUSTAIN (1<<5)
+#define MODES_ENVELOPE  (1<<6)
 
 typedef struct {
-	int samples;
-	Sample *sample;
+  int samples;
+  Sample *sample;
 } Instrument;
 
 typedef struct {
-	char *name;
-	Instrument *instrument;
-	int note, amp, pan, strip_loop, strip_envelope, strip_tail;
+  char *name;
+  Instrument *instrument;
+  int note, amp, pan, strip_loop, strip_envelope, strip_tail;
 } ToneBankElement;
 
 /* A hack to delay instrument loading until after reading the
@@ -65,7 +65,7 @@ entire MIDI file. */
 #define MAGIC_LOAD_INSTRUMENT ((Instrument *)(-1))
 
 typedef struct {
-	ToneBankElement tone[128];
+  ToneBankElement tone[128];
 } ToneBank;
 
 extern ToneBank *tonebank[], *drumset[];

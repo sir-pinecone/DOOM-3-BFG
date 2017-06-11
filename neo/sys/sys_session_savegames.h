@@ -35,12 +35,12 @@ idSaveGameProcessorLoadFiles
 */
 class idSaveGameProcessorLoadFiles : public idSaveGameProcessor {
 public:
-	DEFINE_CLASS( idSaveGameProcessorLoadFiles );
+  DEFINE_CLASS( idSaveGameProcessorLoadFiles );
 
-	virtual bool	InitLoadFiles( const char * folder, 
-									const saveFileEntryList_t & files, 
-									idSaveGameManager::packageType_t type = idSaveGameManager::PACKAGE_GAME );
-	virtual bool	Process();
+  virtual bool  InitLoadFiles( const char * folder, 
+                  const saveFileEntryList_t & files, 
+                  idSaveGameManager::packageType_t type = idSaveGameManager::PACKAGE_GAME );
+  virtual bool  Process();
 };
 
 /*
@@ -50,10 +50,10 @@ idSaveGameProcessorDelete
 */
 class idSaveGameProcessorDelete : public idSaveGameProcessor {
 public:
-	DEFINE_CLASS( idSaveGameProcessorDelete );
+  DEFINE_CLASS( idSaveGameProcessorDelete );
 
-	bool			InitDelete( const char * folder, idSaveGameManager::packageType_t type = idSaveGameManager::PACKAGE_GAME );
-	virtual bool	Process();
+  bool      InitDelete( const char * folder, idSaveGameManager::packageType_t type = idSaveGameManager::PACKAGE_GAME );
+  virtual bool  Process();
 };
 
 /*
@@ -63,14 +63,14 @@ idSaveGameProcessorSaveFiles
 */
 class idSaveGameProcessorSaveFiles : public idSaveGameProcessor {
 public:
-	DEFINE_CLASS( idSaveGameProcessorSaveFiles );
+  DEFINE_CLASS( idSaveGameProcessorSaveFiles );
 
-	// Passing in idSaveGameDetails so that we have a copy on output
-	bool			InitSave( const char * folder, 
-								const saveFileEntryList_t & files, 
-								const idSaveGameDetails & description,
-								idSaveGameManager::packageType_t type = idSaveGameManager::PACKAGE_GAME );
-	virtual bool	Process();
+  // Passing in idSaveGameDetails so that we have a copy on output
+  bool      InitSave( const char * folder, 
+                const saveFileEntryList_t & files, 
+                const idSaveGameDetails & description,
+                idSaveGameManager::packageType_t type = idSaveGameManager::PACKAGE_GAME );
+  virtual bool  Process();
 };
 
 /*
@@ -80,9 +80,9 @@ idSaveGameProcessorEnumerateGames
 */
 class idSaveGameProcessorEnumerateGames : public idSaveGameProcessor {
 public:
-	DEFINE_CLASS( idSaveGameProcessorEnumerateGames );
+  DEFINE_CLASS( idSaveGameProcessorEnumerateGames );
 
-	virtual bool	Process();
+  virtual bool  Process();
 };
 
 #endif

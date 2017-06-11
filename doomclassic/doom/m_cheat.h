@@ -39,23 +39,23 @@ If you have questions concerning this license or the applicable additional terms
 
 struct cheatseq_t
 {
-	cheatseq_t() {}
-	cheatseq_t( const unsigned char *seq, unsigned char *pin ) : sequence( seq ), p( pin ) {}
-	const unsigned char*	sequence;
-	unsigned char*	p;
+  cheatseq_t() {}
+  cheatseq_t( const unsigned char *seq, unsigned char *pin ) : sequence( seq ), p( pin ) {}
+  const unsigned char*  sequence;
+  unsigned char*  p;
     
 };
 
 int
 cht_CheckCheat
-( cheatseq_t*		cht,
-  char			key );
+( cheatseq_t*   cht,
+  char      key );
 
 
 void
 cht_GetParam
-( cheatseq_t*		cht,
-  char*			buffer );
+( cheatseq_t*   cht,
+  char*     buffer );
 
 
 #endif

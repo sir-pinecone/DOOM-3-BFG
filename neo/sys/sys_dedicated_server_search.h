@@ -26,8 +26,8 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-#ifndef	__DEDICATEDSERVERSEARCH_H__
-#define	__DEDICATEDSERVERSEARCH_H__
+#ifndef __DEDICATEDSERVERSEARCH_H__
+#define __DEDICATEDSERVERSEARCH_H__
 
 /*
 ================================================
@@ -36,30 +36,30 @@ idDedicatedServerSearch
 */
 class idDedicatedServerSearch {
 public:
-					idDedicatedServerSearch();
-					~idDedicatedServerSearch();
+          idDedicatedServerSearch();
+          ~idDedicatedServerSearch();
 
-	void			StartSearch( const idCallback & cb );
-	void			Clear();
+  void      StartSearch( const idCallback & cb );
+  void      Clear();
 
-	void			HandleQueryAck( lobbyAddress_t & addr, idBitMsg & msg );
+  void      HandleQueryAck( lobbyAddress_t & addr, idBitMsg & msg );
 
 
-	bool			GetAddrAtIndex( netadr_t & addr, int i );
-	const serverInfo_t *	DescribeServerAtIndex( int i ) const;
-	const idList< idStr > *	GetServerPlayersAtIndex( int i ) const;
+  bool      GetAddrAtIndex( netadr_t & addr, int i );
+  const serverInfo_t *  DescribeServerAtIndex( int i ) const;
+  const idList< idStr > * GetServerPlayersAtIndex( int i ) const;
 
-	int				NumServers() const;
+  int       NumServers() const;
 
 private:
-	struct serverInfoDedicated_t {
-		lobbyAddress_t			addr;
-		serverInfo_t				serverInfo;
-		idList< idStr >				connectedPlayers;
-	};
+  struct serverInfoDedicated_t {
+    lobbyAddress_t      addr;
+    serverInfo_t        serverInfo;
+    idList< idStr >       connectedPlayers;
+  };
 
-	idList< serverInfoDedicated_t >	list;
-	idCallback *		callback;
+  idList< serverInfoDedicated_t > list;
+  idCallback *    callback;
 };
 
-#endif	// __DEDICATEDSERVERSEARCH_H__ 
+#endif  // __DEDICATEDSERVERSEARCH_H__ 

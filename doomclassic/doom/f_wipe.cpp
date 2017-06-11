@@ -46,33 +46,33 @@ If you have questions concerning this license or the applicable additional terms
 
 void
 wipe_shittyColMajorXform
-( short*	array,
-  int		width,
-  int		height )
+( short*  array,
+  int   width,
+  int   height )
 {
-    int		x;
-    int		y;
-    short*	dest;
+    int   x;
+    int   y;
+    short*  dest;
 
     //dest = (short*) DoomLib::Z_Malloc(width*height*2, PU_STATIC, 0 );
-	dest = new short[ width * height ];
+  dest = new short[ width * height ];
 
     for(y=0;y<height;y++)
-		for(x=0;x<width;x++)
-			dest[x*height+y] = array[y*width+x];
+    for(x=0;x<width;x++)
+      dest[x*height+y] = array[y*width+x];
 
     memcpy(array, dest, width*height*2);
 
     //Z_Free(dest);
-	delete[] dest;
+  delete[] dest;
 }
 
 
 int
 wipe_initMelt
-( int	width,
-  int	height,
-  int	ticks )
+( int width,
+  int height,
+  int ticks )
 {
     int i, r;
     
@@ -90,96 +90,96 @@ wipe_initMelt
 
     ::g->wipe_y[0] = -(M_Random()%16);
 
-	for (i=1;i<width;i++)
-	{
-		r = (M_Random()%3) - 1;
+  for (i=1;i<width;i++)
+  {
+    r = (M_Random()%3) - 1;
 
-		::g->wipe_y[i] = ::g->wipe_y[i-1] + r;
+    ::g->wipe_y[i] = ::g->wipe_y[i-1] + r;
 
-		if (::g->wipe_y[i] > 0)
-			::g->wipe_y[i] = 0;
-		else if (::g->wipe_y[i] == -16)
-			::g->wipe_y[i] = -15;
-	}
+    if (::g->wipe_y[i] > 0)
+      ::g->wipe_y[i] = 0;
+    else if (::g->wipe_y[i] == -16)
+      ::g->wipe_y[i] = -15;
+  }
 
     return 0;
 }
 
 int wipe_doMelt( int width, int height, int ticks ) {
-	int		i;
-	int		j;
-	int		dy;
-	int		idx;
+  int   i;
+  int   j;
+  int   dy;
+  int   idx;
 
-	short*	s;
-	short*	d;
-	qboolean	done = true;
+  short*  s;
+  short*  d;
+  qboolean  done = true;
 
-	width/=2;
+  width/=2;
 
-	while (ticks--)
-	{
-		for (i=0;i<width;i++)
-		{
-			if (::g->wipe_y[i]<0) {
+  while (ticks--)
+  {
+    for (i=0;i<width;i++)
+    {
+      if (::g->wipe_y[i]<0) {
 
-				::g->wipe_y[i]++;
-				done = false;
-			}
-			else if (::g->wipe_y[i] < height) {
+        ::g->wipe_y[i]++;
+        done = false;
+      }
+      else if (::g->wipe_y[i] < height) {
 
-				dy = (::g->wipe_y[i] < 16 * GLOBAL_IMAGE_SCALER) ? ::g->wipe_y[i]+1 : 8 * GLOBAL_IMAGE_SCALER;
+        dy = (::g->wipe_y[i] < 16 * GLOBAL_IMAGE_SCALER) ? ::g->wipe_y[i]+1 : 8 * GLOBAL_IMAGE_SCALER;
 
-				if (::g->wipe_y[i]+dy >= height)
-					dy = height - ::g->wipe_y[i];
+        if (::g->wipe_y[i]+dy >= height)
+          dy = height - ::g->wipe_y[i];
 
-				s = &((short *)::g->wipe_scr_end)[i*height+::g->wipe_y[i]];
-				d = &((short *)::g->wipe_scr)[::g->wipe_y[i]*width+i];
+        s = &((short *)::g->wipe_scr_end)[i*height+::g->wipe_y[i]];
+        d = &((short *)::g->wipe_scr)[::g->wipe_y[i]*width+i];
 
-				idx = 0;
-				for (j=dy;j;j--)
-				{
-					d[idx] = *(s++);
-					idx += width;
-				}
+        idx = 0;
+        for (j=dy;j;j--)
+        {
+          d[idx] = *(s++);
+          idx += width;
+        }
 
-				::g->wipe_y[i] += dy;
+        ::g->wipe_y[i] += dy;
 
-				s = &((short *)::g->wipe_scr_start)[i*height];
-				d = &((short *)::g->wipe_scr)[::g->wipe_y[i]*width+i];
+        s = &((short *)::g->wipe_scr_start)[i*height];
+        d = &((short *)::g->wipe_scr)[::g->wipe_y[i]*width+i];
 
-				idx = 0;
-				for (j=height-::g->wipe_y[i];j;j--)
-				{
-					d[idx] = *(s++);
-					idx += width;
-				}
+        idx = 0;
+        for (j=height-::g->wipe_y[i];j;j--)
+        {
+          d[idx] = *(s++);
+          idx += width;
+        }
 
-				done = false;
-			}
-		}
-	}
+        done = false;
+      }
+    }
+  }
 
-	return done;
+  return done;
 }
 
 int
 wipe_exitMelt
-( int	width,
-  int	height,
-  int	ticks )
+( int width,
+  int height,
+  int ticks )
 {
     Z_Free(::g->wipe_y);
-	::g->wipe_y = NULL;
+  ::g->wipe_y = NULL;
     return 0;
 }
 
 int
 wipe_StartScreen
-( int	x,
-  int	y,
-  int	width,
-  int	height )
+( int x,
+  int y,
+  int width,
+  int height )
 {
     ::g->wipe_scr_start = ::g->screens[2];
     I_ReadScreen(::g->wipe_scr_start);
@@ -188,10 +188,10 @@ wipe_StartScreen
 
 int
 wipe_EndScreen
-( int	x,
-  int	y,
-  int	width,
-  int	height )
+( int x,
+  int y,
+  int width,
+  int height )
 {
     ::g->wipe_scr_end = ::g->screens[3];
     I_ReadScreen(::g->wipe_scr_end);
@@ -201,35 +201,35 @@ wipe_EndScreen
 
 int
 wipe_ScreenWipe
-( int	x,
-  int	y,
-  int	width,
-  int	height,
-  int	ticks )
+( int x,
+  int y,
+  int width,
+  int height,
+  int ticks )
 {
-	int rc;
+  int rc;
 
-	// initial stuff
-	if (!::g->go)
-	{
-		::g->go = 1;
-		::g->wipe_scr = ::g->screens[0];
+  // initial stuff
+  if (!::g->go)
+  {
+    ::g->go = 1;
+    ::g->wipe_scr = ::g->screens[0];
 
-		wipe_initMelt(width, height, ticks);
-	}
+    wipe_initMelt(width, height, ticks);
+  }
 
-	// do a piece of wipe-in
-	V_MarkRect(0, 0, width, height);
+  // do a piece of wipe-in
+  V_MarkRect(0, 0, width, height);
 
-	rc = wipe_doMelt(width, height, ticks);
+  rc = wipe_doMelt(width, height, ticks);
 
-	// final stuff
-	if (rc)
-	{
-		::g->go = 0;
-		wipe_exitMelt(width, height, ticks);
-	}
+  // final stuff
+  if (rc)
+  {
+    ::g->go = 0;
+    wipe_exitMelt(width, height, ticks);
+  }
 
-	return !::g->go;
+  return !::g->go;
 }
 

@@ -339,15 +339,15 @@ LOCAL void
 emit_jfif_app0( j_compress_ptr cinfo ) {
 /* Emit a JFIF-compliant APP0 marker */
 /*
- * Length of APP0 block	(2 bytes)
- * Block ID			(4 bytes - ASCII "JFIF")
- * Zero byte			(1 byte to terminate the ID string)
- * Version Major, Minor	(2 bytes - 0x01, 0x01)
- * Units			(1 byte - 0x00 = none, 0x01 = inch, 0x02 = cm)
- * Xdpu			(2 bytes - dots per unit horizontal)
- * Ydpu			(2 bytes - dots per unit vertical)
- * Thumbnail X size		(1 byte)
- * Thumbnail Y size		(1 byte)
+ * Length of APP0 block (2 bytes)
+ * Block ID     (4 bytes - ASCII "JFIF")
+ * Zero byte      (1 byte to terminate the ID string)
+ * Version Major, Minor (2 bytes - 0x01, 0x01)
+ * Units      (1 byte - 0x00 = none, 0x01 = inch, 0x02 = cm)
+ * Xdpu     (2 bytes - dots per unit horizontal)
+ * Ydpu     (2 bytes - dots per unit vertical)
+ * Thumbnail X size   (1 byte)
+ * Thumbnail Y size   (1 byte)
  */
 
     emit_marker( cinfo, M_APP0 );
@@ -376,12 +376,12 @@ LOCAL void
 emit_adobe_app14( j_compress_ptr cinfo ) {
 /* Emit an Adobe APP14 marker */
 /*
- * Length of APP14 block	(2 bytes)
- * Block ID			(5 bytes - ASCII "Adobe")
- * Version Number		(2 bytes - currently 100)
- * Flags0			(2 bytes - currently 0)
- * Flags1			(2 bytes - currently 0)
- * Color transform		(1 byte)
+ * Length of APP14 block  (2 bytes)
+ * Block ID     (5 bytes - ASCII "Adobe")
+ * Version Number   (2 bytes - currently 100)
+ * Flags0     (2 bytes - currently 0)
+ * Flags1     (2 bytes - currently 0)
+ * Color transform    (1 byte)
  *
  * Although Adobe TN 5116 mentions Version = 101, all the Adobe files
  * now in circulation seem to use Version = 100, so that's what we write.

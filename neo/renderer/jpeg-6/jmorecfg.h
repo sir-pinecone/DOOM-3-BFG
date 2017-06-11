@@ -20,7 +20,7 @@
  * We do not support run-time selection of data precision, sorry.
  */
 
-#define BITS_IN_JSAMPLE  8	/* use 8 or 12 */
+#define BITS_IN_JSAMPLE  8  /* use 8 or 12 */
 
 
 /*
@@ -32,7 +32,7 @@
  * bytes of storage, whether actually used in an image or not.)
  */
 
-#define MAX_COMPONENTS  10	/* maximum number of image components */
+#define MAX_COMPONENTS  10  /* maximum number of image components */
 
 
 /*
@@ -70,8 +70,8 @@ typedef char JSAMPLE;
 
 #endif /* HAVE_UNSIGNED_CHAR */
 
-#define MAXJSAMPLE	255
-#define CENTERJSAMPLE	128
+#define MAXJSAMPLE  255
+#define CENTERJSAMPLE 128
 
 #endif /* BITS_IN_JSAMPLE == 8 */
 
@@ -84,8 +84,8 @@ typedef char JSAMPLE;
 typedef short JSAMPLE;
 #define GETJSAMPLE(value)  ((int) (value))
 
-#define MAXJSAMPLE	4095
-#define CENTERJSAMPLE	2048
+#define MAXJSAMPLE  4095
+#define CENTERJSAMPLE 2048
 
 #endif /* BITS_IN_JSAMPLE == 12 */
 
@@ -157,13 +157,13 @@ typedef long INT32;
 
 /* INT16 must hold at least the values -32768..32767. */
 
-#ifndef XMD_H			/* X11/xmd.h correctly defines INT16 */
+#ifndef XMD_H     /* X11/xmd.h correctly defines INT16 */
 typedef short INT16;
 #endif
 
 /* INT32 must hold at least signed 32-bit values. */
 
-//#ifndef XMD_H			/* X11/xmd.h correctly defines INT32 */
+//#ifndef XMD_H     /* X11/xmd.h correctly defines INT32 */
 //typedef long INT32;
 //#endif
 
@@ -185,10 +185,10 @@ typedef unsigned int JDIMENSION;
  * or code profilers that require it.
  */
 
-#define METHODDEF static	/* a function called through method pointers */
-#define LOCAL	  static	/* a function used only in its module */
-#define GLOBAL			/* a function referenced thru EXTERNs */
-#define EXTERN	  extern	/* a reference to a GLOBAL function */
+#define METHODDEF static  /* a function called through method pointers */
+#define LOCAL   static  /* a function used only in its module */
+#define GLOBAL      /* a function referenced thru EXTERNs */
+#define EXTERN    extern  /* a reference to a GLOBAL function */
 
 
 /* Here is the pseudo-keyword for declaring pointers that must be "far"
@@ -216,11 +216,11 @@ typedef unsigned int JDIMENSION;
 //#ifndef HAVE_BOOLEAN
 //typedef int boolean;
 //#endif
-#ifndef FALSE			/* in case these macros already exist */
-#define FALSE	0		/* values of boolean */
+#ifndef FALSE     /* in case these macros already exist */
+#define FALSE 0   /* values of boolean */
 #endif
 #ifndef TRUE
-#define TRUE	1
+#define TRUE  1
 #endif
 
 
@@ -250,16 +250,16 @@ typedef unsigned int JDIMENSION;
 
 /* Capability options common to encoder and decoder: */
 
-#undef DCT_ISLOW_SUPPORTED	/* slow but accurate integer algorithm */
-#undef DCT_IFAST_SUPPORTED	/* faster, less accurate integer method */
-#define DCT_FLOAT_SUPPORTED	/* floating-point: accurate, fast on fast HW */
+#undef DCT_ISLOW_SUPPORTED  /* slow but accurate integer algorithm */
+#undef DCT_IFAST_SUPPORTED  /* faster, less accurate integer method */
+#define DCT_FLOAT_SUPPORTED /* floating-point: accurate, fast on fast HW */
 
 /* Encoder capability options: */
 
 #undef  C_ARITH_CODING_SUPPORTED    /* Arithmetic coding back end? */
 #define C_MULTISCAN_FILES_SUPPORTED /* Multiple-scan JPEG files? */
-#define C_PROGRESSIVE_SUPPORTED	    /* Progressive JPEG? (Requires MULTISCAN)*/
-#define ENTROPY_OPT_SUPPORTED	    /* Optimization of entropy coding parms? */
+#define C_PROGRESSIVE_SUPPORTED     /* Progressive JPEG? (Requires MULTISCAN)*/
+#define ENTROPY_OPT_SUPPORTED     /* Optimization of entropy coding parms? */
 /* Note: if you selected 12-bit data precision, it is dangerous to turn off
  * ENTROPY_OPT_SUPPORTED.  The standard Huffman tables are only good for 8-bit
  * precision, so jchuff.c normally uses entropy optimization to compute
@@ -274,13 +274,13 @@ typedef unsigned int JDIMENSION;
 
 #undef  D_ARITH_CODING_SUPPORTED    /* Arithmetic coding back end? */
 #undef D_MULTISCAN_FILES_SUPPORTED /* Multiple-scan JPEG files? */
-#undef D_PROGRESSIVE_SUPPORTED	    /* Progressive JPEG? (Requires MULTISCAN)*/
+#undef D_PROGRESSIVE_SUPPORTED      /* Progressive JPEG? (Requires MULTISCAN)*/
 #undef BLOCK_SMOOTHING_SUPPORTED   /* Block smoothing? (Progressive only) */
-#undef IDCT_SCALING_SUPPORTED	    /* Output rescaling via IDCT? */
+#undef IDCT_SCALING_SUPPORTED     /* Output rescaling via IDCT? */
 #undef  UPSAMPLE_SCALING_SUPPORTED  /* Output rescaling at upsample stage? */
 #undef UPSAMPLE_MERGING_SUPPORTED  /* Fast path for sloppy upsampling? */
-#undef QUANT_1PASS_SUPPORTED	    /* 1-pass color quantization? */
-#undef QUANT_2PASS_SUPPORTED	    /* 2-pass color quantization? */
+#undef QUANT_1PASS_SUPPORTED      /* 1-pass color quantization? */
+#undef QUANT_2PASS_SUPPORTED      /* 2-pass color quantization? */
 
 /* more capability options later, no doubt */
 
@@ -300,10 +300,10 @@ typedef unsigned int JDIMENSION;
  *    can't use color quantization if you change that value.
  */
 
-#define RGB_RED		0	/* Offset of Red in an RGB scanline element */
-#define RGB_GREEN	1	/* Offset of Green */
-#define RGB_BLUE	2	/* Offset of Blue */
-#define RGB_PIXELSIZE	4	/* JSAMPLEs per RGB scanline element */
+#define RGB_RED   0 /* Offset of Red in an RGB scanline element */
+#define RGB_GREEN 1 /* Offset of Green */
+#define RGB_BLUE  2 /* Offset of Blue */
+#define RGB_PIXELSIZE 4 /* JSAMPLEs per RGB scanline element */
 
 
 /* Definitions for speed-related optimizations. */
@@ -314,11 +314,11 @@ typedef unsigned int JDIMENSION;
  */
 
 #ifndef INLINE
-#ifdef __GNUC__			/* for instance, GNU C knows about inline */
+#ifdef __GNUC__     /* for instance, GNU C knows about inline */
 #define INLINE __inline__
 #endif
 #ifndef INLINE
-#define INLINE			/* default is to define it as empty */
+#define INLINE      /* default is to define it as empty */
 #endif
 #endif
 
@@ -329,7 +329,7 @@ typedef unsigned int JDIMENSION;
  */
 
 #ifndef MULTIPLIER
-#define MULTIPLIER  int		/* type for fastest integer multiply */
+#define MULTIPLIER  int   /* type for fastest integer multiply */
 #endif
 
 

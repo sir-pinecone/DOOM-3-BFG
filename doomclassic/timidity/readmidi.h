@@ -24,8 +24,8 @@ readmidi.h
 class idFile;
 
 typedef struct {
-	MidiEvent event;
-	void *next;
+  MidiEvent event;
+  void *next;
 } MidiEventList;
 
 extern  int32_t quietchannels;

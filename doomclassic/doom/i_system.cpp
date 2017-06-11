@@ -55,7 +55,7 @@ If you have questions concerning this license or the applicable additional terms
 
 
 
-ticcmd_t*	I_BaseTiccmd(void)
+ticcmd_t* I_BaseTiccmd(void)
 {
     return &::g->emptycmd;
 }
@@ -73,12 +73,12 @@ int  I_GetHeapSize (void)
 //
 int  I_GetTime (void)
 {
-	return ::g->current_time;
+  return ::g->current_time;
 }
 
 void I_SetTime( int time_in )
 {
-	::g->current_time = time_in;
+  ::g->current_time = time_in;
 }
 
 
@@ -105,13 +105,13 @@ void I_Quit (void)
 //    exit(0);
 
 // Exceptions disabled by default on PS3
-//	throw;
+//  throw;
 }
 
 void I_WaitVBL(int count)
 {
-	// PS3 fixme
-	//Sleep(0);
+  // PS3 fixme
+  //Sleep(0);
 }
 
 void I_BeginRead(void)
@@ -128,61 +128,61 @@ void I_EndRead(void)
 extern bool debugOutput;
 void I_Printf(char* msg, ...)
 {
-	char pmsg[1024];
-    va_list	argptr;
+  char pmsg[1024];
+    va_list argptr;
 
     // Message first.
-	if( debugOutput ) {
-		va_start (argptr,msg);
-		vsprintf (pmsg, msg, argptr);
+  if( debugOutput ) {
+    va_start (argptr,msg);
+    vsprintf (pmsg, msg, argptr);
 
-		safeOutputDebug(pmsg);
+    safeOutputDebug(pmsg);
 
-		va_end (argptr);
-	}
+    va_end (argptr);
+  }
 }
 
 
 void I_PrintfE(char* msg, ...)
 {
-	char pmsg[1024];
-    va_list	argptr;
+  char pmsg[1024];
+    va_list argptr;
 
     // Message first.
-	if( debugOutput ) {
-		va_start (argptr,msg);
-		vsprintf (pmsg, msg, argptr);
+  if( debugOutput ) {
+    va_start (argptr,msg);
+    vsprintf (pmsg, msg, argptr);
 
-		safeOutputDebug("ERROR: ");
-		safeOutputDebug(pmsg);
+    safeOutputDebug("ERROR: ");
+    safeOutputDebug(pmsg);
 
-	    va_end (argptr);
-	}
+      va_end (argptr);
+  }
 }
 
 void I_Error(char *error, ...)
 {
-	const int ERROR_MSG_SIZE = 1024;
-	char error_msg[ERROR_MSG_SIZE];
-    va_list	argptr;
+  const int ERROR_MSG_SIZE = 1024;
+  char error_msg[ERROR_MSG_SIZE];
+    va_list argptr;
 
     // Message first.
-	if( debugOutput ) {
-		va_start (argptr,error);
-		idStr::vsnPrintf (error_msg, ERROR_MSG_SIZE, error, argptr);
+  if( debugOutput ) {
+    va_start (argptr,error);
+    idStr::vsnPrintf (error_msg, ERROR_MSG_SIZE, error, argptr);
 
-		safeOutputDebug("Error: ");
-		safeOutputDebug(error_msg);
-		safeOutputDebug("\n");
+    safeOutputDebug("Error: ");
+    safeOutputDebug(error_msg);
+    safeOutputDebug("\n");
 
-		va_end (argptr);
-	}
+    va_end (argptr);
+  }
 
-	// CRASH DUMP - enable this to get extra info on error from crash dumps
-	//*(int*)0x0 = 21;
-	DoomLib::Interface.QuitCurrentGame();
-	idLib::Printf( "DOOM Classic error: %s", error_msg );
-	common->SwitchToGame( DOOM3_BFG );
+  // CRASH DUMP - enable this to get extra info on error from crash dumps
+  //*(int*)0x0 = 21;
+  DoomLib::Interface.QuitCurrentGame();
+  idLib::Printf( "DOOM Classic error: %s", error_msg );
+  common->SwitchToGame( DOOM3_BFG );
 }
 
 #endif

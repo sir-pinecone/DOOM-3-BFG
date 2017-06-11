@@ -72,12 +72,12 @@ void G_SecretExitLevel (void);
 void G_WorldDone (void);
 
 void G_Ticker (void);
-qboolean G_Responder (event_t*	ev);
+qboolean G_Responder (event_t*  ev);
 
 void G_ScreenShot (void);
 
-#define MAXDEMOSIZE		512 * 1024
-#define SAVEGAMESIZE	256 * 1024 + MAXDEMOSIZE
+#define MAXDEMOSIZE   512 * 1024
+#define SAVEGAMESIZE  256 * 1024 + MAXDEMOSIZE
 
 
 #endif

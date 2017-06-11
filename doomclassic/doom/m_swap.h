@@ -38,8 +38,8 @@ If you have questions concerning this license or the applicable additional terms
 // Endianess handling.
 // WAD files are stored little endian.
 #ifdef __BIG_ENDIAN__
-//short	SwapSHORT(short);
-//long	SwapLONG(long);
+//short SwapSHORT(short);
+//long  SwapLONG(long);
 
 // Swap 16bit, that is, MSB and LSB byte.
 inline unsigned short SwapSHORT(unsigned short x)
@@ -52,17 +52,17 @@ inline unsigned short SwapSHORT(unsigned short x)
 inline unsigned long SwapLONG( unsigned long x)
 {
     return
-	(x>>24)
-	| ((x>>8) & 0xff00)
-	| ((x<<8) & 0xff0000)
-	| (x<<24);
+  (x>>24)
+  | ((x>>8) & 0xff00)
+  | ((x<<8) & 0xff0000)
+  | (x<<24);
 }
 
 
-#define SHORT(x)	((short)SwapSHORT((unsigned short) (x)))
+#define SHORT(x)  ((short)SwapSHORT((unsigned short) (x)))
 #define LONG(x)         ((long)SwapLONG((unsigned long) (x)))
 #else
-#define SHORT(x)	(x)
+#define SHORT(x)  (x)
 #define LONG(x)         (x)
 #endif
 

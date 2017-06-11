@@ -44,12 +44,12 @@ If you have questions concerning this license or the applicable additional terms
 // or 0 if not present
 int M_CheckParm (char *check)
 {
-    int		i;
+    int   i;
 
     for (i = 1; i < ::g->myargc; i++)
     {
-		if ( !idStr::Icmp(check, ::g->myargv[i]) )
-			return i;
+    if ( !idStr::Icmp(check, ::g->myargv[i]) )
+      return i;
     }
 
     return 0;

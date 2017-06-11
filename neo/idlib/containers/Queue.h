@@ -31,54 +31,54 @@ If you have questions concerning this license or the applicable additional terms
 /*
 ===============================================================================
 
-	Queue template
+  Queue template
 
 ===============================================================================
 */
 template< class type, int nextOffset >
 class idQueueTemplate {
 public:
-							idQueueTemplate();
+              idQueueTemplate();
 
-	void					Add( type *element );
-	type *					Get();
+  void          Add( type *element );
+  type *          Get();
 
 private:
-	type *					first;
-	type *					last;
+  type *          first;
+  type *          last;
 };
 
-#define QUEUE_NEXT_PTR( element )		(*((type**)(((byte*)element)+nextOffset)))
+#define QUEUE_NEXT_PTR( element )   (*((type**)(((byte*)element)+nextOffset)))
 
 template< class type, int nextOffset >
 idQueueTemplate<type,nextOffset>::idQueueTemplate() {
-	first = last = NULL;
+  first = last = NULL;
 }
 
 template< class type, int nextOffset >
 void idQueueTemplate<type,nextOffset>::Add( type *element ) {
-	QUEUE_NEXT_PTR(element) = NULL;
-	if ( last ) {
-		QUEUE_NEXT_PTR(last) = element;
-	} else {
-		first = element;
-	}
-	last = element;
+  QUEUE_NEXT_PTR(element) = NULL;
+  if ( last ) {
+    QUEUE_NEXT_PTR(last) = element;
+  } else {
+    first = element;
+  }
+  last = element;
 }
 
 template< class type, int nextOffset >
 type *idQueueTemplate<type,nextOffset>::Get() {
-	type *element;
+  type *element;
 
-	element = first;
-	if ( element ) {
-		first = QUEUE_NEXT_PTR(first);
-		if ( last == element ) {
-			last = NULL;
-		}
-		QUEUE_NEXT_PTR(element) = NULL;
-	}
-	return element;
+  element = first;
+  if ( element ) {
+    first = QUEUE_NEXT_PTR(first);
+    if ( last == element ) {
+      last = NULL;
+    }
+    QUEUE_NEXT_PTR(element) = NULL;
+  }
+  return element;
 }
 
 /*
@@ -89,13 +89,13 @@ A node of a Queue
 template< typename type >
 class idQueueNode {
 public:
-				idQueueNode() { next = NULL; }
+        idQueueNode() { next = NULL; }
 
-	type *		GetNext() const { return next; }
-	void		SetNext( type *next ) { this->next = next; }
+  type *    GetNext() const { return next; }
+  void    SetNext( type *next ) { this->next = next; }
 
 private:
-	type *		next;
+  type *    next;
 };
 
 /*
@@ -107,18 +107,18 @@ type.
 template< typename type, idQueueNode<type> type::*nodePtr >
 class idQueue {
 public:
-				idQueue();
+        idQueue();
 
-	void		Add( type *element );
-	type *		RemoveFirst();
-	type *		Peek() const;
-	bool		IsEmpty();
+  void    Add( type *element );
+  type *    RemoveFirst();
+  type *    Peek() const;
+  bool    IsEmpty();
 
-	static void	Test();
+  static void Test();
 
 private:
-	type *		first;
-	type *		last;
+  type *    first;
+  type *    last;
 };
 
 /*
@@ -128,7 +128,7 @@ idQueue<type,nodePtr>::idQueue
 */
 template< typename type, idQueueNode<type> type::*nodePtr >
 idQueue<type,nodePtr>::idQueue() {
-	first = last = NULL;
+  first = last = NULL;
 }
 
 /*
@@ -138,13 +138,13 @@ idQueue<type,nodePtr>::Add
 */
 template< typename type, idQueueNode<type> type::*nodePtr >
 void idQueue<type,nodePtr>::Add( type *element ) {
-	(element->*nodePtr).SetNext( NULL );
-	if ( last ) {
-		(last->*nodePtr).SetNext( element );
-	} else {
-		first = element;
-	}
-	last = element;
+  (element->*nodePtr).SetNext( NULL );
+  if ( last ) {
+    (last->*nodePtr).SetNext( element );
+  } else {
+    first = element;
+  }
+  last = element;
 }
 
 /*
@@ -154,17 +154,17 @@ idQueue<type,nodePtr>::RemoveFirst
 */
 template< typename type, idQueueNode<type> type::*nodePtr >
 type *idQueue<type,nodePtr>::RemoveFirst() {
-	type *element;
+  type *element;
 
-	element = first;
-	if ( element ) {
-		first = (first->*nodePtr).GetNext();
-		if ( last == element ) {
-			last = NULL;
-		}
-		(element->*nodePtr).SetNext( NULL );
-	}
-	return element;
+  element = first;
+  if ( element ) {
+    first = (first->*nodePtr).GetNext();
+    if ( last == element ) {
+      last = NULL;
+    }
+    (element->*nodePtr).SetNext( NULL );
+  }
+  return element;
 }
 
 /*
@@ -174,7 +174,7 @@ idQueue<type,nodePtr>::Peek
 */
 template< typename type, idQueueNode<type> type::*nodePtr >
 type *idQueue<type,nodePtr>::Peek() const {
-	return first;
+  return first;
 }
 
 /*
@@ -184,7 +184,7 @@ idQueue<type,nodePtr>::IsEmpty
 */
 template< typename type, idQueueNode<type> type::*nodePtr >
 bool idQueue<type,nodePtr>::IsEmpty() {
-	return ( first == NULL );
+  return ( first == NULL );
 }
 
 /*
@@ -195,17 +195,17 @@ idQueue<type,nodePtr>::Test
 template< typename type, idQueueNode<type> type::*nodePtr >
 void idQueue<type,nodePtr>::Test() {
 
-	class idMyType {
-	public:
-		idQueueNode<idMyType> queueNode;
-	};
+  class idMyType {
+  public:
+    idQueueNode<idMyType> queueNode;
+  };
 
-	idQueue<idMyType,&idMyType::queueNode> myQueue;
+  idQueue<idMyType,&idMyType::queueNode> myQueue;
 
-	idMyType *element = new (TAG_IDLIB) idMyType;
-	myQueue.Add( element );
-	element = myQueue.RemoveFirst();
-	delete element;
+  idMyType *element = new (TAG_IDLIB) idMyType;
+  myQueue.Add( element );
+  element = myQueue.RemoveFirst();
+  delete element;
 }
 
 #endif // !__QUEUE_H__

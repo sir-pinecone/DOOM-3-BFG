@@ -36,21 +36,21 @@ If you have questions concerning this license or the applicable additional terms
 /*
 ===============================================================================
 
-	AAS File Manager
+  AAS File Manager
 
 ===============================================================================
 */
 
 class idAASFileManagerLocal : public idAASFileManager {
 public:
-	virtual						~idAASFileManagerLocal() {}
+  virtual           ~idAASFileManagerLocal() {}
 
-	virtual idAASFile *			LoadAAS( const char *fileName, unsigned int mapFileCRC );
-	virtual void				FreeAAS( idAASFile *file );
+  virtual idAASFile *     LoadAAS( const char *fileName, unsigned int mapFileCRC );
+  virtual void        FreeAAS( idAASFile *file );
 };
 
-idAASFileManagerLocal			AASFileManagerLocal;
-idAASFileManager *				AASFileManager = &AASFileManagerLocal;
+idAASFileManagerLocal     AASFileManagerLocal;
+idAASFileManager *        AASFileManager = &AASFileManagerLocal;
 
 
 /*
@@ -59,12 +59,12 @@ idAASFileManagerLocal::LoadAAS
 ================
 */
 idAASFile *idAASFileManagerLocal::LoadAAS( const char *fileName, unsigned int mapFileCRC ) {
-	idAASFileLocal *file = new (TAG_AAS) idAASFileLocal();
-	if ( !file->Load( fileName, mapFileCRC ) ) {
-		delete file;
-		return NULL;
-	}
-	return file;
+  idAASFileLocal *file = new (TAG_AAS) idAASFileLocal();
+  if ( !file->Load( fileName, mapFileCRC ) ) {
+    delete file;
+    return NULL;
+  }
+  return file;
 }
 
 /*
@@ -73,5 +73,5 @@ idAASFileManagerLocal::FreeAAS
 ================
 */
 void idAASFileManagerLocal::FreeAAS( idAASFile *file ) {
-	delete file;
+  delete file;
 }

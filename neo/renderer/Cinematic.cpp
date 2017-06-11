@@ -58,7 +58,7 @@ idCinematic::Alloc
 ==============
 */
 idCinematic * idCinematic::Alloc() {
-	return new idCinematic;
+  return new idCinematic;
 }
 
 /*
@@ -67,7 +67,7 @@ idCinematic::~idCinematic
 ==============
 */
 idCinematic::~idCinematic( ) {
-	Close();
+  Close();
 }
 
 /*
@@ -76,7 +76,7 @@ idCinematic::InitFromFile
 ==============
 */
 bool idCinematic::InitFromFile( const char *qpath, bool looping ) {
-	return false;
+  return false;
 }
 
 /*
@@ -85,7 +85,7 @@ idCinematic::AnimationLength
 ==============
 */
 int idCinematic::AnimationLength() {
-	return 0;
+  return 0;
 }
 
 /*
@@ -94,7 +94,7 @@ idCinematic::GetStartTime
 ==============
 */
 int idCinematic::GetStartTime() {
-	return -1;
+  return -1;
 }
 
 /*
@@ -111,9 +111,9 @@ idCinematic::ImageForTime
 ==============
 */
 cinData_t idCinematic::ImageForTime( int milliseconds ) {
-	cinData_t c;
-	memset( &c, 0, sizeof( c ) );
-	return c;
+  cinData_t c;
+  memset( &c, 0, sizeof( c ) );
+  return c;
 }
 
 /*
@@ -130,7 +130,7 @@ idCinematic::GetFrameRate
 ==============
 */
 float idCinematic::GetFrameRate() const {
-	return 30.0f;
+  return 30.0f;
 }
 
 /*
@@ -147,15 +147,15 @@ idSndWindow::InitFromFile
 ==============
 */
 bool idSndWindow::InitFromFile( const char *qpath, bool looping ) {
-	idStr fname = qpath;
+  idStr fname = qpath;
 
-	fname.ToLower();
-	if ( !fname.Icmp( "waveform" ) ) {
-		showWaveform = true;
-	} else {
-		showWaveform = false;
-	}
-	return true;
+  fname.ToLower();
+  if ( !fname.Icmp( "waveform" ) ) {
+    showWaveform = true;
+  } else {
+    showWaveform = false;
+  }
+  return true;
 }
 
 /*
@@ -164,7 +164,7 @@ idSndWindow::ImageForTime
 ==============
 */
 cinData_t idSndWindow::ImageForTime( int milliseconds ) {
-	return soundSystem->ImageForTime( milliseconds, showWaveform );
+  return soundSystem->ImageForTime( milliseconds, showWaveform );
 }
 
 /*
@@ -173,5 +173,5 @@ idSndWindow::AnimationLength
 ==============
 */
 int idSndWindow::AnimationLength() {
-	return -1;
+  return -1;
 }

@@ -37,5 +37,5 @@ idComplex::ToString
 =============
 */
 const char *idComplex::ToString( int precision ) const {
-	return idStr::FloatArrayToString( ToFloatPtr(), GetDimension(), precision );
+  return idStr::FloatArrayToString( ToFloatPtr(), GetDimension(), precision );
 }

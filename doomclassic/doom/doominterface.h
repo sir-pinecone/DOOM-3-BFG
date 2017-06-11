@@ -39,35 +39,35 @@ class idUserCmdMgr;
 class DoomInterface
 {
 public:
-			DoomInterface();
-	virtual ~DoomInterface();
+      DoomInterface();
+  virtual ~DoomInterface();
 
-	typedef int ( *NoParamCallback)();
-	
-	void Startup( int players, bool multiplayer = false );
-	bool Frame( int time, idUserCmdMgr * userCmdMgr );
-	void Shutdown();
-	void QuitCurrentGame();
-	void EndDMGame();
+  typedef int ( *NoParamCallback)();
+  
+  void Startup( int players, bool multiplayer = false );
+  bool Frame( int time, idUserCmdMgr * userCmdMgr );
+  void Shutdown();
+  void QuitCurrentGame();
+  void EndDMGame();
 
-	// PS3
-	//void InitGraphics( int player = -1, int width = TEXTUREWIDTH, int height = TEXTUREHEIGHT, D3DCOLOR *pBuffer = NULL, D3DCOLOR *pBuffer2 = NULL );
-	void SetPostGlobalsCallback( NoParamCallback cb );
+  // PS3
+  //void InitGraphics( int player = -1, int width = TEXTUREWIDTH, int height = TEXTUREHEIGHT, D3DCOLOR *pBuffer = NULL, D3DCOLOR *pBuffer2 = NULL );
+  void SetPostGlobalsCallback( NoParamCallback cb );
 #ifdef ID_ENABLE_DOOM_CLASSIC_NETWORKING
-	void SetNetworking( DoomLib::RecvFunc recv, DoomLib::SendFunc send, DoomLib::SendRemoteFunc sendRemote );
+  void SetNetworking( DoomLib::RecvFunc recv, DoomLib::SendFunc send, DoomLib::SendRemoteFunc sendRemote );
 #endif
-	int GetNumPlayers() const;
+  int GetNumPlayers() const;
 
-	static int CurrentPlayer();
+  static int CurrentPlayer();
 
-	void	SetMultiplayerPlayers(int localPlayerIndex, int playerCount, int localPlayer, std::vector<std::string> playerAddresses );
+  void  SetMultiplayerPlayers(int localPlayerIndex, int playerCount, int localPlayer, std::vector<std::string> playerAddresses );
 
 protected:
-	int					numplayers;
+  int         numplayers;
 
-	bool				bFinished[4];
+  bool        bFinished[4];
 
-	int					lastTicRun;
+  int         lastTicRun;
 };
 
 

@@ -43,7 +43,7 @@ idForce::idForce
 ================
 */
 idForce::idForce() {
-	forceList.Append( this );
+  forceList.Append( this );
 }
 
 /*
@@ -52,7 +52,7 @@ idForce::~idForce
 ================
 */
 idForce::~idForce() {
-	forceList.Remove( this );
+  forceList.Remove( this );
 }
 
 /*
@@ -61,11 +61,11 @@ idForce::DeletePhysics
 ================
 */
 void idForce::DeletePhysics( const idPhysics *phys ) {
-	int i;
+  int i;
 
-	for ( i = 0; i < forceList.Num(); i++ ) {
-		forceList[i]->RemovePhysics( phys );
-	}
+  for ( i = 0; i < forceList.Num(); i++ ) {
+    forceList[i]->RemovePhysics( phys );
+  }
 }
 
 /*
@@ -74,7 +74,7 @@ idForce::ClearForceList
 ================
 */
 void idForce::ClearForceList() {
-	forceList.Clear();
+  forceList.Clear();
 }
 
 /*

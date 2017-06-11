@@ -32,35 +32,35 @@ class idGameBearShootWindow;
 
 class BSEntity {
 public:
-	const idMaterial *		material;
-	idStr					materialName;
-	float					width, height;
-	bool					visible;
+  const idMaterial *    material;
+  idStr         materialName;
+  float         width, height;
+  bool          visible;
 
-	idVec4					entColor;
-	idVec2					position;
-	float					rotation;
-	float					rotationSpeed;
-	idVec2					velocity;
+  idVec4          entColor;
+  idVec2          position;
+  float         rotation;
+  float         rotationSpeed;
+  idVec2          velocity;
 
-	bool					fadeIn;
-	bool					fadeOut;
+  bool          fadeIn;
+  bool          fadeOut;
 
-	idGameBearShootWindow *	game;
-	
+  idGameBearShootWindow * game;
+  
 public:
-						BSEntity(idGameBearShootWindow* _game);
-	virtual				~BSEntity();
+            BSEntity(idGameBearShootWindow* _game);
+  virtual       ~BSEntity();
 
-	virtual void		WriteToSaveGame( idFile *savefile );
-	virtual void		ReadFromSaveGame( idFile *savefile, idGameBearShootWindow* _game );
+  virtual void    WriteToSaveGame( idFile *savefile );
+  virtual void    ReadFromSaveGame( idFile *savefile, idGameBearShootWindow* _game );
 
-	void				SetMaterial(const char* name);
-	void				SetSize( float _width, float _height );
-	void				SetVisible( bool isVisible );
+  void        SetMaterial(const char* name);
+  void        SetSize( float _width, float _height );
+  void        SetVisible( bool isVisible );
 
-	virtual void		Update( float timeslice );
-	virtual void		Draw();
+  virtual void    Update( float timeslice );
+  virtual void    Draw();
 
 private:
 };
@@ -68,65 +68,65 @@ private:
 
 class idGameBearShootWindow : public idWindow {
 public:
-	idGameBearShootWindow(idUserInterfaceLocal *gui);
-	~idGameBearShootWindow();
+  idGameBearShootWindow(idUserInterfaceLocal *gui);
+  ~idGameBearShootWindow();
 
-	virtual void		WriteToSaveGame( idFile *savefile );
-	virtual void		ReadFromSaveGame( idFile *savefile );
+  virtual void    WriteToSaveGame( idFile *savefile );
+  virtual void    ReadFromSaveGame( idFile *savefile );
 
-	virtual const char*	HandleEvent(const sysEvent_t *event, bool *updateVisuals);
-	virtual void		PostParse();
-	virtual void		Draw(int time, float x, float y);
-	virtual const char*	Activate(bool activate);
-	virtual idWinVar *	GetWinVarByName	(const char *_name, bool winLookup = false, drawWin_t** owner = NULL);
-
-private:
-	void				CommonInit();
-	void				ResetGameState();
-
-	void				UpdateBear();
-	void				UpdateHelicopter();
-	void				UpdateTurret();
-	void				UpdateButtons();
-	void				UpdateGame();
-	void				UpdateScore();
-
-	virtual bool		ParseInternalVar(const char *name, idTokenParser *src);
+  virtual const char* HandleEvent(const sysEvent_t *event, bool *updateVisuals);
+  virtual void    PostParse();
+  virtual void    Draw(int time, float x, float y);
+  virtual const char* Activate(bool activate);
+  virtual idWinVar *  GetWinVarByName (const char *_name, bool winLookup = false, drawWin_t** owner = NULL);
 
 private:
+  void        CommonInit();
+  void        ResetGameState();
 
-	idWinBool			gamerunning;
-	idWinBool			onFire;
-	idWinBool			onContinue;
-	idWinBool			onNewGame;
+  void        UpdateBear();
+  void        UpdateHelicopter();
+  void        UpdateTurret();
+  void        UpdateButtons();
+  void        UpdateGame();
+  void        UpdateScore();
 
-	float				timeSlice;
-	float				timeRemaining;
-	bool				gameOver;
+  virtual bool    ParseInternalVar(const char *name, idTokenParser *src);
 
-	int					currentLevel;
-	int					goalsHit;
-	bool				updateScore;
-	bool				bearHitTarget;
+private:
 
-	float				bearScale;
-	bool				bearIsShrinking;
-	int					bearShrinkStartTime;
+  idWinBool     gamerunning;
+  idWinBool     onFire;
+  idWinBool     onContinue;
+  idWinBool     onNewGame;
 
-	float				turretAngle;
-	float				turretForce;
+  float       timeSlice;
+  float       timeRemaining;
+  bool        gameOver;
 
-	float				windForce;
-	int					windUpdateTime;
+  int         currentLevel;
+  int         goalsHit;
+  bool        updateScore;
+  bool        bearHitTarget;
 
-	idList<BSEntity*>	entities;
+  float       bearScale;
+  bool        bearIsShrinking;
+  int         bearShrinkStartTime;
 
-	BSEntity			*turret;
-	BSEntity			*bear;
-	BSEntity			*helicopter;
-	BSEntity			*goal;
-	BSEntity			*wind;
-	BSEntity			*gunblast;
+  float       turretAngle;
+  float       turretForce;
+
+  float       windForce;
+  int         windUpdateTime;
+
+  idList<BSEntity*> entities;
+
+  BSEntity      *turret;
+  BSEntity      *bear;
+  BSEntity      *helicopter;
+  BSEntity      *goal;
+  BSEntity      *wind;
+  BSEntity      *gunblast;
 };
 
 #endif //__GAME_BEARSHOOT_WINDOW_H__

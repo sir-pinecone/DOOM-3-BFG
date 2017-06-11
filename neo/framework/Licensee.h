@@ -29,30 +29,30 @@ If you have questions concerning this license or the applicable additional terms
 /*
 ===============================================================================
 
-	Definitions for information that is related to a licensee's game name and location.
+  Definitions for information that is related to a licensee's game name and location.
 
 ===============================================================================
 */
 
-#define GAME_NAME						"DOOM 3: BFG Edition"		// appears on window titles and errors
-#define SAVE_PATH						"\\id Software\\DOOM 3 BFG"
+#define GAME_NAME           "DOOM 3: BFG Edition"   // appears on window titles and errors
+#define SAVE_PATH           "\\id Software\\DOOM 3 BFG"
 
-#define ENGINE_VERSION					"D3BFG 1"	// printed in console
+#define ENGINE_VERSION          "D3BFG 1" // printed in console
 
-#define	BASE_GAMEDIR					"base"
+#define BASE_GAMEDIR          "base"
 
-#define CONFIG_FILE						"D3BFGConfig.cfg"
+#define CONFIG_FILE           "D3BFGConfig.cfg"
 
 // see ASYNC_PROTOCOL_VERSION
 // use a different major for each game
-#define ASYNC_PROTOCOL_MAJOR			1
+#define ASYNC_PROTOCOL_MAJOR      1
 
 // <= Doom v1.1: 1. no DS_VERSION token ( default )
 // Doom v1.2:  2
 // Doom 3 BFG: 3
-#define RENDERDEMO_VERSION				3
+#define RENDERDEMO_VERSION        3
 
 // win32 info
-#define WIN32_CONSOLE_CLASS				"D3BFG_WinConsole"
-#define	WIN32_WINDOW_CLASS_NAME			"D3BFG"
-#define	WIN32_FAKE_WINDOW_CLASS_NAME	"D3BFG_WGL_FAKE"
+#define WIN32_CONSOLE_CLASS       "D3BFG_WinConsole"
+#define WIN32_WINDOW_CLASS_NAME     "D3BFG"
+#define WIN32_FAKE_WINDOW_CLASS_NAME  "D3BFG_WGL_FAKE"

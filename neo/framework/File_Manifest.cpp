@@ -44,19 +44,19 @@ idPreloadManifest::LoadManifest
 ========================
 */ 
 bool idPreloadManifest::LoadManifest( const char *fileName ) {
-	idFile * inFile = fileSystem->OpenFileReadMemory( fileName );
-	if ( inFile != NULL ) {
-		int numEntries;
-		inFile->ReadBig( numEntries );
-		inFile->ReadString( filename );
-		entries.SetNum( numEntries );
-		for ( int i = 0; i < numEntries; i++ ) {
-			entries[ i ].Read( inFile );
-		}
+  idFile * inFile = fileSystem->OpenFileReadMemory( fileName );
+  if ( inFile != NULL ) {
+    int numEntries;
+    inFile->ReadBig( numEntries );
+    inFile->ReadString( filename );
+    entries.SetNum( numEntries );
+    for ( int i = 0; i < numEntries; i++ ) {
+      entries[ i ].Read( inFile );
+    }
 delete inFile;
-		return true;
-	}
-	return false;
+    return true;
+  }
+  return false;
 }
 
 /*
@@ -72,11 +72,11 @@ idFileManifest::LoadManifest
 ========================
 */ 
 bool idFileManifest::LoadManifest( const char *_fileName ) {
-	idFile *file = fileSystem->OpenFileRead( _fileName , false );
-	if ( file != NULL ) {
-		return LoadManifestFromFile( file );
-	}
-	return false;
+  idFile *file = fileSystem->OpenFileRead( _fileName , false );
+  if ( file != NULL ) {
+    return LoadManifestFromFile( file );
+  }
+  return false;
 }
 
 /*
@@ -87,24 +87,24 @@ idFileManifest::LoadManifestFromFile
 ========================
 */ 
 bool idFileManifest::LoadManifestFromFile( idFile *file ) {
-	if ( file == NULL ) {
-		return false;
-	}
-	filename = file->GetName();
-	idStr str;
-	int num;
-	file->ReadBig( num );
-	cacheTable.SetNum( num );
-	for ( int i = 0; i < num; i++ ) {
-		file->ReadString( cacheTable[ i ] );
-		//if ( FindFile( cacheTable[ i ].filename ) == NULL ) {
-			// we only care about the first usage
-			const int key = cacheHash.GenerateKey( cacheTable[ i ], false );
-			cacheHash.Add( key, i );
-		//}
-	}
-	delete file;
-	return true;
+  if ( file == NULL ) {
+    return false;
+  }
+  filename = file->GetName();
+  idStr str;
+  int num;
+  file->ReadBig( num );
+  cacheTable.SetNum( num );
+  for ( int i = 0; i < num; i++ ) {
+    file->ReadString( cacheTable[ i ] );
+    //if ( FindFile( cacheTable[ i ].filename ) == NULL ) {
+      // we only care about the first usage
+      const int key = cacheHash.GenerateKey( cacheTable[ i ], false );
+      cacheHash.Add( key, i );
+    //}
+  }
+  delete file;
+  return true;
 }
 
 /*
@@ -113,17 +113,17 @@ idFileManifest::WriteManifestFile
 ========================
 */ 
 void idFileManifest::WriteManifestFile( const char *fileName ) {
-	idFile *file = fileSystem->OpenFileWrite( fileName );
-	if ( file == NULL ) {
-		return;
-	}
-	idStr str;
-	int num = cacheTable.Num();
-	file->WriteBig( num );
-	for ( int i = 0; i < num; i++ ) {
-		file->WriteString( cacheTable[ i ] );
-	}
-	delete file;
+  idFile *file = fileSystem->OpenFileWrite( fileName );
+  if ( file == NULL ) {
+    return;
+  }
+  idStr str;
+  int num = cacheTable.Num();
+  file->WriteBig( num );
+  for ( int i = 0; i < num; i++ ) {
+    file->WriteString( cacheTable[ i ] );
+  }
+  delete file;
 }
 
 /*
@@ -132,11 +132,11 @@ idPreloadManifest::WriteManifestFile
 ========================
 */ 
 void idPreloadManifest::WriteManifest( const char *fileName ) {
-	idFile *file = fileSystem->OpenFileWrite( fileName, "fs_savepath" );
-	if ( file != NULL ) {
-		WriteManifestToFile( file );
-		delete file;
-	}
+  idFile *file = fileSystem->OpenFileWrite( fileName, "fs_savepath" );
+  if ( file != NULL ) {
+    WriteManifestToFile( file );
+    delete file;
+  }
 }
 
 /*
@@ -145,13 +145,13 @@ idFileManifest::FindFile
 ========================
 */ 
 int idFileManifest::FindFile( const char *fileName ) {
-	const int key =cacheHash.GenerateKey( fileName, false );
-	for ( int index = cacheHash.GetFirst( key ); index != idHashIndex::NULL_INDEX; index = cacheHash.GetNext( index ) ) {
-		if ( idStr::Icmp( cacheTable[ index ], fileName ) == 0 ) {
-			return index;
-		}
-	}
-	return -1;
+  const int key =cacheHash.GenerateKey( fileName, false );
+  for ( int index = cacheHash.GetFirst( key ); index != idHashIndex::NULL_INDEX; index = cacheHash.GetNext( index ) ) {
+    if ( idStr::Icmp( cacheTable[ index ], fileName ) == 0 ) {
+      return index;
+    }
+  }
+  return -1;
 }
 
 /*
@@ -160,14 +160,14 @@ idFileManifest::RemoveAll
 ========================
 */ 
 void idFileManifest::RemoveAll( const char * _fileName ) {
-	for ( int i = 0; i < cacheTable.Num(); i++ ) {
-		if ( cacheTable[ i ].Icmp( _fileName ) == 0 ) {
-			const int key =cacheHash.GenerateKey( cacheTable[ i ], false );
-			cacheTable.RemoveIndex( i );
-			cacheHash.RemoveIndex( key, i );
-			i--;
-		}
-	}
+  for ( int i = 0; i < cacheTable.Num(); i++ ) {
+    if ( cacheTable[ i ].Icmp( _fileName ) == 0 ) {
+      const int key =cacheHash.GenerateKey( cacheTable[ i ], false );
+      cacheTable.RemoveIndex( i );
+      cacheHash.RemoveIndex( key, i );
+      i--;
+    }
+  }
 }
 
 
@@ -177,7 +177,7 @@ idFileManifest::GetFileNameByIndex
 ========================
 */ 
 const idStr & idFileManifest::GetFileNameByIndex( int idx ) const {
-	return cacheTable[ idx ];
+  return cacheTable[ idx ];
 }
 
 
@@ -188,12 +188,12 @@ idFileManifest::AddFile
 =========================
 */ 
 void idFileManifest::AddFile( const char *fileName ) {
-	//if ( FindFile( fileName ) == NULL ) {
-		// we only care about the first usage
-		const int key = cacheHash.GenerateKey( fileName, false );
-		int idx = cacheTable.Append( fileName );
-		cacheHash.Add( key, idx );
-	//}
+  //if ( FindFile( fileName ) == NULL ) {
+    // we only care about the first usage
+    const int key = cacheHash.GenerateKey( fileName, false );
+    int idx = cacheTable.Append( fileName );
+    cacheHash.Add( key, idx );
+  //}
 }
 
 

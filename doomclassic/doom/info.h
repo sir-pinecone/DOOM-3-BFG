@@ -1151,24 +1151,24 @@ typedef enum
 
 typedef struct
 {
-  spritenum_t	sprite;
-  long			frame;
-  long			tics;
-  // void		(*action) ();
+  spritenum_t sprite;
+  long      frame;
+  long      tics;
+  // void   (*action) ();
 
   // GCC 4.1 for PS3 gives the error "braces around scalar initializer"
   // for these actionf_p2s. So, let's make it not a scalar!
   // The second value of the struct will be initalized to 0.
  // struct {
-	  actionf_p2			action;
-	//  int					filler;
+    actionf_p2      action;
+  //  int         filler;
  // };
 
-  statenum_t			nextstate;
-  long			misc1, misc2;
+  statenum_t      nextstate;
+  long      misc1, misc2;
 } state_t;
 
-extern const state_t	tempStates[NUMSTATES];
+extern const state_t  tempStates[NUMSTATES];
 extern const char * const sprnames[NUMSPRITES+1];
 
 typedef enum {
@@ -1315,29 +1315,29 @@ typedef enum {
 
 typedef struct
 {
-    int	doomednum;
-    int	spawnstate;
-    int	spawnhealth;
-    int	seestate;
-    int	seesound;
-    int	reactiontime;
-    int	attacksound;
-    int	painstate;
-    int	painchance;
-    int	painsound;
-    int	meleestate;
-    int	missilestate;
-    int	deathstate;
-    int	xdeathstate;
-    int	deathsound;
-    int	speed;
-    int	radius;
-    int	height;
-    int	mass;
-    int	damage;
-    int	activesound;
-    int	flags;
-    int	raisestate;
+    int doomednum;
+    int spawnstate;
+    int spawnhealth;
+    int seestate;
+    int seesound;
+    int reactiontime;
+    int attacksound;
+    int painstate;
+    int painchance;
+    int painsound;
+    int meleestate;
+    int missilestate;
+    int deathstate;
+    int xdeathstate;
+    int deathsound;
+    int speed;
+    int radius;
+    int height;
+    int mass;
+    int damage;
+    int activesound;
+    int flags;
+    int raisestate;
 
 } mobjinfo_t;
 

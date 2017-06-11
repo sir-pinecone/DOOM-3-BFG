@@ -23,14 +23,14 @@ Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #define _TIMIDITY_H_
 
 /* Audio format flags (defaults to LSB byte order) */
-#define AUDIO_U8	0x0008	/* Unsigned 8-bit samples */
-#define AUDIO_S8	0x8008	/* Signed 8-bit samples */
-#define AUDIO_U16LSB	0x0010	/* Unsigned 16-bit samples */
-#define AUDIO_S16LSB	0x8010	/* Signed 16-bit samples */
-#define AUDIO_U16MSB	0x1010	/* As above, but big-endian byte order */
-#define AUDIO_S16MSB	0x9010	/* As above, but big-endian byte order */
-#define AUDIO_U16	AUDIO_U16LSB
-#define AUDIO_S16	AUDIO_S16LSB
+#define AUDIO_U8  0x0008  /* Unsigned 8-bit samples */
+#define AUDIO_S8  0x8008  /* Signed 8-bit samples */
+#define AUDIO_U16LSB  0x0010  /* Unsigned 16-bit samples */
+#define AUDIO_S16LSB  0x8010  /* Signed 16-bit samples */
+#define AUDIO_U16MSB  0x1010  /* As above, but big-endian byte order */
+#define AUDIO_S16MSB  0x9010  /* As above, but big-endian byte order */
+#define AUDIO_U16 AUDIO_U16LSB
+#define AUDIO_S16 AUDIO_S16LSB
 
 #include "structs.h"
 
@@ -53,16 +53,16 @@ extern void Real_Tim_Free( void *pt );
 
 
 typedef struct {
-	int rate, encoding;
-	char *id_name;
-	FILE* fp;
-	char *file_name;
+  int rate, encoding;
+  char *id_name;
+  FILE* fp;
+  char *file_name;
 
-	int (*open_output)(void); /* 0=success, 1=warning, -1=fatal error */
-	void (*close_output)(void);
-	void (*output_data)(int *buf, int count, int* bytes_written);
-	void (*flush_output)(void);
-	void (*purge_output)(void);
+  int (*open_output)(void); /* 0=success, 1=warning, -1=fatal error */
+  void (*close_output)(void);
+  void (*output_data)(int *buf, int count, int* bytes_written);
+  void (*flush_output)(void);
+  void (*purge_output)(void);
 } PlayMode;
 
 extern PlayMode *play_mode_list[], *play_mode;

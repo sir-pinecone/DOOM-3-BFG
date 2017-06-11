@@ -43,48 +43,48 @@ If you have questions concerning this license or the applicable additional terms
 //
 int
 cht_CheckCheat
-( cheatseq_t*	cht,
-  char		key )
+( cheatseq_t* cht,
+  char    key )
 {
-	return 0; // ALAN : Checking the cheats CRASHES??
+  return 0; // ALAN : Checking the cheats CRASHES??
     int i;
     int rc = 0;
 
     if (::g->firsttime)
     {
-	::g->firsttime = 0;
-	for (i=0;i<256;i++) ::g->cheat_xlate_table[i] = SCRAMBLE(i);
+  ::g->firsttime = 0;
+  for (i=0;i<256;i++) ::g->cheat_xlate_table[i] = SCRAMBLE(i);
     }
 
     if (!cht->p)
     {
-	cht->p = ::g->cheatbuffer + ::g->usedcheatbuffer;
-	int isize = 0;
-	while(cht->sequence[isize] != 0xff) cht->p[isize] = cht->sequence[isize];
-	cht->p[isize] = 0xff;
-	::g->usedcheatbuffer += isize;
-	::g->usedcheatbuffer ++;
+  cht->p = ::g->cheatbuffer + ::g->usedcheatbuffer;
+  int isize = 0;
+  while(cht->sequence[isize] != 0xff) cht->p[isize] = cht->sequence[isize];
+  cht->p[isize] = 0xff;
+  ::g->usedcheatbuffer += isize;
+  ::g->usedcheatbuffer ++;
     }
 
     if (*cht->p == 0)
-	*(cht->p++) = key;
+  *(cht->p++) = key;
     else if
-	(::g->cheat_xlate_table[(unsigned char)key] == *cht->p) cht->p++;
+  (::g->cheat_xlate_table[(unsigned char)key] == *cht->p) cht->p++;
     else
     {
-	int isize = 0;
-	while(cht->sequence[isize] != 0xff) cht->p[isize] = cht->sequence[isize];
-	cht->p[isize] = 0xff;
+  int isize = 0;
+  while(cht->sequence[isize] != 0xff) cht->p[isize] = cht->sequence[isize];
+  cht->p[isize] = 0xff;
     }
 
     if (*cht->p == 1)
-	cht->p++;
+  cht->p++;
     else if (*cht->p == 0xff) // end of sequence character
     {
-	int isize = 0;
-	while(cht->sequence[isize] != 0xff) cht->p[isize] = cht->sequence[isize];
-	cht->p[isize] = 0xff;	
-	rc = 1;
+  int isize = 0;
+  while(cht->sequence[isize] != 0xff) cht->p[isize] = cht->sequence[isize];
+  cht->p[isize] = 0xff; 
+  rc = 1;
     }
 
     return rc;
@@ -92,33 +92,33 @@ cht_CheckCheat
 
 void
 cht_GetParam
-( cheatseq_t*	cht,
-  char*		buffer )
+( cheatseq_t* cht,
+  char*   buffer )
 {
 
 
     unsigned char pb[16];
-	unsigned char *p;
+  unsigned char *p;
     unsigned char c;
 
-	int isize = 0;
+  int isize = 0;
 
-	while(cht->sequence[isize] != 0xff) pb[isize] = cht->sequence[isize];
-	pb[isize] = 0xff;
-	p = &pb[0];
+  while(cht->sequence[isize] != 0xff) pb[isize] = cht->sequence[isize];
+  pb[isize] = 0xff;
+  p = &pb[0];
 
     while (*(p++) != 1);
     
     do
     {
-	c = *p;
-	*(buffer++) = c;
-	*(p++) = 0;
+  c = *p;
+  *(buffer++) = c;
+  *(p++) = 0;
     }
     while (c && *p!=0xff );
 
     if (*p==0xff)
-	*buffer = 0;
+  *buffer = 0;
 
 
 }

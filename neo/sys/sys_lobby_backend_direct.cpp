@@ -40,7 +40,7 @@ idLobbyBackendDirect::idLobbyBackendWin
 ========================
 */
 idLobbyBackendDirect::idLobbyBackendDirect() {
-	state = STATE_INVALID;
+  state = STATE_INVALID;
 }
 
 /*
@@ -49,13 +49,13 @@ idLobbyBackendDirect::StartHosting
 ========================
 */
 void idLobbyBackendDirect::StartHosting( const idMatchParameters & p, float skillLevel, lobbyBackendType_t type ) {
-	NET_VERBOSE_PRINT( "idLobbyBackendDirect::StartHosting\n" );
+  NET_VERBOSE_PRINT( "idLobbyBackendDirect::StartHosting\n" );
 
-	isLocal = MatchTypeIsLocal( p.matchFlags );
-	isHost	= true;
+  isLocal = MatchTypeIsLocal( p.matchFlags );
+  isHost  = true;
 
-	state	= STATE_READY;
-	isLocal = true;
+  state = STATE_READY;
+  isLocal = true;
 }
 
 /*
@@ -64,14 +64,14 @@ idLobbyBackendDirect::StartFinding
 ========================
 */
 void idLobbyBackendDirect::StartFinding( const idMatchParameters & p, int numPartyUsers, float skillLevel ) {
-	isLocal = MatchTypeIsLocal( p.matchFlags );
-	isHost	= false;
+  isLocal = MatchTypeIsLocal( p.matchFlags );
+  isHost  = false;
 
-	if ( lobbyToSessionCB->CanJoinLocalHost() ) {
-		state = STATE_READY;
-	} else {
-		state = STATE_FAILED;
-	}
+  if ( lobbyToSessionCB->CanJoinLocalHost() ) {
+    state = STATE_READY;
+  } else {
+    state = STATE_FAILED;
+  }
 }
 
 /*
@@ -80,9 +80,9 @@ idLobbyBackendDirect::GetSearchResults
 ========================
 */
 void idLobbyBackendDirect::GetSearchResults( idList< lobbyConnectInfo_t > & searchResults ) {
-	lobbyConnectInfo_t fakeResult;
-	searchResults.Clear();
-	searchResults.Append( fakeResult );
+  lobbyConnectInfo_t fakeResult;
+  searchResults.Clear();
+  searchResults.Append( fakeResult );
 }
 
 /*
@@ -91,16 +91,16 @@ idLobbyBackendDirect::JoinFromConnectInfo
 ========================
 */
 void idLobbyBackendDirect::JoinFromConnectInfo( const lobbyConnectInfo_t & connectInfo ) {
-	if ( lobbyToSessionCB->CanJoinLocalHost() ) {
-		Sys_StringToNetAdr( "localhost", &address, true );
-		address.port = net_port.GetInteger();
-	} else {
-		address = connectInfo.netAddr;
-	}
+  if ( lobbyToSessionCB->CanJoinLocalHost() ) {
+    Sys_StringToNetAdr( "localhost", &address, true );
+    address.port = net_port.GetInteger();
+  } else {
+    address = connectInfo.netAddr;
+  }
 
-	state		= STATE_READY;
-	isLocal		= false;
-	isHost		= false;
+  state   = STATE_READY;
+  isLocal   = false;
+  isHost    = false;
 }
 
 /*
@@ -109,7 +109,7 @@ idLobbyBackendDirect::Shutdown
 ========================
 */
 void idLobbyBackendDirect::Shutdown() {
-	state = STATE_SHUTDOWN;
+  state = STATE_SHUTDOWN;
 }
 
 /*
@@ -126,7 +126,7 @@ idLobbyBackendDirect::FinishBecomeHost
 ========================
 */
 void idLobbyBackendDirect::FinishBecomeHost() {
-	isHost = true;
+  isHost = true;
 }
 
 /*
@@ -135,8 +135,8 @@ idLobbyBackendDirect::GetOwnerAddress
 ========================
 */
 void idLobbyBackendDirect::GetOwnerAddress( lobbyAddress_t & outAddr ) {
-	outAddr.netAddr = address;
-	state			= STATE_READY;
+  outAddr.netAddr = address;
+  state     = STATE_READY;
 }
 
 /*
@@ -153,19 +153,19 @@ idLobbyBackendDirect::GetConnectInfo
 ========================
 */
 lobbyConnectInfo_t idLobbyBackendDirect::GetConnectInfo() {
-	lobbyConnectInfo_t connectInfo;
+  lobbyConnectInfo_t connectInfo;
 
-	// If we aren't the host, this lobby should have been joined through JoinFromConnectInfo
-	if ( IsHost() ) {
-		// If we are the host, give them our ip address
-		const char * ip = Sys_GetLocalIP( 0 );
-		Sys_StringToNetAdr( ip, &address, false );
-		address.port = net_port.GetInteger();
-	}
+  // If we aren't the host, this lobby should have been joined through JoinFromConnectInfo
+  if ( IsHost() ) {
+    // If we are the host, give them our ip address
+    const char * ip = Sys_GetLocalIP( 0 );
+    Sys_StringToNetAdr( ip, &address, false );
+    address.port = net_port.GetInteger();
+  }
 
-	connectInfo.netAddr = address;
+  connectInfo.netAddr = address;
 
-	return connectInfo;
+  return connectInfo;
 }
 
 /*
@@ -174,7 +174,7 @@ idLobbyBackendDirect::IsOwnerOfConnectInfo
 ========================
 */
 bool idLobbyBackendDirect::IsOwnerOfConnectInfo( const lobbyConnectInfo_t & connectInfo ) const {
-	return Sys_CompareNetAdrBase( address, connectInfo.netAddr );
+  return Sys_CompareNetAdrBase( address, connectInfo.netAddr );
 }
 
 /*

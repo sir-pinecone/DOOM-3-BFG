@@ -32,9 +32,9 @@ If you have questions concerning this license or the applicable additional terms
 /*
 ======================================================================
 
-	LWO2 loader. (LightWave Object)
+  LWO2 loader. (LightWave Object)
 
-	Ernie Wright  17 Sep 00
+  Ernie Wright  17 Sep 00
 
 ======================================================================
 */
@@ -474,7 +474,7 @@ typedef struct st_lwVMap {
    float        **val;
 
    // added by duffy
-   int			offset;
+   int      offset;
 } lwVMap;
 
 typedef struct st_lwVMapPt {
@@ -555,16 +555,16 @@ typedef struct st_lwTagList {
 /* an object */
 
 typedef struct st_lwObject {
-	ID_TIME_T			timeStamp;
-	lwLayer *		layer;               /* linked list of layers */
-	lwEnvelope *	env;                 /* linked list of envelopes */
-	lwClip *		clip;                /* linked list of clips */
-	lwSurface *		surf;                /* linked list of surfaces */
-	lwTagList		taglist;
-	int				nlayers;
-	int				nenvs;
-	int				nclips;
-	int				nsurfs;
+  ID_TIME_T     timeStamp;
+  lwLayer *   layer;               /* linked list of layers */
+  lwEnvelope *  env;                 /* linked list of envelopes */
+  lwClip *    clip;                /* linked list of clips */
+  lwSurface *   surf;                /* linked list of surfaces */
+  lwTagList   taglist;
+  int       nlayers;
+  int       nenvs;
+  int       nclips;
+  int       nsurfs;
 } lwObject;
 
 

@@ -70,32 +70,32 @@ If you have questions concerning this license or the applicable additional terms
 
 int
 M_DrawText
-( int		x,
-  int		y,
-  qboolean	direct,
-  char*		string )
+( int   x,
+  int   y,
+  qboolean  direct,
+  char*   string )
 {
-    int 	c;
-    int		w;
+    int   c;
+    int   w;
 
     while (*string)
     {
-	c = toupper(*string) - HU_FONTSTART;
-	string++;
-	if (c < 0 || c> HU_FONTSIZE)
-	{
-	    x += 4;
-	    continue;
-	}
-		
-	w = SHORT (::g->hu_font[c]->width);
-	if (x+w > SCREENWIDTH)
-	    break;
-	if (direct)
-	    V_DrawPatchDirect(x, y, 0, ::g->hu_font[c]);
-	else
-	    V_DrawPatch(x, y, 0, ::g->hu_font[c]);
-	x+=w;
+  c = toupper(*string) - HU_FONTSTART;
+  string++;
+  if (c < 0 || c> HU_FONTSIZE)
+  {
+      x += 4;
+      continue;
+  }
+    
+  w = SHORT (::g->hu_font[c]->width);
+  if (x+w > SCREENWIDTH)
+      break;
+  if (direct)
+      V_DrawPatchDirect(x, y, 0, ::g->hu_font[c]);
+  else
+      V_DrawPatch(x, y, 0, ::g->hu_font[c]);
+  x+=w;
     }
 
     return x;
@@ -105,53 +105,53 @@ M_DrawText
 //
 // M_WriteFile
 //
-boolean M_WriteFile ( char const*	name, void*		source, int		length ) {
-	
-	idFile *		handle = NULL;
-	int		count;
+boolean M_WriteFile ( char const* name, void*   source, int   length ) {
+  
+  idFile *    handle = NULL;
+  int   count;
 
-	handle = fileSystem->OpenFileWrite( name, "fs_savepath" );
+  handle = fileSystem->OpenFileWrite( name, "fs_savepath" );
 
-	if (handle == NULL )
-		return false;
+  if (handle == NULL )
+    return false;
 
-	count = handle->Write( source, length );
-	fileSystem->CloseFile( handle );
+  count = handle->Write( source, length );
+  fileSystem->CloseFile( handle );
 
-	if (count < length)
-		return false;
+  if (count < length)
+    return false;
 
-	return true;
+  return true;
 }
 
 
 //
 // M_ReadFile
 //
-int M_ReadFile ( char const*	name, byte**	buffer ) {
-	int count, length;
-	idFile * handle = NULL;
-	byte		*buf;
+int M_ReadFile ( char const*  name, byte**  buffer ) {
+  int count, length;
+  idFile * handle = NULL;
+  byte    *buf;
 
-	handle = fileSystem->OpenFileRead( name, false );
+  handle = fileSystem->OpenFileRead( name, false );
 
-	if (handle == NULL ) {
-		I_Error ("Couldn't read file %s", name);
-	}
+  if (handle == NULL ) {
+    I_Error ("Couldn't read file %s", name);
+  }
 
-	length = handle->Length();
+  length = handle->Length();
 
-	buf = ( byte* )Z_Malloc ( handle->Length(), PU_STATIC, NULL);
-	count = handle->Read( buf, length );
+  buf = ( byte* )Z_Malloc ( handle->Length(), PU_STATIC, NULL);
+  count = handle->Read( buf, length );
 
-	if (count < length ) {
-		I_Error ("Couldn't read file %s", name);
-	}
+  if (count < length ) {
+    I_Error ("Couldn't read file %s", name);
+  }
 
-	fileSystem->CloseFile( handle );
+  fileSystem->CloseFile( handle );
 
-	*buffer = buf;
-	return length;
+  *buffer = buf;
+  return length;
 }
 
 //
@@ -159,18 +159,18 @@ int M_ReadFile ( char const*	name, byte**	buffer ) {
 //
 static qboolean SaveGame( void* source, DWORD length )
 {
-	return false;
+  return false;
 }
 
 
 qboolean M_WriteSaveGame( void* source, int length )
 {
-	return SaveGame( source, length );
+  return SaveGame( source, length );
 }
 
 int M_ReadSaveGame( byte** buffer )
 {
-	return 0;
+  return 0;
 }
 
 
@@ -212,27 +212,27 @@ extern const char* const temp_chat_macros[];
 void M_SaveDefaults (void)
 {
 /*
-    int		i;
-    int		v;
-    FILE*	f;
-	
+    int   i;
+    int   v;
+    FILE* f;
+  
     f = f o pen (::g->defaultfile, "w");
     if (!f)
-	return; // can't write the file, but don't complain
-		
+  return; // can't write the file, but don't complain
+    
     for (i=0 ; i<::g->numdefaults ; i++)
     {
-	if (::g->defaults[i].defaultvalue > -0xfff
-	    && ::g->defaults[i].defaultvalue < 0xfff)
-	{
-	    v = *::g->defaults[i].location;
-	    fprintf (f,"%s\t\t%i\n",::g->defaults[i].name,v);
-	} else {
-	    fprintf (f,"%s\t\t\"%s\"\n",::g->defaults[i].name,
-		     * (char **) (::g->defaults[i].location));
-	}
+  if (::g->defaults[i].defaultvalue > -0xfff
+      && ::g->defaults[i].defaultvalue < 0xfff)
+  {
+      v = *::g->defaults[i].location;
+      fprintf (f,"%s\t\t%i\n",::g->defaults[i].name,v);
+  } else {
+      fprintf (f,"%s\t\t\"%s\"\n",::g->defaults[i].name,
+         * (char **) (::g->defaults[i].location));
+  }
     }
-	
+  
     fclose (f);
 */
 }
@@ -244,67 +244,67 @@ void M_SaveDefaults (void)
 
 void M_LoadDefaults (void)
 {
-    int		i;
-    //int		len;
-    //FILE*	f;
-    //char	def[80];
-    //char	strparm[100];
-    //char*	newstring;
-    //int		parm;
-    //qboolean	isstring;
+    int   i;
+    //int   len;
+    //FILE* f;
+    //char  def[80];
+    //char  strparm[100];
+    //char* newstring;
+    //int   parm;
+    //qboolean  isstring;
     
     // set everything to base values
     ::g->numdefaults = sizeof(::g->defaults)/sizeof(::g->defaults[0]);
     for (i=0 ; i < ::g->numdefaults ; i++)
-		*::g->defaults[i].location = ::g->defaults[i].defaultvalue;
+    *::g->defaults[i].location = ::g->defaults[i].defaultvalue;
     
     // check for a custom default file
     i = M_CheckParm ("-config");
     if (i && i < ::g->myargc-1)
     {
-		::g->defaultfile = ::g->myargv[i+1];
-		I_Printf ("	default file: %s\n",::g->defaultfile);
+    ::g->defaultfile = ::g->myargv[i+1];
+    I_Printf (" default file: %s\n",::g->defaultfile);
     }
     else
-		::g->defaultfile = ::g->basedefault;
+    ::g->defaultfile = ::g->basedefault;
 
 /*
     // read the file in, overriding any set ::g->defaults
     f = f o pen (::g->defaultfile, "r");
     if (f)
     {
-		while (!feof(f))
-		{
-			isstring = false;
-			if (fscanf (f, "%79s %[^\n]\n", def, strparm) == 2)
-			{
-				if (strparm[0] == '"')
-				{
-					// get a string default
-					isstring = true;
-					len = strlen(strparm);
-					newstring = (char *)DoomLib::Z_Malloc(len, PU_STATIC, 0);
-					strparm[len-1] = 0;
-					strcpy(newstring, strparm+1);
-				}
-				else if (strparm[0] == '0' && strparm[1] == 'x')
-					sscanf(strparm+2, "%x", &parm);
-				else
-					sscanf(strparm, "%i", &parm);
-				
-				for (i=0 ; i<::g->numdefaults ; i++)
-					if (!strcmp(def, ::g->defaults[i].name))
-					{
-						if (!isstring)
-							*::g->defaults[i].location = parm;
-						else
-							*::g->defaults[i].location = (int) newstring;
-						break;
-					}
-			}
-		}
-			
-		fclose (f);
+    while (!feof(f))
+    {
+      isstring = false;
+      if (fscanf (f, "%79s %[^\n]\n", def, strparm) == 2)
+      {
+        if (strparm[0] == '"')
+        {
+          // get a string default
+          isstring = true;
+          len = strlen(strparm);
+          newstring = (char *)DoomLib::Z_Malloc(len, PU_STATIC, 0);
+          strparm[len-1] = 0;
+          strcpy(newstring, strparm+1);
+        }
+        else if (strparm[0] == '0' && strparm[1] == 'x')
+          sscanf(strparm+2, "%x", &parm);
+        else
+          sscanf(strparm, "%i", &parm);
+        
+        for (i=0 ; i<::g->numdefaults ; i++)
+          if (!strcmp(def, ::g->defaults[i].name))
+          {
+            if (!isstring)
+              *::g->defaults[i].location = parm;
+            else
+              *::g->defaults[i].location = (int) newstring;
+            break;
+          }
+      }
+    }
+      
+    fclose (f);
     }
 */
 }
@@ -322,13 +322,13 @@ void M_LoadDefaults (void)
 //
 void
 WritePCXfile
-( char*		filename,
-  byte*		data,
-  int		width,
-  int		height,
-  byte*		palette )
+( char*   filename,
+  byte*   data,
+  int   width,
+  int   height,
+  byte*   palette )
 {
-	I_Error( "depreciated" );
+  I_Error( "depreciated" );
 }
 
 
@@ -338,9 +338,9 @@ WritePCXfile
 void M_ScreenShot (void)
 {
 /*
-    int		i;
-    byte*	linear;
-    char	lbmname[12];
+    int   i;
+    byte* linear;
+    char  lbmname[12];
     
     // munge planar buffer to linear
     linear = ::g->screens[2];
@@ -348,22 +348,22 @@ void M_ScreenShot (void)
     
     // find a file name to save it to
     strcpy(lbmname,"DOOM00.pcx");
-		
+    
     for (i=0 ; i<=99 ; i++)
     {
-		lbmname[4] = i/10 + '0';
-		lbmname[5] = i%10 + '0';
-		if (_access(lbmname,0) == -1)
-			break;	// file doesn't exist
+    lbmname[4] = i/10 + '0';
+    lbmname[5] = i%10 + '0';
+    if (_access(lbmname,0) == -1)
+      break;  // file doesn't exist
     }
     if (i==100)
-		I_Error ("M_ScreenShot: Couldn't create a PCX");
+    I_Error ("M_ScreenShot: Couldn't create a PCX");
     
     // save the pcx file
     WritePCXfile (lbmname, linear,
-		  SCREENWIDTH, SCREENHEIGHT,
-		  (byte*)W_CacheLumpName ("PLAYPAL",PU_CACHE_SHARED));
-	
+      SCREENWIDTH, SCREENHEIGHT,
+      (byte*)W_CacheLumpName ("PLAYPAL",PU_CACHE_SHARED));
+  
     ::g->players[::g->consoleplayer].message = "screen shot";
 */
 }

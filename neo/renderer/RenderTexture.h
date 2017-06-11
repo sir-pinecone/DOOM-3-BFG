@@ -31,12 +31,12 @@ If you have questions concerning this license or the applicable additional terms
 /*
 ================================================================================================
 
-	Render Texture
+  Render Texture
 
 ================================================================================================
 */
 
-#define CELL_GCM_INVALID_PITCH		64
+#define CELL_GCM_INVALID_PITCH    64
 
 /*
 ================================================
@@ -46,25 +46,25 @@ resident on the video hardware.
 */
 class idRenderTexture {
 public:
-							idRenderTexture();
-							~idRenderTexture();
+              idRenderTexture();
+              ~idRenderTexture();
 
-	ID_INLINE int			GetWidth() const { return ( colorImage != NULL ) ? colorImage->GetUploadWidth() : depthImage->GetUploadWidth(); }
-	ID_INLINE int			GetHeight() const { return ( colorImage != NULL ) ? colorImage->GetUploadHeight() : depthImage->GetUploadHeight(); }
+  ID_INLINE int     GetWidth() const { return ( colorImage != NULL ) ? colorImage->GetUploadWidth() : depthImage->GetUploadWidth(); }
+  ID_INLINE int     GetHeight() const { return ( colorImage != NULL ) ? colorImage->GetUploadHeight() : depthImage->GetUploadHeight(); }
 
-	ID_INLINE idImage *		GetColorImage() const { return colorImage; }
-	ID_INLINE idImage *		GetDepthImage() const { return depthImage; }
+  ID_INLINE idImage *   GetColorImage() const { return colorImage; }
+  ID_INLINE idImage *   GetDepthImage() const { return depthImage; }
 
 
-	void					Resize( int width, int height );
+  void          Resize( int width, int height );
 
-	void					MakeCurrent( int level = 0, int side = 0 );
+  void          MakeCurrent( int level = 0, int side = 0 );
 
 private:
-	idImage *			colorImage;
-	idImage *			depthImage;
-	int					targetWidth;
-	int					targetHeight;
+  idImage *     colorImage;
+  idImage *     depthImage;
+  int         targetWidth;
+  int         targetHeight;
 
 };
 

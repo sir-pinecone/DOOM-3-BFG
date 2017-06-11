@@ -65,7 +65,7 @@ idPhysics::SetClipBox
 ================
 */
 void idPhysics::SetClipBox( const idBounds &bounds, float density ) {
-	SetClipModel( new (TAG_PHYSICS_CLIP) idClipModel( idTraceModel( bounds ) ), density );
+  SetClipModel( new (TAG_PHYSICS_CLIP) idClipModel( idTraceModel( bounds ) ), density );
 }
 
 /*
@@ -74,5 +74,5 @@ idPhysics::SnapTimeToPhysicsFrame
 ================
 */
 int idPhysics::SnapTimeToPhysicsFrame( int t ) {
-	return MSEC_ALIGN_TO_FRAME( t );
+  return MSEC_ALIGN_TO_FRAME( t );
 }

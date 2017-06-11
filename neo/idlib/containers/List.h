@@ -34,8 +34,8 @@ If you have questions concerning this license or the applicable additional terms
 /*
 ===============================================================================
 
-	List template
-	Does not allocate memory until the first item is added.
+  List template
+  Does not allocate memory until the first item is added.
 
 ===============================================================================
 */
@@ -47,16 +47,16 @@ idListArrayNew
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE void * idListArrayNew( int num, bool zeroBuffer ) {
-	_type_ * ptr = NULL;
-	if ( zeroBuffer ) {
-		ptr = (_type_ *)Mem_ClearedAlloc( sizeof(_type_) * num, _tag_ );
-	} else {
-		ptr = (_type_ *)Mem_Alloc( sizeof(_type_) * num, _tag_ );
-	}
-	for ( int i = 0; i < num; i++ ) {
-		new ( &ptr[i] ) _type_;
-	}
-	return ptr;
+  _type_ * ptr = NULL;
+  if ( zeroBuffer ) {
+    ptr = (_type_ *)Mem_ClearedAlloc( sizeof(_type_) * num, _tag_ );
+  } else {
+    ptr = (_type_ *)Mem_Alloc( sizeof(_type_) * num, _tag_ );
+  }
+  for ( int i = 0; i < num; i++ ) {
+    new ( &ptr[i] ) _type_;
+  }
+  return ptr;
 }
 
 /*
@@ -66,11 +66,11 @@ idListArrayDelete
 */
 template< typename _type_ >
 ID_INLINE void idListArrayDelete( void *ptr, int num ) {
-	// Call the destructors on all the elements
-	for ( int i = 0; i < num; i++ ) {
-		((_type_ *)ptr)[i].~_type_();
-	}
-	Mem_Free( ptr );
+  // Call the destructors on all the elements
+  for ( int i = 0; i < num; i++ ) {
+    ((_type_ *)ptr)[i].~_type_();
+  }
+  Mem_Free( ptr );
 }
 
 /*
@@ -80,17 +80,17 @@ idListArrayResize
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE void * idListArrayResize( void * voldptr, int oldNum, int newNum, bool zeroBuffer ) {
-	_type_ * oldptr = (_type_ *)voldptr;
-	_type_ * newptr = NULL;
-	if ( newNum > 0 ) {
-		newptr = (_type_ *)idListArrayNew<_type_, _tag_>( newNum, zeroBuffer );
-		int overlap = Min( oldNum, newNum );
-		for ( int i = 0; i < overlap; i++ ) {
-			newptr[i] = oldptr[i];
-		}
-	}
-	idListArrayDelete<_type_>( voldptr, oldNum );
-	return newptr;
+  _type_ * oldptr = (_type_ *)voldptr;
+  _type_ * newptr = NULL;
+  if ( newNum > 0 ) {
+    newptr = (_type_ *)idListArrayNew<_type_, _tag_>( newNum, zeroBuffer );
+    int overlap = Min( oldNum, newNum );
+    for ( int i = 0; i < overlap; i++ ) {
+      newptr[i] = oldptr[i];
+    }
+  }
+  idListArrayDelete<_type_>( voldptr, oldNum );
+  return newptr;
 }
 
 /*
@@ -100,92 +100,92 @@ idListNewElement<type>
 */
 template< class type >
 ID_INLINE type *idListNewElement( void ) {
-	return new type;
+  return new type;
 }
 
 template< typename _type_, memTag_t _tag_ = TAG_IDLIB_LIST >
 class idList {
 public:
 
-	typedef int		cmp_t( const _type_ *, const _type_ * );
-	typedef _type_	new_t();
+  typedef int   cmp_t( const _type_ *, const _type_ * );
+  typedef _type_  new_t();
 
-					idList( int newgranularity = 16 );
-					idList( const idList &other );
-					~idList();
+          idList( int newgranularity = 16 );
+          idList( const idList &other );
+          ~idList();
 
-	void			Clear();											// clear the list
-	int				Num() const;										// returns number of elements in list
-	int				NumAllocated() const;								// returns number of elements allocated for
-	void			SetGranularity( int newgranularity );				// set new granularity
-	int				GetGranularity() const;								// get the current granularity
+  void      Clear();                      // clear the list
+  int       Num() const;                    // returns number of elements in list
+  int       NumAllocated() const;               // returns number of elements allocated for
+  void      SetGranularity( int newgranularity );       // set new granularity
+  int       GetGranularity() const;               // get the current granularity
 
-	size_t			Allocated() const;									// returns total size of allocated memory
-	size_t			Size() const;										// returns total size of allocated memory including size of list _type_
-	size_t			MemoryUsed() const;									// returns size of the used elements in the list
+  size_t      Allocated() const;                  // returns total size of allocated memory
+  size_t      Size() const;                   // returns total size of allocated memory including size of list _type_
+  size_t      MemoryUsed() const;                 // returns size of the used elements in the list
 
-	idList<_type_,_tag_> &		operator=( const idList<_type_,_tag_> &other );
-	const _type_ &	operator[]( int index ) const;
-	_type_ &		operator[]( int index );
+  idList<_type_,_tag_> &    operator=( const idList<_type_,_tag_> &other );
+  const _type_ &  operator[]( int index ) const;
+  _type_ &    operator[]( int index );
 
-	void			Condense();											// resizes list to exactly the number of elements it contains
-	void			Resize( int newsize );								// resizes list to the given number of elements
-	void			Resize( int newsize, int newgranularity	 );			// resizes list and sets new granularity
-	void			SetNum( int newnum );								// set number of elements in list and resize to exactly this number if needed
-	void			AssureSize( int newSize);							// assure list has given number of elements, but leave them uninitialized
-	void			AssureSize( int newSize, const _type_ &initValue );	// assure list has given number of elements and initialize any new elements
-	void			AssureSizeAlloc( int newSize, new_t *allocator );	// assure the pointer list has the given number of elements and allocate any new elements
+  void      Condense();                     // resizes list to exactly the number of elements it contains
+  void      Resize( int newsize );                // resizes list to the given number of elements
+  void      Resize( int newsize, int newgranularity  );     // resizes list and sets new granularity
+  void      SetNum( int newnum );               // set number of elements in list and resize to exactly this number if needed
+  void      AssureSize( int newSize);             // assure list has given number of elements, but leave them uninitialized
+  void      AssureSize( int newSize, const _type_ &initValue ); // assure list has given number of elements and initialize any new elements
+  void      AssureSizeAlloc( int newSize, new_t *allocator ); // assure the pointer list has the given number of elements and allocate any new elements
 
-	_type_ *		Ptr();												// returns a pointer to the list
-	const _type_ *	Ptr() const;										// returns a pointer to the list
-	_type_ &		Alloc();											// returns reference to a new data element at the end of the list
-	int				Append( const _type_ & obj );						// append element
-	int				Append( const idList &other );						// append list
-	int				AddUnique( const _type_ & obj );					// add unique element
-	int				Insert( const _type_ & obj, int index = 0 );		// insert the element at the given index
-	int				FindIndex( const _type_ & obj ) const;				// find the index for the given element
-	_type_ *		Find( _type_ const & obj ) const;					// find pointer to the given element
-	int				FindNull() const;									// find the index for the first NULL pointer in the list
-	int				IndexOf( const _type_ *obj ) const;					// returns the index for the pointer to an element in the list
-	bool			RemoveIndex( int index );							// remove the element at the given index
-	// removes the element at the given index and places the last element into its spot - DOES NOT PRESERVE LIST ORDER
-	bool			RemoveIndexFast( int index );
-	bool			Remove( const _type_ & obj );						// remove the element
-//	void			Sort( cmp_t *compare = ( cmp_t * )&idListSortCompare<_type_, _tag_> );
-	void			SortWithTemplate( const idSort<_type_> & sort = idSort_QuickDefault<_type_>() );
-//	void			SortSubSection( int startIndex, int endIndex, cmp_t *compare = ( cmp_t * )&idListSortCompare<_type_> );
-	void			Swap( idList &other );								// swap the contents of the lists
-	void			DeleteContents( bool clear = true );				// delete the contents of the list
+  _type_ *    Ptr();                        // returns a pointer to the list
+  const _type_ *  Ptr() const;                    // returns a pointer to the list
+  _type_ &    Alloc();                      // returns reference to a new data element at the end of the list
+  int       Append( const _type_ & obj );           // append element
+  int       Append( const idList &other );            // append list
+  int       AddUnique( const _type_ & obj );          // add unique element
+  int       Insert( const _type_ & obj, int index = 0 );    // insert the element at the given index
+  int       FindIndex( const _type_ & obj ) const;        // find the index for the given element
+  _type_ *    Find( _type_ const & obj ) const;         // find pointer to the given element
+  int       FindNull() const;                 // find the index for the first NULL pointer in the list
+  int       IndexOf( const _type_ *obj ) const;         // returns the index for the pointer to an element in the list
+  bool      RemoveIndex( int index );             // remove the element at the given index
+  // removes the element at the given index and places the last element into its spot - DOES NOT PRESERVE LIST ORDER
+  bool      RemoveIndexFast( int index );
+  bool      Remove( const _type_ & obj );           // remove the element
+//  void      Sort( cmp_t *compare = ( cmp_t * )&idListSortCompare<_type_, _tag_> );
+  void      SortWithTemplate( const idSort<_type_> & sort = idSort_QuickDefault<_type_>() );
+//  void      SortSubSection( int startIndex, int endIndex, cmp_t *compare = ( cmp_t * )&idListSortCompare<_type_> );
+  void      Swap( idList &other );                // swap the contents of the lists
+  void      DeleteContents( bool clear = true );        // delete the contents of the list
 
-	//------------------------
-	// auto-cast to other idList types with a different memory tag
-	//------------------------
+  //------------------------
+  // auto-cast to other idList types with a different memory tag
+  //------------------------
 
-	template< memTag_t _t_ >
-	operator idList<_type_, _t_> & () { 
-		return *reinterpret_cast<idList<_type_, _t_> *>( this ); 
-	}
+  template< memTag_t _t_ >
+  operator idList<_type_, _t_> & () { 
+    return *reinterpret_cast<idList<_type_, _t_> *>( this ); 
+  }
 
-	template< memTag_t _t_>
-	operator const idList<_type_, _t_> & () const { 
-		return *reinterpret_cast<const idList<_type_, _t_> *>( this ); 
-	}
+  template< memTag_t _t_>
+  operator const idList<_type_, _t_> & () const { 
+    return *reinterpret_cast<const idList<_type_, _t_> *>( this ); 
+  }
 
-	//------------------------
-	// memTag
-	//
-	// Changing the memTag when the list has an allocated buffer will
-	// result in corruption of the memory statistics.
-	//------------------------
-	memTag_t		GetMemTag() const { return (memTag_t)memTag; };
-	void			SetMemTag( memTag_t tag_ ) { memTag = (byte)tag_; };
+  //------------------------
+  // memTag
+  //
+  // Changing the memTag when the list has an allocated buffer will
+  // result in corruption of the memory statistics.
+  //------------------------
+  memTag_t    GetMemTag() const { return (memTag_t)memTag; };
+  void      SetMemTag( memTag_t tag_ ) { memTag = (byte)tag_; };
 
 private:
-	int				num;
-	int				size;
-	int				granularity;
-	_type_ *		list;
-	byte			memTag;
+  int       num;
+  int       size;
+  int       granularity;
+  _type_ *    list;
+  byte      memTag;
 };
 
 /*
@@ -195,12 +195,12 @@ idList<_type_,_tag_>::idList( int )
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE idList<_type_,_tag_>::idList( int newgranularity ) {
-	assert( newgranularity > 0 );
+  assert( newgranularity > 0 );
 
-	list		= NULL;
-	granularity	= newgranularity;
-	memTag		= _tag_;
-	Clear();
+  list    = NULL;
+  granularity = newgranularity;
+  memTag    = _tag_;
+  Clear();
 }
 
 /*
@@ -210,8 +210,8 @@ idList<_type_,_tag_>::idList( const idList< _type_, _tag_ > &other )
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE idList<_type_,_tag_>::idList( const idList &other ) {
-	list = NULL;
-	*this = other;
+  list = NULL;
+  *this = other;
 }
 
 /*
@@ -221,7 +221,7 @@ idList<_type_,_tag_>::~idList< _type_, _tag_ >
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE idList<_type_,_tag_>::~idList() {
-	Clear();
+  Clear();
 }
 
 /*
@@ -233,13 +233,13 @@ Frees up the memory allocated by the list.  Assumes that _type_ automatically ha
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE void idList<_type_,_tag_>::Clear() {
-	if ( list ) {
-		idListArrayDelete< _type_ >( list, size );
-	}
+  if ( list ) {
+    idListArrayDelete< _type_ >( list, size );
+  }
 
-	list	= NULL;
-	num		= 0;
-	size	= 0;
+  list  = NULL;
+  num   = 0;
+  size  = 0;
 }
 
 /*
@@ -256,18 +256,18 @@ list to NULL.
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE void idList<_type_,_tag_>::DeleteContents( bool clear ) {
-	int i;
+  int i;
 
-	for( i = 0; i < num; i++ ) {
-		delete list[ i ];
-		list[ i ] = NULL;
-	}
+  for( i = 0; i < num; i++ ) {
+    delete list[ i ];
+    list[ i ] = NULL;
+  }
 
-	if ( clear ) {
-		Clear();
-	} else {
-		memset( list, 0, size * sizeof( _type_ ) );
-	}
+  if ( clear ) {
+    Clear();
+  } else {
+    memset( list, 0, size * sizeof( _type_ ) );
+  }
 }
 
 /*
@@ -279,7 +279,7 @@ return total memory allocated for the list in bytes, but doesn't take into accou
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE size_t idList<_type_,_tag_>::Allocated() const {
-	return size * sizeof( _type_ );
+  return size * sizeof( _type_ );
 }
 
 /*
@@ -291,7 +291,7 @@ return total size of list in bytes, but doesn't take into account additional mem
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE size_t idList<_type_,_tag_>::Size() const {
-	return sizeof( idList< _type_, _tag_ > ) + Allocated();
+  return sizeof( idList< _type_, _tag_ > ) + Allocated();
 }
 
 /*
@@ -301,7 +301,7 @@ idList<_type_,_tag_>::MemoryUsed
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE size_t idList<_type_,_tag_>::MemoryUsed() const {
-	return num * sizeof( *list );
+  return num * sizeof( *list );
 }
 
 /*
@@ -314,7 +314,7 @@ Note that this is NOT an indication of the memory allocated.
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE int idList<_type_,_tag_>::Num() const {
-	return num;
+  return num;
 }
 
 /*
@@ -326,7 +326,7 @@ Returns the number of elements currently allocated for.
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE int idList<_type_,_tag_>::NumAllocated() const {
-	return size;
+  return size;
 }
 
 /*
@@ -336,11 +336,11 @@ idList<_type_,_tag_>::SetNum
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE void idList<_type_,_tag_>::SetNum( int newnum ) {
-	assert( newnum >= 0 );
-	if ( newnum > size ) {
-		Resize( newnum );
-	}
-	num = newnum;
+  assert( newnum >= 0 );
+  if ( newnum > size ) {
+    Resize( newnum );
+  }
+  num = newnum;
 }
 
 /*
@@ -352,19 +352,19 @@ Sets the base size of the array and resizes the array to match.
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE void idList<_type_,_tag_>::SetGranularity( int newgranularity ) {
-	int newsize;
+  int newsize;
 
-	assert( newgranularity > 0 );
-	granularity = newgranularity;
+  assert( newgranularity > 0 );
+  granularity = newgranularity;
 
-	if ( list ) {
-		// resize it to the closest level of granularity
-		newsize = num + granularity - 1;
-		newsize -= newsize % granularity;
-		if ( newsize != size ) {
-			Resize( newsize );
-		}
-	}
+  if ( list ) {
+    // resize it to the closest level of granularity
+    newsize = num + granularity - 1;
+    newsize -= newsize % granularity;
+    if ( newsize != size ) {
+      Resize( newsize );
+    }
+  }
 }
 
 /*
@@ -376,7 +376,7 @@ Get the current granularity.
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE int idList<_type_,_tag_>::GetGranularity() const {
-	return granularity;
+  return granularity;
 }
 
 /*
@@ -388,13 +388,13 @@ Resizes the array to exactly the number of elements it contains or frees up memo
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE void idList<_type_,_tag_>::Condense() {
-	if ( list ) {
-		if ( num ) {
-			Resize( num );
-		} else {
-			Clear();
-		}
-	}
+  if ( list ) {
+    if ( num ) {
+      Resize( num );
+    } else {
+      Clear();
+    }
+  }
 }
 
 /*
@@ -407,24 +407,24 @@ Contents are copied using their = operator so that data is correnctly instantiat
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE void idList<_type_,_tag_>::Resize( int newsize ) {
-	assert( newsize >= 0 );
+  assert( newsize >= 0 );
 
-	// free up the list if no data is being reserved
-	if ( newsize <= 0 ) {
-		Clear();
-		return;
-	}
+  // free up the list if no data is being reserved
+  if ( newsize <= 0 ) {
+    Clear();
+    return;
+  }
 
-	if ( newsize == size ) {
-		// not changing the size, so just exit
-		return;
-	}
+  if ( newsize == size ) {
+    // not changing the size, so just exit
+    return;
+  }
 
-	list = (_type_ *)idListArrayResize< _type_, _tag_ >( list, size, newsize, false );
-	size = newsize;
-	if ( size < num ) {
-		num = size;
-	}
+  list = (_type_ *)idListArrayResize< _type_, _tag_ >( list, size, newsize, false );
+  size = newsize;
+  if ( size < num ) {
+    num = size;
+  }
 }
 
 /*
@@ -437,22 +437,22 @@ Contents are copied using their = operator so that data is correnctly instantiat
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE void idList<_type_,_tag_>::Resize( int newsize, int newgranularity ) {
-	assert( newsize >= 0 );
+  assert( newsize >= 0 );
 
-	assert( newgranularity > 0 );
-	granularity = newgranularity;
+  assert( newgranularity > 0 );
+  granularity = newgranularity;
 
-	// free up the list if no data is being reserved
-	if ( newsize <= 0 ) {
-		Clear();
-		return;
-	}
+  // free up the list if no data is being reserved
+  if ( newsize <= 0 ) {
+    Clear();
+    return;
+  }
 
-	list = (_type_ *)idListArrayResize< _type_, _tag_ >( list, size, newsize, false );
-	size = newsize;
-	if ( size < num ) {
-		num = size;
-	}
+  list = (_type_ *)idListArrayResize< _type_, _tag_ >( list, size, newsize, false );
+  size = newsize;
+  if ( size < num ) {
+    num = size;
+  }
 }
 
 /*
@@ -464,20 +464,20 @@ Makes sure the list has at least the given number of elements.
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE void idList<_type_,_tag_>::AssureSize( int newSize ) {
-	int newNum = newSize;
+  int newNum = newSize;
 
-	if ( newSize > size ) {
+  if ( newSize > size ) {
 
-		if ( granularity == 0 ) {	// this is a hack to fix our memset classes
-			granularity = 16;
-		}
+    if ( granularity == 0 ) { // this is a hack to fix our memset classes
+      granularity = 16;
+    }
 
-		newSize += granularity - 1;
-		newSize -= newSize % granularity;
-		Resize( newSize );
-	}
+    newSize += granularity - 1;
+    newSize -= newSize % granularity;
+    Resize( newSize );
+  }
 
-	num = newNum;
+  num = newNum;
 }
 
 /*
@@ -489,25 +489,25 @@ Makes sure the list has at least the given number of elements and initialize any
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE void idList<_type_,_tag_>::AssureSize( int newSize, const _type_ &initValue ) {
-	int newNum = newSize;
+  int newNum = newSize;
 
-	if ( newSize > size ) {
+  if ( newSize > size ) {
 
-		if ( granularity == 0 ) {	// this is a hack to fix our memset classes
-			granularity = 16;
-		}
+    if ( granularity == 0 ) { // this is a hack to fix our memset classes
+      granularity = 16;
+    }
 
-		newSize += granularity - 1;
-		newSize -= newSize % granularity;
-		num = size;
-		Resize( newSize );
+    newSize += granularity - 1;
+    newSize -= newSize % granularity;
+    num = size;
+    Resize( newSize );
 
-		for ( int i = num; i < newSize; i++ ) {
-			list[i] = initValue;
-		}
-	}
+    for ( int i = num; i < newSize; i++ ) {
+      list[i] = initValue;
+    }
+  }
 
-	num = newNum;
+  num = newNum;
 }
 
 /*
@@ -522,25 +522,25 @@ on non-pointer lists will cause a compiler error.
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE void idList<_type_,_tag_>::AssureSizeAlloc( int newSize, new_t *allocator ) {
-	int newNum = newSize;
+  int newNum = newSize;
 
-	if ( newSize > size ) {
+  if ( newSize > size ) {
 
-		if ( granularity == 0 ) {	// this is a hack to fix our memset classes
-			granularity = 16;
-		}
+    if ( granularity == 0 ) { // this is a hack to fix our memset classes
+      granularity = 16;
+    }
 
-		newSize += granularity - 1;
-		newSize -= newSize % granularity;
-		num = size;
-		Resize( newSize );
+    newSize += granularity - 1;
+    newSize -= newSize % granularity;
+    num = size;
+    Resize( newSize );
 
-		for ( int i = num; i < newSize; i++ ) {
-			list[i] = (*allocator)();
-		}
-	}
+    for ( int i = num; i < newSize; i++ ) {
+      list[i] = (*allocator)();
+    }
+  }
 
-	num = newNum;
+  num = newNum;
 }
 
 /*
@@ -552,23 +552,23 @@ Copies the contents and size attributes of another list.
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE idList<_type_,_tag_> & idList<_type_,_tag_>::operator=( const idList<_type_,_tag_> &other ) {
-	int	i;
+  int i;
 
-	Clear();
+  Clear();
 
-	num			= other.num;
-	size		= other.size;
-	granularity	= other.granularity;
-	memTag		= other.memTag;
+  num     = other.num;
+  size    = other.size;
+  granularity = other.granularity;
+  memTag    = other.memTag;
 
-	if ( size ) {
-		list = (_type_ *)idListArrayNew< _type_, _tag_ >( size, false );
-		for( i = 0; i < num; i++ ) {
-			list[ i ] = other.list[ i ];
-		}
-	}
+  if ( size ) {
+    list = (_type_ *)idListArrayNew< _type_, _tag_ >( size, false );
+    for( i = 0; i < num; i++ ) {
+      list[ i ] = other.list[ i ];
+    }
+  }
 
-	return *this;
+  return *this;
 }
 
 /*
@@ -581,10 +581,10 @@ Release builds do no range checking.
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE const _type_ & idList<_type_,_tag_>::operator[]( int index ) const {
-	assert( index >= 0 );
-	assert( index < num );
+  assert( index >= 0 );
+  assert( index < num );
 
-	return list[ index ];
+  return list[ index ];
 }
 
 /*
@@ -597,10 +597,10 @@ Release builds do no range checking.
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE _type_ & idList<_type_,_tag_>::operator[]( int index ) {
-	assert( index >= 0 );
-	assert( index < num );
+  assert( index >= 0 );
+  assert( index < num );
 
-	return list[ index ];
+  return list[ index ];
 }
 
 /*
@@ -616,7 +616,7 @@ FIXME: Create an iterator template for this kind of thing.
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE _type_ * idList<_type_,_tag_>::Ptr() {
-	return list;
+  return list;
 }
 
 /*
@@ -632,7 +632,7 @@ FIXME: Create an iterator template for this kind of thing.
 */
 template< typename _type_, memTag_t _tag_ >
 const ID_INLINE _type_ * idList<_type_,_tag_>::Ptr() const {
-	return list;
+  return list;
 }
 
 /*
@@ -644,15 +644,15 @@ Returns a reference to a new data element at the end of the list.
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE _type_ & idList<_type_,_tag_>::Alloc() {
-	if ( !list ) {
-		Resize( granularity );
-	}
+  if ( !list ) {
+    Resize( granularity );
+  }
 
-	if ( num == size ) {
-		Resize( size + granularity );
-	}
+  if ( num == size ) {
+    Resize( size + granularity );
+  }
 
-	return list[ num++ ];
+  return list[ num++ ];
 }
 
 /*
@@ -666,24 +666,24 @@ Returns the index of the new element.
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE int idList<_type_,_tag_>::Append( _type_ const & obj ) {
-	if ( !list ) {
-		Resize( granularity );
-	}
+  if ( !list ) {
+    Resize( granularity );
+  }
 
-	if ( num == size ) {
-		int newsize;
+  if ( num == size ) {
+    int newsize;
 
-		if ( granularity == 0 ) {	// this is a hack to fix our memset classes
-			granularity = 16;
-		}
-		newsize = size + granularity;
-		Resize( newsize - newsize % granularity );
-	}
+    if ( granularity == 0 ) { // this is a hack to fix our memset classes
+      granularity = 16;
+    }
+    newsize = size + granularity;
+    Resize( newsize - newsize % granularity );
+  }
 
-	list[ num ] = obj;
-	num++;
+  list[ num ] = obj;
+  num++;
 
-	return num - 1;
+  return num - 1;
 }
 
 
@@ -699,32 +699,32 @@ Returns the index of the new element.
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE int idList<_type_,_tag_>::Insert( _type_ const & obj, int index ) {
-	if ( !list ) {
-		Resize( granularity );
-	}
+  if ( !list ) {
+    Resize( granularity );
+  }
 
-	if ( num == size ) {
-		int newsize;
+  if ( num == size ) {
+    int newsize;
 
-		if ( granularity == 0 ) {	// this is a hack to fix our memset classes
-			granularity = 16;
-		}
-		newsize = size + granularity;
-		Resize( newsize - newsize % granularity );
-	}
+    if ( granularity == 0 ) { // this is a hack to fix our memset classes
+      granularity = 16;
+    }
+    newsize = size + granularity;
+    Resize( newsize - newsize % granularity );
+  }
 
-	if ( index < 0 ) {
-		index = 0;
-	}
-	else if ( index > num ) {
-		index = num;
-	}
-	for ( int i = num; i > index; --i ) {
-		list[i] = list[i-1];
-	}
-	num++;
-	list[index] = obj;
-	return index;
+  if ( index < 0 ) {
+    index = 0;
+  }
+  else if ( index > num ) {
+    index = num;
+  }
+  for ( int i = num; i > index; --i ) {
+    list[i] = list[i-1];
+  }
+  num++;
+  list[index] = obj;
+  return index;
 }
 
 /*
@@ -738,19 +738,19 @@ Returns the size of the new combined list
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE int idList<_type_,_tag_>::Append( const idList< _type_, _tag_ > &other ) {
-	if ( !list ) {
-		if ( granularity == 0 ) {	// this is a hack to fix our memset classes
-			granularity = 16;
-		}
-		Resize( granularity );
-	}
+  if ( !list ) {
+    if ( granularity == 0 ) { // this is a hack to fix our memset classes
+      granularity = 16;
+    }
+    Resize( granularity );
+  }
 
-	int n = other.Num();
-	for (int i = 0; i < n; i++) {
-		Append(other[i]);
-	}
+  int n = other.Num();
+  for (int i = 0; i < n; i++) {
+    Append(other[i]);
+  }
 
-	return Num();
+  return Num();
 }
 
 /*
@@ -762,14 +762,14 @@ Adds the data to the list if it doesn't already exist.  Returns the index of the
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE int idList<_type_,_tag_>::AddUnique( _type_ const & obj ) {
-	int index;
+  int index;
 
-	index = FindIndex( obj );
-	if ( index < 0 ) {
-		index = Append( obj );
-	}
+  index = FindIndex( obj );
+  if ( index < 0 ) {
+    index = Append( obj );
+  }
 
-	return index;
+  return index;
 }
 
 /*
@@ -781,16 +781,16 @@ Searches for the specified data in the list and returns it's index.  Returns -1 
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE int idList<_type_,_tag_>::FindIndex( _type_ const & obj ) const {
-	int i;
+  int i;
 
-	for( i = 0; i < num; i++ ) {
-		if ( list[ i ] == obj ) {
-			return i;
-		}
-	}
+  for( i = 0; i < num; i++ ) {
+    if ( list[ i ] == obj ) {
+      return i;
+    }
+  }
 
-	// Not found
-	return -1;
+  // Not found
+  return -1;
 }
 
 /*
@@ -802,14 +802,14 @@ Searches for the specified data in the list and returns it's address. Returns NU
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE _type_ *idList<_type_,_tag_>::Find( _type_ const & obj ) const {
-	int i;
+  int i;
 
-	i = FindIndex( obj );
-	if ( i >= 0 ) {
-		return &list[ i ];
-	}
+  i = FindIndex( obj );
+  if ( i >= 0 ) {
+    return &list[ i ];
+  }
 
-	return NULL;
+  return NULL;
 }
 
 /*
@@ -824,16 +824,16 @@ on non-pointer lists will cause a compiler error.
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE int idList<_type_,_tag_>::FindNull() const {
-	int i;
+  int i;
 
-	for( i = 0; i < num; i++ ) {
-		if ( list[ i ] == NULL ) {
-			return i;
-		}
-	}
+  for( i = 0; i < num; i++ ) {
+    if ( list[ i ] == NULL ) {
+      return i;
+    }
+  }
 
-	// Not found
-	return -1;
+  // Not found
+  return -1;
 }
 
 /*
@@ -848,14 +848,14 @@ but remains silent in release builds.
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE int idList<_type_,_tag_>::IndexOf( _type_ const *objptr ) const {
-	int index;
+  int index;
 
-	index = objptr - list;
+  index = objptr - list;
 
-	assert( index >= 0 );
-	assert( index < num );
+  assert( index >= 0 );
+  assert( index < num );
 
-	return index;
+  return index;
 }
 
 /*
@@ -869,22 +869,22 @@ Note that the element is not destroyed, so any memory used by it may not be free
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE bool idList<_type_,_tag_>::RemoveIndex( int index ) {
-	int i;
+  int i;
 
-	assert( list != NULL );
-	assert( index >= 0 );
-	assert( index < num );
+  assert( list != NULL );
+  assert( index >= 0 );
+  assert( index < num );
 
-	if ( ( index < 0 ) || ( index >= num ) ) {
-		return false;
-	}
+  if ( ( index < 0 ) || ( index >= num ) ) {
+    return false;
+  }
 
-	num--;
-	for( i = index; i < num; i++ ) {
-		list[ i ] = list[ i + 1 ];
-	}
+  num--;
+  for( i = index; i < num; i++ ) {
+    list[ i ] = list[ i + 1 ];
+  }
 
-	return true;
+  return true;
 }
 
 /*
@@ -895,25 +895,25 @@ Removes the element at the specified index and moves the last element into its s
 than moving the whole array down by one. Of course, this doesn't maintain the order of 
 elements! The number of elements in the list is reduced by one.  
 
-return:	bool	- false if the data is not found in the list.  
+return: bool  - false if the data is not found in the list.  
 
-NOTE:	The element is not destroyed, so any memory used by it may not be freed until the 
-		destruction of the list.
+NOTE: The element is not destroyed, so any memory used by it may not be freed until the 
+    destruction of the list.
 ========================
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE bool idList<_type_,_tag_>::RemoveIndexFast( int index ) {
 
-	if ( ( index < 0 ) || ( index >= num ) ) {
-		return false;
-	}
+  if ( ( index < 0 ) || ( index >= num ) ) {
+    return false;
+  }
 
-	num--;
-	if ( index != num ) {
-		list[ index ] = list[ num ];
-	}
+  num--;
+  if ( index != num ) {
+    list[ index ] = list[ num ];
+  }
 
-	return true;
+  return true;
 }
 
 /*
@@ -927,14 +927,14 @@ the element is not destroyed, so any memory used by it may not be freed until th
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE bool idList<_type_,_tag_>::Remove( _type_ const & obj ) {
-	int index;
+  int index;
 
-	index = FindIndex( obj );
-	if ( index >= 0 ) {
-		return RemoveIndex( index );
-	}
-	
-	return false;
+  index = FindIndex( obj );
+  if ( index >= 0 ) {
+    return RemoveIndex( index );
+  }
+  
+  return false;
 }
 //
 ///*
@@ -947,13 +947,13 @@ ID_INLINE bool idList<_type_,_tag_>::Remove( _type_ const & obj ) {
 //*/
 //template< typename _type_, memTag_t _tag_ >
 //ID_INLINE void idList<_type_,_tag_>::Sort( cmp_t *compare ) {
-//	if ( !list ) {
-//		return;
-//	}
-//	typedef int cmp_c(const void *, const void *);
+//  if ( !list ) {
+//    return;
+//  }
+//  typedef int cmp_c(const void *, const void *);
 //
-//	cmp_c *vCompare = (cmp_c *)compare;
-//	qsort( ( void * )list, ( size_t )num, sizeof( _type_ ), vCompare );
+//  cmp_c *vCompare = (cmp_c *)compare;
+//  qsort( ( void * )list, ( size_t )num, sizeof( _type_ ), vCompare );
 //}
 
 /*
@@ -962,16 +962,16 @@ idList<_type_,_tag_>::SortWithTemplate
 
 Performs a QuickSort on the list using the supplied sort algorithm.  
 
-Note:	The data is merely moved around the list, so any pointers to data within the list may 
-		no longer be valid.
+Note: The data is merely moved around the list, so any pointers to data within the list may 
+    no longer be valid.
 ========================
 */
 template< typename _type_, memTag_t _tag_ >
 ID_INLINE void idList<_type_,_tag_>::SortWithTemplate( const idSort<_type_> & sort ) {
-	if ( list == NULL ) {
-		return;
-	}
-	sort.Sort( Ptr(), Num() );
+  if ( list == NULL ) {
+    return;
+  }
+  sort.Sort( Ptr(), Num() );
 }
 //
 ///*
@@ -983,22 +983,22 @@ ID_INLINE void idList<_type_,_tag_>::SortWithTemplate( const idSort<_type_> & so
 //*/
 //template< typename _type_, memTag_t _tag_ >
 //ID_INLINE void idList<_type_,_tag_>::SortSubSection( int startIndex, int endIndex, cmp_t *compare ) {
-//	if ( !list ) {
-//		return;
-//	}
-//	if ( startIndex < 0 ) {
-//		startIndex = 0;
-//	}
-//	if ( endIndex >= num ) {
-//		endIndex = num - 1;
-//	}
-//	if ( startIndex >= endIndex ) {
-//		return;
-//	}
-//	typedef int cmp_c(const void *, const void *);
+//  if ( !list ) {
+//    return;
+//  }
+//  if ( startIndex < 0 ) {
+//    startIndex = 0;
+//  }
+//  if ( endIndex >= num ) {
+//    endIndex = num - 1;
+//  }
+//  if ( startIndex >= endIndex ) {
+//    return;
+//  }
+//  typedef int cmp_c(const void *, const void *);
 //
-//	cmp_c *vCompare = (cmp_c *)compare;
-//	qsort( ( void * )( &list[startIndex] ), ( size_t )( endIndex - startIndex + 1 ), sizeof( _type_ ), vCompare );
+//  cmp_c *vCompare = (cmp_c *)compare;
+//  qsort( ( void * )( &list[startIndex] ), ( size_t )( endIndex - startIndex + 1 ), sizeof( _type_ ), vCompare );
 //}
 
 /*
@@ -1011,12 +1011,12 @@ If your _type_ is a ptr, use the FindFromGenericPtr function instead.
 */
 template< typename _type_, memTag_t _tag_, typename _compare_type_ >
 _type_ * FindFromGeneric( idList<_type_, _tag_> & list, const _compare_type_ & other ) {
-	for ( int i = 0; i < list.Num(); i++ ) {
-		if ( list[ i ] == other ) {
-			return &list[ i ];
-		}
-	}
-	return NULL;
+  for ( int i = 0; i < list.Num(); i++ ) {
+    if ( list[ i ] == other ) {
+      return &list[ i ];
+    }
+  }
+  return NULL;
 }
 
 /*
@@ -1026,12 +1026,12 @@ FindFromGenericPtr
 */
 template< typename _type_, memTag_t _tag_, typename _compare_type_ >
 _type_ * FindFromGenericPtr( idList<_type_, _tag_> & list, const _compare_type_ & other ) {
-	for ( int i = 0; i < list.Num(); i++ ) {
-		if ( *list[ i ] == other ) {
-			return &list[ i ];
-		}
-	}
-	return NULL;
+  for ( int i = 0; i < list.Num(); i++ ) {
+    if ( *list[ i ] == other ) {
+      return &list[ i ];
+    }
+  }
+  return NULL;
 }
 
 #endif /* !__LIST_H__ */

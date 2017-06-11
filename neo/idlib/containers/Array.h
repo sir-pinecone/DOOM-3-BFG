@@ -32,11 +32,11 @@ If you have questions concerning this license or the applicable additional terms
 ================================================
 idArray is a replacement for a normal C array.
 
-int		myArray[ARRAY_SIZE];
+int   myArray[ARRAY_SIZE];
 
 becomes:
 
-idArray<int,ARRAY_SIZE>	myArray;
+idArray<int,ARRAY_SIZE> myArray;
 
 Has no performance overhead in release builds, but
 does index range checking in debug builds.
@@ -50,28 +50,28 @@ actual raw data, and the size is fixed.
 */
 template<class T_, int numElements > class idArray {
 public:
-	// returns number of elements in list
-	int				Num() const { return numElements; }
+  // returns number of elements in list
+  int       Num() const { return numElements; }
 
-	// returns the number of bytes the array takes up
-	int				ByteSize() const { return sizeof( ptr ); }
+  // returns the number of bytes the array takes up
+  int       ByteSize() const { return sizeof( ptr ); }
 
-	// memset the entire array to zero
-	void			Zero() { memset( ptr, 0, sizeof( ptr ) ); }
+  // memset the entire array to zero
+  void      Zero() { memset( ptr, 0, sizeof( ptr ) ); }
 
-	// memset the entire array to a specific value
-	void			Memset( const char fill ) { memset( ptr, fill, numElements * sizeof( *ptr ) ); }
+  // memset the entire array to a specific value
+  void      Memset( const char fill ) { memset( ptr, fill, numElements * sizeof( *ptr ) ); }
 
-	// array operators
-	const T_ &		operator[]( int index ) const { assert( (unsigned)index < (unsigned)numElements ); return ptr[index]; }
-	T_ &			operator[]( int index ) { assert( (unsigned)index < (unsigned)numElements ); return ptr[index]; }
+  // array operators
+  const T_ &    operator[]( int index ) const { assert( (unsigned)index < (unsigned)numElements ); return ptr[index]; }
+  T_ &      operator[]( int index ) { assert( (unsigned)index < (unsigned)numElements ); return ptr[index]; }
 
-	// returns a pointer to the list
-	const T_ *		Ptr() const { return ptr; }
-	T_ *			Ptr() { return ptr; }
+  // returns a pointer to the list
+  const T_ *    Ptr() const { return ptr; }
+  T_ *      Ptr() { return ptr; }
 
 private:
-	T_				ptr[numElements];
+  T_        ptr[numElements];
 };
 
 #define ARRAY_COUNT( arrayName ) ( sizeof( arrayName )/sizeof( arrayName[0] ) )
@@ -85,13 +85,13 @@ get for templates before C++11 anyway) to make
 declaring two-dimensional idArrays easier.
 
 Usage:
-	id2DArray< int, 5, 10 >::type someArray;
+  id2DArray< int, 5, 10 >::type someArray;
 
 ================================================
 */
 template<class _type_, int _dim1_, int _dim2_ >
 struct id2DArray {
-	typedef idArray< idArray< _type_, _dim2_ >, _dim1_ > type;
+  typedef idArray< idArray< _type_, _dim2_ >, _dim1_ > type;
 };
 
 
@@ -109,7 +109,7 @@ struct idTupleSize;
 
 template< class _type_, int _num_ >
 struct idTupleSize< idArray< _type_, _num_ > > {
-	enum { value = _num_ };
+  enum { value = _num_ };
 };
 
 #endif // !__ARRAY_H__

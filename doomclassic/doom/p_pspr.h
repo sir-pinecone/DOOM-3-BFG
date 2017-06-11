@@ -53,8 +53,8 @@ If you have questions concerning this license or the applicable additional terms
 // Frame flags:
 // handles maximum brightness (torches, muzzle flare, light sources)
 //
-#define FF_FULLBRIGHT	0x8000	// flag in thing->frame
-#define FF_FRAMEMASK	0x7fff
+#define FF_FULLBRIGHT 0x8000  // flag in thing->frame
+#define FF_FRAMEMASK  0x7fff
 
 
 
@@ -73,10 +73,10 @@ typedef enum
 
 typedef struct
 {
-    const state_t*	state;	// a NULL state means not active
-    int		tics;
-    fixed_t	sx;
-    fixed_t	sy;
+    const state_t*  state;  // a NULL state means not active
+    int   tics;
+    fixed_t sx;
+    fixed_t sy;
 
 } pspdef_t;
 

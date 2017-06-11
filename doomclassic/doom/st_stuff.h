@@ -34,9 +34,9 @@ If you have questions concerning this license or the applicable additional terms
 
 // Size of statusbar.
 // Now sensitive for scaling.
-#define ST_HEIGHT	32*SCREEN_MUL
-#define ST_WIDTH	ORIGINAL_WIDTH
-#define ST_Y		(ORIGINAL_HEIGHT - ST_HEIGHT)
+#define ST_HEIGHT 32*SCREEN_MUL
+#define ST_WIDTH  ORIGINAL_WIDTH
+#define ST_Y    (ORIGINAL_HEIGHT - ST_HEIGHT)
 
 
 //

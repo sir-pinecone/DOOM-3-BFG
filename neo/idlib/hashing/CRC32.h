@@ -4,8 +4,8 @@
 /*
 ===============================================================================
 
-	Calculates a checksum for a block of data
-	using the CRC-32.
+  Calculates a checksum for a block of data
+  using the CRC-32.
 
 ===============================================================================
 */

@@ -4,8 +4,8 @@
 /*
 ===============================================================================
 
-	Calculates a checksum for a block of data
-	using the MD4 message-digest algorithm.
+  Calculates a checksum for a block of data
+  using the MD4 message-digest algorithm.
 
 ===============================================================================
 */

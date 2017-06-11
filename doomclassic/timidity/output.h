@@ -24,11 +24,11 @@ output.h
 #include "timidity.h"
 /* Data format encoding bits */
 
-#define PE_MONO 	0x01  /* versus stereo */
-#define PE_SIGNED	0x02  /* versus unsigned */
-#define PE_16BIT 	0x04  /* versus 8-bit */
-#define PE_ULAW 	0x08  /* versus linear */
-#define PE_BYTESWAP	0x10  /* versus the other way */
+#define PE_MONO   0x01  /* versus stereo */
+#define PE_SIGNED 0x02  /* versus unsigned */
+#define PE_16BIT  0x04  /* versus 8-bit */
+#define PE_ULAW   0x08  /* versus linear */
+#define PE_BYTESWAP 0x10  /* versus the other way */
 
 extern int init_buffers(int kbytes);
 

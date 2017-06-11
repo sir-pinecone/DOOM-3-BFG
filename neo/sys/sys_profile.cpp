@@ -28,7 +28,7 @@ If you have questions concerning this license or the applicable additional terms
 #pragma hdrstop
 #include "../idlib/precompiled.h"
 
-#define SAVEGAME_PROFILE_FILENAME			"profile.bin"
+#define SAVEGAME_PROFILE_FILENAME     "profile.bin"
 
 idCVar profile_verbose( "profile_verbose", "0", CVAR_BOOL, "Turns on debug spam for profiles" );
 
@@ -44,10 +44,10 @@ idProfileMgr
 ========================
 */
 idProfileMgr::idProfileMgr() : 
-	profileSaveProcessor( new (TAG_SAVEGAMES) idSaveGameProcessorSaveProfile ),
-	profileLoadProcessor( new (TAG_SAVEGAMES) idSaveGameProcessorLoadProfile ),
-	profile( NULL ),
-	handle( 0 ) {
+  profileSaveProcessor( new (TAG_SAVEGAMES) idSaveGameProcessorSaveProfile ),
+  profileLoadProcessor( new (TAG_SAVEGAMES) idSaveGameProcessorLoadProfile ),
+  profile( NULL ),
+  handle( 0 ) {
 }
 
 
@@ -65,8 +65,8 @@ idProfileMgr::Init
 ========================
 */
 void idProfileMgr::Init( idLocalUser * user_ ) {
-	user = user_;
-	handle = 0;
+  user = user_;
+  handle = 0;
 }
 
 /*
@@ -75,50 +75,50 @@ idProfileMgr::Pump
 ========================
 */
 void idProfileMgr::Pump() {
-	// profile can be NULL if we forced the user to register as in the case of map-ing into a level from the press start screen
-	if ( profile == NULL ) {
-		return;
-	}
+  // profile can be NULL if we forced the user to register as in the case of map-ing into a level from the press start screen
+  if ( profile == NULL ) {
+    return;
+  }
 
-	// See if we are done with saving/loading the profile
-	bool saving = profile->GetState() == idPlayerProfile::SAVING;
-	bool loading = profile->GetState() == idPlayerProfile::LOADING;
-	if ( ( saving || loading ) && session->IsSaveGameCompletedFromHandle( handle ) ) {
-		profile->SetState( idPlayerProfile::IDLE );
+  // See if we are done with saving/loading the profile
+  bool saving = profile->GetState() == idPlayerProfile::SAVING;
+  bool loading = profile->GetState() == idPlayerProfile::LOADING;
+  if ( ( saving || loading ) && session->IsSaveGameCompletedFromHandle( handle ) ) {
+    profile->SetState( idPlayerProfile::IDLE );
 
-		if ( saving ) {
-			// Done saving
-		} else if ( loading ) {
-			// Done loading
-			const idSaveLoadParms & parms = profileLoadProcessor->GetParms();
-			if ( parms.GetError() == SAVEGAME_E_FOLDER_NOT_FOUND || parms.GetError() == SAVEGAME_E_FILE_NOT_FOUND ) {
-				profile->SaveSettings( true );
-			} else if ( parms.GetError() == SAVEGAME_E_CORRUPTED ) {
-				idLib::Warning( "Profile corrupt, creating a new one..." );
-				common->Dialog().AddDialog( GDM_CORRUPT_PROFILE, DIALOG_CONTINUE, NULL, NULL, false );
-				profile->SetDefaults();
-				profile->SaveSettings( true );
-			} else if ( parms.GetError() != SAVEGAME_E_NONE ) {
-				profile->SetState( idPlayerProfile::ERR );
-			}
+    if ( saving ) {
+      // Done saving
+    } else if ( loading ) {
+      // Done loading
+      const idSaveLoadParms & parms = profileLoadProcessor->GetParms();
+      if ( parms.GetError() == SAVEGAME_E_FOLDER_NOT_FOUND || parms.GetError() == SAVEGAME_E_FILE_NOT_FOUND ) {
+        profile->SaveSettings( true );
+      } else if ( parms.GetError() == SAVEGAME_E_CORRUPTED ) {
+        idLib::Warning( "Profile corrupt, creating a new one..." );
+        common->Dialog().AddDialog( GDM_CORRUPT_PROFILE, DIALOG_CONTINUE, NULL, NULL, false );
+        profile->SetDefaults();
+        profile->SaveSettings( true );
+      } else if ( parms.GetError() != SAVEGAME_E_NONE ) {
+        profile->SetState( idPlayerProfile::ERR );
+      }
 
-			session->OnLocalUserProfileLoaded( user );
-		}
-	} else if ( saving || loading ) {
-		return;
-	}
+      session->OnLocalUserProfileLoaded( user );
+    }
+  } else if ( saving || loading ) {
+    return;
+  }
 
-	// See if we need to save/load the profile
-	if ( profile->GetRequestedState() == idPlayerProfile::SAVE_REQUESTED && profile->IsDirty() ) {
-		profile->MarkDirty( false );
-		SaveSettingsAsync();
-		// Syncs the steam data
-		//session->StoreStats();
-		profile->SetRequestedState( idPlayerProfile::IDLE );
-	} else if ( profile->GetRequestedState() == idPlayerProfile::LOAD_REQUESTED ) {
-		LoadSettingsAsync();
-		profile->SetRequestedState( idPlayerProfile::IDLE );
-	}
+  // See if we need to save/load the profile
+  if ( profile->GetRequestedState() == idPlayerProfile::SAVE_REQUESTED && profile->IsDirty() ) {
+    profile->MarkDirty( false );
+    SaveSettingsAsync();
+    // Syncs the steam data
+    //session->StoreStats();
+    profile->SetRequestedState( idPlayerProfile::IDLE );
+  } else if ( profile->GetRequestedState() == idPlayerProfile::LOAD_REQUESTED ) {
+    LoadSettingsAsync();
+    profile->SetRequestedState( idPlayerProfile::IDLE );
+  }
 }
 
 /*
@@ -127,22 +127,22 @@ idProfileMgr::GetProfile
 ========================
 */
 idPlayerProfile * idProfileMgr::GetProfile() {
-	assert( user != NULL );
-	if ( profile == NULL ) {
-		// Lazy instantiation
-		// Create a new profile
-		profile = idPlayerProfile::CreatePlayerProfile( user->GetInputDevice() );
-		if ( profile == NULL ) {
-			return NULL;
-		}
-	}
+  assert( user != NULL );
+  if ( profile == NULL ) {
+    // Lazy instantiation
+    // Create a new profile
+    profile = idPlayerProfile::CreatePlayerProfile( user->GetInputDevice() );
+    if ( profile == NULL ) {
+      return NULL;
+    }
+  }
 
-	bool loading = ( profile->GetState() == idPlayerProfile::LOADING ) || ( profile->GetRequestedState() == idPlayerProfile::LOAD_REQUESTED );
-	if ( loading ) {
-		return NULL;
-	}
+  bool loading = ( profile->GetState() == idPlayerProfile::LOADING ) || ( profile->GetRequestedState() == idPlayerProfile::LOAD_REQUESTED );
+  if ( loading ) {
+    return NULL;
+  }
 
-	return profile;
+  return profile;
 }
 
 /*
@@ -151,23 +151,23 @@ idProfileMgr::SaveSettingsAsync
 ========================
 */
 void idProfileMgr::SaveSettingsAsync() {
-	if ( !saveGame_enable.GetBool() ) {
-		idLib::Warning( "Skipping profile save because saveGame_enable = 0" );
-	}
+  if ( !saveGame_enable.GetBool() ) {
+    idLib::Warning( "Skipping profile save because saveGame_enable = 0" );
+  }
 
-	if ( GetProfile() != NULL ) {
-		// Issue the async save...
-		if ( profileSaveProcessor->InitSaveProfile( profile, "" ) ) {
+  if ( GetProfile() != NULL ) {
+    // Issue the async save...
+    if ( profileSaveProcessor->InitSaveProfile( profile, "" ) ) {
 
 
-			profileSaveProcessor->AddCompletedCallback( MakeCallback( this, &idProfileMgr::OnSaveSettingsCompleted, &profileSaveProcessor->GetParmsNonConst() ) );
-			handle = session->GetSaveGameManager().ExecuteProcessor( profileSaveProcessor.get() );
-			profile->SetState( idPlayerProfile::SAVING );
+      profileSaveProcessor->AddCompletedCallback( MakeCallback( this, &idProfileMgr::OnSaveSettingsCompleted, &profileSaveProcessor->GetParmsNonConst() ) );
+      handle = session->GetSaveGameManager().ExecuteProcessor( profileSaveProcessor.get() );
+      profile->SetState( idPlayerProfile::SAVING );
 
-		}
-	} else {
-		idLib::Warning( "Not saving profile, profile is NULL." );
-	}
+    }
+  } else {
+    idLib::Warning( "Not saving profile, profile is NULL." );
+  }
 }
 
 /*
@@ -176,26 +176,26 @@ idProfileMgr::LoadSettingsAsync
 ========================
 */
 void idProfileMgr::LoadSettingsAsync() {
- 	if ( profile != NULL && saveGame_enable.GetBool() ) {
-		if ( profileLoadProcessor->InitLoadProfile( profile, "" ) ) {
-			// Skip the not found error because this might be the first time to play the game!
-			profileLoadProcessor->SetSkipSystemErrorDialogMask( SAVEGAME_E_FOLDER_NOT_FOUND | SAVEGAME_E_FILE_NOT_FOUND );
+  if ( profile != NULL && saveGame_enable.GetBool() ) {
+    if ( profileLoadProcessor->InitLoadProfile( profile, "" ) ) {
+      // Skip the not found error because this might be the first time to play the game!
+      profileLoadProcessor->SetSkipSystemErrorDialogMask( SAVEGAME_E_FOLDER_NOT_FOUND | SAVEGAME_E_FILE_NOT_FOUND );
 
-			profileLoadProcessor->AddCompletedCallback( MakeCallback( this, &idProfileMgr::OnLoadSettingsCompleted, &profileLoadProcessor->GetParmsNonConst() ) );
-			handle = session->GetSaveGameManager().ExecuteProcessor( profileLoadProcessor.get() );
-			profile->SetState( idPlayerProfile::LOADING );
+      profileLoadProcessor->AddCompletedCallback( MakeCallback( this, &idProfileMgr::OnLoadSettingsCompleted, &profileLoadProcessor->GetParmsNonConst() ) );
+      handle = session->GetSaveGameManager().ExecuteProcessor( profileLoadProcessor.get() );
+      profile->SetState( idPlayerProfile::LOADING );
 
 
-		}
-	} else {
-		// If not able to save the profile, just change the state and leave
-		if ( profile == NULL ) {
-			idLib::Warning( "Not loading profile, profile is NULL." );
-		}
-		if ( !saveGame_enable.GetBool() ) {
-			idLib::Warning( "Skipping profile load because saveGame_enable = 0" );
-		}
-	}
+    }
+  } else {
+    // If not able to save the profile, just change the state and leave
+    if ( profile == NULL ) {
+      idLib::Warning( "Not loading profile, profile is NULL." );
+    }
+    if ( !saveGame_enable.GetBool() ) {
+      idLib::Warning( "Skipping profile load because saveGame_enable = 0" );
+    }
+  }
 }
 
 /*
@@ -209,45 +209,45 @@ void idProfileMgr::OnLoadSettingsCompleted( idSaveLoadParms * parms ) {
 
 
 
-	// Don't process if error already detected
-	if ( parms->errorCode != SAVEGAME_E_NONE ) {
-		return;
-	}
+  // Don't process if error already detected
+  if ( parms->errorCode != SAVEGAME_E_NONE ) {
+    return;
+  }
 
-	// Serialize the loaded profile
-	idFile_SaveGame ** profileFileContainer = FindFromGenericPtr( parms->files, SAVEGAME_PROFILE_FILENAME );
-	idFile_SaveGame * profileFile = profileFileContainer == NULL ? NULL : *profileFileContainer;
+  // Serialize the loaded profile
+  idFile_SaveGame ** profileFileContainer = FindFromGenericPtr( parms->files, SAVEGAME_PROFILE_FILENAME );
+  idFile_SaveGame * profileFile = profileFileContainer == NULL ? NULL : *profileFileContainer;
 
-	bool foundProfile = profileFile != NULL && profileFile->Length() > 0;
+  bool foundProfile = profileFile != NULL && profileFile->Length() > 0;
 
-	if ( foundProfile ) {
-		idTempArray< byte > buffer( MAX_PROFILE_SIZE );
+  if ( foundProfile ) {
+    idTempArray< byte > buffer( MAX_PROFILE_SIZE );
 
-		// Serialize settings from this buffer
-		profileFile->MakeReadOnly();
-		unsigned int originalChecksum;
-		profileFile->ReadBig( originalChecksum );
+    // Serialize settings from this buffer
+    profileFile->MakeReadOnly();
+    unsigned int originalChecksum;
+    profileFile->ReadBig( originalChecksum );
 
-		int dataLength = profileFile->Length() - (int)sizeof( originalChecksum );
-		profileFile->ReadBigArray( buffer.Ptr(), dataLength );
+    int dataLength = profileFile->Length() - (int)sizeof( originalChecksum );
+    profileFile->ReadBigArray( buffer.Ptr(), dataLength );
 
-		// Validate the checksum before we let the game serialize the settings
-		unsigned int checksum = MD5_BlockChecksum( buffer.Ptr(), dataLength );
-		if ( originalChecksum != checksum ) {
-			idLib::Warning( "Checksum: 0x%08x, originalChecksum: 0x%08x, size = %d", checksum, originalChecksum, dataLength );
-			parms->errorCode = SAVEGAME_E_CORRUPTED;
-		} else {
-			idBitMsg msg;
-			msg.InitRead( buffer.Ptr(), (int)buffer.Size() );
-			idSerializer ser( msg, false );
-			if ( !profile->Serialize( ser ) ) {
-				parms->errorCode = SAVEGAME_E_CORRUPTED;
-			}
-		}
+    // Validate the checksum before we let the game serialize the settings
+    unsigned int checksum = MD5_BlockChecksum( buffer.Ptr(), dataLength );
+    if ( originalChecksum != checksum ) {
+      idLib::Warning( "Checksum: 0x%08x, originalChecksum: 0x%08x, size = %d", checksum, originalChecksum, dataLength );
+      parms->errorCode = SAVEGAME_E_CORRUPTED;
+    } else {
+      idBitMsg msg;
+      msg.InitRead( buffer.Ptr(), (int)buffer.Size() );
+      idSerializer ser( msg, false );
+      if ( !profile->Serialize( ser ) ) {
+        parms->errorCode = SAVEGAME_E_CORRUPTED;
+      }
+    }
 
-	} else {
-		parms->errorCode = SAVEGAME_E_FILE_NOT_FOUND;
-	}
+  } else {
+    parms->errorCode = SAVEGAME_E_FILE_NOT_FOUND;
+  }
 }
 
 /*
@@ -256,14 +256,14 @@ idProfileMgr::OnSaveSettingsCompleted
 ========================
 */
 void idProfileMgr::OnSaveSettingsCompleted( idSaveLoadParms * parms ) {
-	common->Dialog().ShowSaveIndicator( false );
+  common->Dialog().ShowSaveIndicator( false );
 
-	if ( parms->GetError() != SAVEGAME_E_NONE ) {
-		common->Dialog().AddDialog( GDM_PROFILE_SAVE_ERROR, DIALOG_CONTINUE, NULL, NULL, false );
-	}
-	if ( game ) {
-		game->Shell_UpdateSavedGames();
-	}
+  if ( parms->GetError() != SAVEGAME_E_NONE ) {
+    common->Dialog().AddDialog( GDM_PROFILE_SAVE_ERROR, DIALOG_CONTINUE, NULL, NULL, false );
+  }
+  if ( game ) {
+    game->Shell_UpdateSavedGames();
+  }
 }
 
 /*
@@ -278,8 +278,8 @@ idSaveGameProcessorSaveProfile::idSaveGameProcessorSaveProfile
 ========================
 */
 idSaveGameProcessorSaveProfile::idSaveGameProcessorSaveProfile() {
-	profileFile = NULL;
-	profile = NULL;
+  profileFile = NULL;
+  profile = NULL;
 
 }
 
@@ -289,42 +289,42 @@ idSaveGameProcessorSaveProfile::InitSaveProfile
 ========================
 */
 bool idSaveGameProcessorSaveProfile::InitSaveProfile( idPlayerProfile * profile_, const char * folder ) {
-	// Serialize the profile and pass a file to the processor
-	profileFile = new (TAG_SAVEGAMES) idFile_SaveGame( SAVEGAME_PROFILE_FILENAME, SAVEGAMEFILE_BINARY | SAVEGAMEFILE_AUTO_DELETE );
-	profileFile->MakeWritable();
-	profileFile->SetMaxLength( MAX_PROFILE_SIZE );
+  // Serialize the profile and pass a file to the processor
+  profileFile = new (TAG_SAVEGAMES) idFile_SaveGame( SAVEGAME_PROFILE_FILENAME, SAVEGAMEFILE_BINARY | SAVEGAMEFILE_AUTO_DELETE );
+  profileFile->MakeWritable();
+  profileFile->SetMaxLength( MAX_PROFILE_SIZE );
 
-	// Create a serialization object and let the game serialize the settings into the buffer
-	const int serializeSize = MAX_PROFILE_SIZE - 8;	// -8 for checksum (all platforms) and length (on 360)
-	idTempArray< byte > buffer( serializeSize );
-	idBitMsg msg;
-	msg.InitWrite( buffer.Ptr(), serializeSize );
-	idSerializer ser( msg, true );
-	profile_->Serialize( ser );
+  // Create a serialization object and let the game serialize the settings into the buffer
+  const int serializeSize = MAX_PROFILE_SIZE - 8; // -8 for checksum (all platforms) and length (on 360)
+  idTempArray< byte > buffer( serializeSize );
+  idBitMsg msg;
+  msg.InitWrite( buffer.Ptr(), serializeSize );
+  idSerializer ser( msg, true );
+  profile_->Serialize( ser );
 
-	// Get and write the checksum & length first
-	unsigned int checksum = MD5_BlockChecksum( msg.GetReadData(), msg.GetSize() );
-	profileFile->WriteBig( checksum );
+  // Get and write the checksum & length first
+  unsigned int checksum = MD5_BlockChecksum( msg.GetReadData(), msg.GetSize() );
+  profileFile->WriteBig( checksum );
 
-	idLib::PrintfIf( profile_verbose.GetBool(), "checksum: 0x%08x, length: %d\n", checksum, msg.GetSize() );
+  idLib::PrintfIf( profile_verbose.GetBool(), "checksum: 0x%08x, length: %d\n", checksum, msg.GetSize() );
 
-	// Add data to the file and prepare for save
-	profileFile->Write( msg.GetReadData(), msg.GetSize() );
-	profileFile->MakeReadOnly();
+  // Add data to the file and prepare for save
+  profileFile->Write( msg.GetReadData(), msg.GetSize() );
+  profileFile->MakeReadOnly();
 
-	saveFileEntryList_t files;
-	files.Append( profileFile );
+  saveFileEntryList_t files;
+  files.Append( profileFile );
 
-	idSaveGameDetails description;
-	if ( !idSaveGameProcessorSaveFiles::InitSave( folder, files, description, idSaveGameManager::PACKAGE_PROFILE ) ) {
-		return false;
-	}
-
-
-	profile = profile_;
+  idSaveGameDetails description;
+  if ( !idSaveGameProcessorSaveFiles::InitSave( folder, files, description, idSaveGameManager::PACKAGE_PROFILE ) ) {
+    return false;
+  }
 
 
-	return true;
+  profile = profile_;
+
+
+  return true;
 }
 
 /*
@@ -335,8 +335,8 @@ idSaveGameProcessorSaveProfile::Process
 bool idSaveGameProcessorSaveProfile::Process() {
 
 
-	// Files already setup for save, just execute as normal files
-	return idSaveGameProcessorSaveFiles::Process();
+  // Files already setup for save, just execute as normal files
+  return idSaveGameProcessorSaveFiles::Process();
 
 }
 
@@ -353,8 +353,8 @@ idSaveGameProcessorLoadProfile::idSaveGameProcessorLoadProfile
 ========================
 */
 idSaveGameProcessorLoadProfile::idSaveGameProcessorLoadProfile() {
-	profileFile = NULL;
-	profile = NULL;
+  profileFile = NULL;
+  profile = NULL;
 
 }
 
@@ -372,21 +372,21 @@ idSaveGameProcessorLoadProfile::InitLoadFiles
 ========================
 */
 bool idSaveGameProcessorLoadProfile::InitLoadProfile( idPlayerProfile * profile_, const char * folder_ ) {
-	if ( !idSaveGameProcessor::Init() ) {
-		return false;
-	}
-	
-	parms.directory = AddSaveFolderPrefix( folder_, idSaveGameManager::PACKAGE_PROFILE );
-	parms.description.slotName = folder_;
-	parms.mode = SAVEGAME_MBF_LOAD;
+  if ( !idSaveGameProcessor::Init() ) {
+    return false;
+  }
+  
+  parms.directory = AddSaveFolderPrefix( folder_, idSaveGameManager::PACKAGE_PROFILE );
+  parms.description.slotName = folder_;
+  parms.mode = SAVEGAME_MBF_LOAD;
 
-	profileFile = new (TAG_SAVEGAMES) idFile_SaveGame( SAVEGAME_PROFILE_FILENAME, SAVEGAMEFILE_BINARY | SAVEGAMEFILE_AUTO_DELETE );
-	parms.files.Append( profileFile );
+  profileFile = new (TAG_SAVEGAMES) idFile_SaveGame( SAVEGAME_PROFILE_FILENAME, SAVEGAMEFILE_BINARY | SAVEGAMEFILE_AUTO_DELETE );
+  parms.files.Append( profileFile );
 
-	profile = profile_;
+  profile = profile_;
 
 
-	return true;
+  return true;
 }
 
 /*
@@ -397,7 +397,7 @@ idSaveGameProcessorLoadProfile::Process
 bool idSaveGameProcessorLoadProfile::Process() {
 
 
-	return idSaveGameProcessorLoadFiles::Process();
+  return idSaveGameProcessorLoadFiles::Process();
 
 }
 
@@ -408,23 +408,23 @@ Sys_SaveGameProfileCheck
 ========================
 */
 bool Sys_SaveGameProfileCheck() {
-	bool exists = false;
-	const char * saveFolder = "savegame";
+  bool exists = false;
+  const char * saveFolder = "savegame";
 
-	if ( fileSystem->IsFolder( saveFolder, "fs_savePath" ) == FOLDER_YES ) {
-		idFileList * files = fileSystem->ListFiles( saveFolder, SAVEGAME_PROFILE_FILENAME );
-		const idStrList & fileList = files->GetList();
+  if ( fileSystem->IsFolder( saveFolder, "fs_savePath" ) == FOLDER_YES ) {
+    idFileList * files = fileSystem->ListFiles( saveFolder, SAVEGAME_PROFILE_FILENAME );
+    const idStrList & fileList = files->GetList();
 
-		for ( int i = 0; i < fileList.Num(); i++ ) {
-			idStr filename = fileList[i];
-			if ( filename == SAVEGAME_PROFILE_FILENAME ) {
-				exists = true;
-				break;
-			}
-		}
+    for ( int i = 0; i < fileList.Num(); i++ ) {
+      idStr filename = fileList[i];
+      if ( filename == SAVEGAME_PROFILE_FILENAME ) {
+        exists = true;
+        break;
+      }
+    }
 
-		fileSystem->FreeFileList( files );
-	}
+    fileSystem->FreeFileList( files );
+  }
 
-	return exists;
+  return exists;
 }

@@ -137,8 +137,8 @@ If you have questions concerning this license or the applicable additional terms
 
 //Incoming messages window location
 //UNUSED
-// #define ST_MSGTEXTX	   (::g->viewwindowx)
-// #define ST_MSGTEXTY	   (::g->viewwindowy+::g->viewheight-18)
+// #define ST_MSGTEXTX     (::g->viewwindowx)
+// #define ST_MSGTEXTY     (::g->viewwindowy+::g->viewheight-18)
 // Dimensions given in characters.
 // Or shall I say, in lines?
 
@@ -243,79 +243,79 @@ If you have questions concerning this license or the applicable additional terms
 // Massive bunches of cheat shit
 //  to keep it from being easy to figure them out.
 // Yeah, right...
-const unsigned char	cheat_mus_seq[] =
+const unsigned char cheat_mus_seq[] =
 {
-	0xb2, 0x26, 0xb6, 0xae, 0xea, 1, 0, 0, 0xff
+  0xb2, 0x26, 0xb6, 0xae, 0xea, 1, 0, 0, 0xff
 };
 
-const unsigned char	cheat_choppers_seq[] =
+const unsigned char cheat_choppers_seq[] =
 {
-	0xb2, 0x26, 0xe2, 0x32, 0xf6, 0x2a, 0x2a, 0xa6, 0x6a, 0xea, 0xff // id...
+  0xb2, 0x26, 0xe2, 0x32, 0xf6, 0x2a, 0x2a, 0xa6, 0x6a, 0xea, 0xff // id...
 };
 
-const unsigned char	cheat_god_seq[] =
+const unsigned char cheat_god_seq[] =
 {
-	0xb2, 0x26, 0x26, 0xaa, 0x26, 0xff  // iddqd
+  0xb2, 0x26, 0x26, 0xaa, 0x26, 0xff  // iddqd
 };
 
-const unsigned char	cheat_ammo_seq[] =
+const unsigned char cheat_ammo_seq[] =
 {
-	0xb2, 0x26, 0xf2, 0x66, 0xa2, 0xff	// idkfa
+  0xb2, 0x26, 0xf2, 0x66, 0xa2, 0xff  // idkfa
 };
 
-const unsigned char	cheat_ammonokey_seq[] =
+const unsigned char cheat_ammonokey_seq[] =
 {
-	0xb2, 0x26, 0x66, 0xa2, 0xff	// idfa
+  0xb2, 0x26, 0x66, 0xa2, 0xff  // idfa
 };
 
 
 // Smashing Pumpkins Into Samml Piles Of Putried Debris. 
-const unsigned char	cheat_noclip_seq[] =
+const unsigned char cheat_noclip_seq[] =
 {
-	0xb2, 0x26, 0xea, 0x2a, 0xb2,	// idspispopd
-		0xea, 0x2a, 0xf6, 0x2a, 0x26, 0xff
+  0xb2, 0x26, 0xea, 0x2a, 0xb2, // idspispopd
+    0xea, 0x2a, 0xf6, 0x2a, 0x26, 0xff
 };
 
 //
-const unsigned char	cheat_commercial_noclip_seq[] =
+const unsigned char cheat_commercial_noclip_seq[] =
 {
-	0xb2, 0x26, 0xe2, 0x36, 0xb2, 0x2a, 0xff	// idclip
+  0xb2, 0x26, 0xe2, 0x36, 0xb2, 0x2a, 0xff  // idclip
 }; 
 
 
 
-const unsigned char	cheat_powerup_seq[7][10] =
+const unsigned char cheat_powerup_seq[7][10] =
 {
-	{ 0xb2, 0x26, 0x62, 0xa6, 0x32, 0xf6, 0x36, 0x26, 0x6e, 0xff }, 	// beholdv
-	{ 0xb2, 0x26, 0x62, 0xa6, 0x32, 0xf6, 0x36, 0x26, 0xea, 0xff }, 	// beholds
-	{ 0xb2, 0x26, 0x62, 0xa6, 0x32, 0xf6, 0x36, 0x26, 0xb2, 0xff }, 	// beholdi
-	{ 0xb2, 0x26, 0x62, 0xa6, 0x32, 0xf6, 0x36, 0x26, 0x6a, 0xff }, 	// beholdr
-	{ 0xb2, 0x26, 0x62, 0xa6, 0x32, 0xf6, 0x36, 0x26, 0xa2, 0xff }, 	// beholda
-	{ 0xb2, 0x26, 0x62, 0xa6, 0x32, 0xf6, 0x36, 0x26, 0x36, 0xff }, 	// beholdl
-	{ 0xb2, 0x26, 0x62, 0xa6, 0x32, 0xf6, 0x36, 0x26, 0xff }		// behold
+  { 0xb2, 0x26, 0x62, 0xa6, 0x32, 0xf6, 0x36, 0x26, 0x6e, 0xff },   // beholdv
+  { 0xb2, 0x26, 0x62, 0xa6, 0x32, 0xf6, 0x36, 0x26, 0xea, 0xff },   // beholds
+  { 0xb2, 0x26, 0x62, 0xa6, 0x32, 0xf6, 0x36, 0x26, 0xb2, 0xff },   // beholdi
+  { 0xb2, 0x26, 0x62, 0xa6, 0x32, 0xf6, 0x36, 0x26, 0x6a, 0xff },   // beholdr
+  { 0xb2, 0x26, 0x62, 0xa6, 0x32, 0xf6, 0x36, 0x26, 0xa2, 0xff },   // beholda
+  { 0xb2, 0x26, 0x62, 0xa6, 0x32, 0xf6, 0x36, 0x26, 0x36, 0xff },   // beholdl
+  { 0xb2, 0x26, 0x62, 0xa6, 0x32, 0xf6, 0x36, 0x26, 0xff }    // behold
 };
 
 
-const unsigned char	cheat_clev_seq[] =
+const unsigned char cheat_clev_seq[] =
 {
-	0xb2, 0x26,  0xe2, 0x36, 0xa6, 0x6e, 1, 0, 0, 0xff	// idclev
+  0xb2, 0x26,  0xe2, 0x36, 0xa6, 0x6e, 1, 0, 0, 0xff  // idclev
 };
 
 
 // my position cheat
-const unsigned char	cheat_mypos_seq[] =
+const unsigned char cheat_mypos_seq[] =
 {
-	0xb2, 0x26, 0xb6, 0xba, 0x2a, 0xf6, 0xea, 0xff	// idmypos
+  0xb2, 0x26, 0xb6, 0xba, 0x2a, 0xf6, 0xea, 0xff  // idmypos
 }; 
 
 
 // Now what?
-cheatseq_t	cheat_mus = cheatseq_t( cheat_mus_seq, 0 );
-cheatseq_t	cheat_god = cheatseq_t( cheat_god_seq, 0 );
-cheatseq_t	cheat_ammo = cheatseq_t( cheat_ammo_seq, 0 );
-cheatseq_t	cheat_ammonokey = cheatseq_t( cheat_ammonokey_seq, 0 );
-cheatseq_t	cheat_noclip = cheatseq_t( cheat_noclip_seq, 0 );
-cheatseq_t	cheat_commercial_noclip = cheatseq_t( cheat_commercial_noclip_seq, 0 );
+cheatseq_t  cheat_mus = cheatseq_t( cheat_mus_seq, 0 );
+cheatseq_t  cheat_god = cheatseq_t( cheat_god_seq, 0 );
+cheatseq_t  cheat_ammo = cheatseq_t( cheat_ammo_seq, 0 );
+cheatseq_t  cheat_ammonokey = cheatseq_t( cheat_ammonokey_seq, 0 );
+cheatseq_t  cheat_noclip = cheatseq_t( cheat_noclip_seq, 0 );
+cheatseq_t  cheat_commercial_noclip = cheatseq_t( cheat_commercial_noclip_seq, 0 );
 
 // ALAN
 
@@ -324,13 +324,13 @@ cheatseq_t	cheat_commercial_noclip = cheatseq_t( cheat_commercial_noclip_seq, 0 
 // DISABLED cheatseq_t( cheat_powerup_seq[3], 0 ), 
 // cheatseq_t( cheat_powerup_seq[4], 0 ),cheatseq_t( cheat_powerup_seq[5], 0 ),cheatseq_t( cheat_powerup_seq[6], 0 ) };
 
-cheatseq_t	cheat_choppers = cheatseq_t( cheat_choppers_seq, 0 );
-cheatseq_t	cheat_clev = cheatseq_t( cheat_clev_seq, 0 );
-cheatseq_t	cheat_mypos = cheatseq_t( cheat_mypos_seq, 0 );
+cheatseq_t  cheat_choppers = cheatseq_t( cheat_choppers_seq, 0 );
+cheatseq_t  cheat_clev = cheatseq_t( cheat_clev_seq, 0 );
+cheatseq_t  cheat_mypos = cheatseq_t( cheat_mypos_seq, 0 );
 
 
 // 
-const extern char*	mapnames[];
+const extern char*  mapnames[];
 
 
 //
@@ -341,15 +341,15 @@ void ST_Stop(void);
 void ST_refreshBackground(void)
 {
 
-	if (::g->st_statusbaron)
-	{
-		V_DrawPatch(ST_X, 0, BG, ::g->sbar);
+  if (::g->st_statusbaron)
+  {
+    V_DrawPatch(ST_X, 0, BG, ::g->sbar);
 
-		if (::g->netgame)
-			V_DrawPatch(ST_FX, 0, BG, ::g->faceback);
+    if (::g->netgame)
+      V_DrawPatch(ST_FX, 0, BG, ::g->faceback);
 
-		V_CopyRect(ST_X, 0, BG, ST_WIDTH, ST_HEIGHT, ST_X, ST_Y, FG);
-	}
+    V_CopyRect(ST_X, 0, BG, ST_WIDTH, ST_HEIGHT, ST_X, ST_Y, FG);
+  }
 
 }
 
@@ -359,228 +359,228 @@ void ST_refreshBackground(void)
 qboolean
 ST_Responder (event_t* ev)
 {
-	int		i;
+  int   i;
 
-	// Filter automap on/off.
-	if (ev->type == ev_keyup
-		&& ((ev->data1 & 0xffff0000) == AM_MSGHEADER))
-	{
-		switch(ev->data1)
-		{
-		case AM_MSGENTERED:
-			::g->st_gamestate = AutomapState;
-			::g->st_firsttime = true;
-			break;
+  // Filter automap on/off.
+  if (ev->type == ev_keyup
+    && ((ev->data1 & 0xffff0000) == AM_MSGHEADER))
+  {
+    switch(ev->data1)
+    {
+    case AM_MSGENTERED:
+      ::g->st_gamestate = AutomapState;
+      ::g->st_firsttime = true;
+      break;
 
-		case AM_MSGEXITED:
-			//	I_PrintfE( "AM exited\n");
-			::g->st_gamestate = FirstPersonState;
-			break;
-		}
-	}
+    case AM_MSGEXITED:
+      //  I_PrintfE( "AM exited\n");
+      ::g->st_gamestate = FirstPersonState;
+      break;
+    }
+  }
 
-	// if a user keypress...
-	else if (ev->type == ev_keydown)
-	{
-		if (!::g->netgame)
-		{
-			// b. - enabled for more debug fun.
-			// if (::g->gameskill != sk_nightmare) {
+  // if a user keypress...
+  else if (ev->type == ev_keydown)
+  {
+    if (!::g->netgame)
+    {
+      // b. - enabled for more debug fun.
+      // if (::g->gameskill != sk_nightmare) {
 
-			// 'dqd' cheat for toggleable god mode
-			if (cht_CheckCheat(&cheat_god, ev->data1))
-			{
-				::g->plyr->cheats ^= CF_GODMODE;
-				if (::g->plyr->cheats & CF_GODMODE)
-				{
-					if (::g->plyr->mo)
-						::g->plyr->mo->health = 100;
+      // 'dqd' cheat for toggleable god mode
+      if (cht_CheckCheat(&cheat_god, ev->data1))
+      {
+        ::g->plyr->cheats ^= CF_GODMODE;
+        if (::g->plyr->cheats & CF_GODMODE)
+        {
+          if (::g->plyr->mo)
+            ::g->plyr->mo->health = 100;
 
-					::g->plyr->health = 100;
-					::g->plyr->message = STSTR_DQDON;
-				}
-				else 
-					::g->plyr->message = STSTR_DQDOFF;
-			}
-			// 'fa' cheat for killer fucking arsenal
-			else if (cht_CheckCheat(&cheat_ammonokey, ev->data1))
-			{
-				::g->plyr->armorpoints = 200;
-				::g->plyr->armortype = 2;
+          ::g->plyr->health = 100;
+          ::g->plyr->message = STSTR_DQDON;
+        }
+        else 
+          ::g->plyr->message = STSTR_DQDOFF;
+      }
+      // 'fa' cheat for killer fucking arsenal
+      else if (cht_CheckCheat(&cheat_ammonokey, ev->data1))
+      {
+        ::g->plyr->armorpoints = 200;
+        ::g->plyr->armortype = 2;
 
-				for (i=0;i<NUMWEAPONS;i++)
-					::g->plyr->weaponowned[i] = true;
+        for (i=0;i<NUMWEAPONS;i++)
+          ::g->plyr->weaponowned[i] = true;
 
-				for (i=0;i<NUMAMMO;i++)
-					::g->plyr->ammo[i] = ::g->plyr->maxammo[i];
+        for (i=0;i<NUMAMMO;i++)
+          ::g->plyr->ammo[i] = ::g->plyr->maxammo[i];
 
-				::g->plyr->message = STSTR_FAADDED;
-			}
-			// 'kfa' cheat for key full ammo
-			else if (cht_CheckCheat(&cheat_ammo, ev->data1))
-			{
-				::g->plyr->armorpoints = 200;
-				::g->plyr->armortype = 2;
+        ::g->plyr->message = STSTR_FAADDED;
+      }
+      // 'kfa' cheat for key full ammo
+      else if (cht_CheckCheat(&cheat_ammo, ev->data1))
+      {
+        ::g->plyr->armorpoints = 200;
+        ::g->plyr->armortype = 2;
 
-				for (i=0;i<NUMWEAPONS;i++)
-					::g->plyr->weaponowned[i] = true;
+        for (i=0;i<NUMWEAPONS;i++)
+          ::g->plyr->weaponowned[i] = true;
 
-				for (i=0;i<NUMAMMO;i++)
-					::g->plyr->ammo[i] = ::g->plyr->maxammo[i];
+        for (i=0;i<NUMAMMO;i++)
+          ::g->plyr->ammo[i] = ::g->plyr->maxammo[i];
 
-				for (i=0;i<NUMCARDS;i++)
-					::g->plyr->cards[i] = true;
+        for (i=0;i<NUMCARDS;i++)
+          ::g->plyr->cards[i] = true;
 
-				::g->plyr->message = STSTR_KFAADDED;
-			}
-			// 'mus' cheat for changing music
-			else if (cht_CheckCheat(&cheat_mus, ev->data1))
-			{
+        ::g->plyr->message = STSTR_KFAADDED;
+      }
+      // 'mus' cheat for changing music
+      else if (cht_CheckCheat(&cheat_mus, ev->data1))
+      {
 
-				char	buf[3];
-				int		musnum;
+        char  buf[3];
+        int   musnum;
 
-				::g->plyr->message = STSTR_MUS;
-				cht_GetParam(&cheat_mus, buf);
+        ::g->plyr->message = STSTR_MUS;
+        cht_GetParam(&cheat_mus, buf);
 
-				if (::g->gamemode == commercial)
-				{
-					musnum = mus_runnin + (buf[0]-'0')*10 + buf[1]-'0' - 1;
+        if (::g->gamemode == commercial)
+        {
+          musnum = mus_runnin + (buf[0]-'0')*10 + buf[1]-'0' - 1;
 
-					if (((buf[0]-'0')*10 + buf[1]-'0') > 35)
-						::g->plyr->message = STSTR_NOMUS;
-					else
-						S_ChangeMusic(musnum, 1);
-				}
-				else
-				{
-					musnum = mus_e1m1 + (buf[0]-'1')*9 + (buf[1]-'1');
+          if (((buf[0]-'0')*10 + buf[1]-'0') > 35)
+            ::g->plyr->message = STSTR_NOMUS;
+          else
+            S_ChangeMusic(musnum, 1);
+        }
+        else
+        {
+          musnum = mus_e1m1 + (buf[0]-'1')*9 + (buf[1]-'1');
 
-					if (((buf[0]-'1')*9 + buf[1]-'1') > 31)
-						::g->plyr->message = STSTR_NOMUS;
-					else
-						S_ChangeMusic(musnum, 1);
-				}
-			}
-			// Simplified, accepting both "noclip" and "idspispopd".
-			// no clipping mode cheat
-			else if ( cht_CheckCheat(&cheat_noclip, ev->data1) 
-				|| cht_CheckCheat(&cheat_commercial_noclip,ev->data1) )
-			{	
-				::g->plyr->cheats ^= CF_NOCLIP;
+          if (((buf[0]-'1')*9 + buf[1]-'1') > 31)
+            ::g->plyr->message = STSTR_NOMUS;
+          else
+            S_ChangeMusic(musnum, 1);
+        }
+      }
+      // Simplified, accepting both "noclip" and "idspispopd".
+      // no clipping mode cheat
+      else if ( cht_CheckCheat(&cheat_noclip, ev->data1) 
+        || cht_CheckCheat(&cheat_commercial_noclip,ev->data1) )
+      { 
+        ::g->plyr->cheats ^= CF_NOCLIP;
 
-				if (::g->plyr->cheats & CF_NOCLIP)
-					::g->plyr->message = STSTR_NCON;
-				else
-					::g->plyr->message = STSTR_NCOFF;
-			}
-			// 'behold?' power-up cheats
-			for (i=0;i<6;i++)
-			{
-				if (cht_CheckCheat(&::g->cheat_powerup[i], ev->data1))
-				{
-					if (!::g->plyr->powers[i])
-						P_GivePower( ::g->plyr, i);
-					else if (i!=pw_strength)
-						::g->plyr->powers[i] = 1;
-					else
-						::g->plyr->powers[i] = 0;
+        if (::g->plyr->cheats & CF_NOCLIP)
+          ::g->plyr->message = STSTR_NCON;
+        else
+          ::g->plyr->message = STSTR_NCOFF;
+      }
+      // 'behold?' power-up cheats
+      for (i=0;i<6;i++)
+      {
+        if (cht_CheckCheat(&::g->cheat_powerup[i], ev->data1))
+        {
+          if (!::g->plyr->powers[i])
+            P_GivePower( ::g->plyr, i);
+          else if (i!=pw_strength)
+            ::g->plyr->powers[i] = 1;
+          else
+            ::g->plyr->powers[i] = 0;
 
-					::g->plyr->message = STSTR_BEHOLDX;
-				}
-			}
+          ::g->plyr->message = STSTR_BEHOLDX;
+        }
+      }
 
-			// 'behold' power-up menu
-			if (cht_CheckCheat(&::g->cheat_powerup[6], ev->data1))
-			{
-				::g->plyr->message = STSTR_BEHOLD;
-			}
-			// 'choppers' invulnerability & chainsaw
-			else if (cht_CheckCheat(&cheat_choppers, ev->data1))
-			{
-				::g->plyr->weaponowned[wp_chainsaw] = true;
-				::g->plyr->powers[pw_invulnerability] = true;
-				::g->plyr->message = STSTR_CHOPPERS;
-			}
-			// 'mypos' for player position
-			else if (cht_CheckCheat(&cheat_mypos, ev->data1))
-			{
-				static char	buf[ST_MSGWIDTH];
-				sprintf(buf, "ang=0x%x;x,y=(0x%x,0x%x)",
-					::g->players[::g->consoleplayer].mo->angle,
-					::g->players[::g->consoleplayer].mo->x,
-					::g->players[::g->consoleplayer].mo->y);
-				::g->plyr->message = buf;
-			}
-		}
+      // 'behold' power-up menu
+      if (cht_CheckCheat(&::g->cheat_powerup[6], ev->data1))
+      {
+        ::g->plyr->message = STSTR_BEHOLD;
+      }
+      // 'choppers' invulnerability & chainsaw
+      else if (cht_CheckCheat(&cheat_choppers, ev->data1))
+      {
+        ::g->plyr->weaponowned[wp_chainsaw] = true;
+        ::g->plyr->powers[pw_invulnerability] = true;
+        ::g->plyr->message = STSTR_CHOPPERS;
+      }
+      // 'mypos' for player position
+      else if (cht_CheckCheat(&cheat_mypos, ev->data1))
+      {
+        static char buf[ST_MSGWIDTH];
+        sprintf(buf, "ang=0x%x;x,y=(0x%x,0x%x)",
+          ::g->players[::g->consoleplayer].mo->angle,
+          ::g->players[::g->consoleplayer].mo->x,
+          ::g->players[::g->consoleplayer].mo->y);
+        ::g->plyr->message = buf;
+      }
+    }
 
-		// 'clev' change-level cheat
+    // 'clev' change-level cheat
 // ALAN NETWORKING
-		if (false) // cht_CheckCheat(&cheat_clev, ev->data1))
-		{
-			char		buf[3];
-			int		epsd;
-			int		map;
+    if (false) // cht_CheckCheat(&cheat_clev, ev->data1))
+    {
+      char    buf[3];
+      int   epsd;
+      int   map;
 
-			cht_GetParam(&cheat_clev, buf);
+      cht_GetParam(&cheat_clev, buf);
 
-			if (::g->gamemode == commercial)
-			{
-				epsd = 0;
-				map = (buf[0] - '0')*10 + buf[1] - '0';
-			}
-			else
-			{
-				epsd = buf[0] - '0';
-				map = buf[1] - '0';
-			}
+      if (::g->gamemode == commercial)
+      {
+        epsd = 0;
+        map = (buf[0] - '0')*10 + buf[1] - '0';
+      }
+      else
+      {
+        epsd = buf[0] - '0';
+        map = buf[1] - '0';
+      }
 
-			// Catch invalid maps.
-			if (epsd < 1)
-				return false;
+      // Catch invalid maps.
+      if (epsd < 1)
+        return false;
 
-			if (map < 1)
-				return false;
+      if (map < 1)
+        return false;
 
-			// Ohmygod - this is not going to work.
-			if ((::g->gamemode == retail)
-				&& ((epsd > 4) || (map > 9)))
-				return false;
+      // Ohmygod - this is not going to work.
+      if ((::g->gamemode == retail)
+        && ((epsd > 4) || (map > 9)))
+        return false;
 
-			if ((::g->gamemode == registered)
-				&& ((epsd > 3) || (map > 9)))
-				return false;
+      if ((::g->gamemode == registered)
+        && ((epsd > 3) || (map > 9)))
+        return false;
 
-			if ((::g->gamemode == shareware)
-				&& ((epsd > 1) || (map > 9)))
-				return false;
+      if ((::g->gamemode == shareware)
+        && ((epsd > 1) || (map > 9)))
+        return false;
 
-			if ((::g->gamemode == commercial)
-				&& (( epsd > 1) || (map > 34)))
-				return false;
+      if ((::g->gamemode == commercial)
+        && (( epsd > 1) || (map > 34)))
+        return false;
 
-			// So be it.
-			::g->plyr->message = STSTR_CLEV;
-			G_DeferedInitNew(::g->gameskill, epsd, map);
-		}    
-	}
-	return false;
+      // So be it.
+      ::g->plyr->message = STSTR_CLEV;
+      G_DeferedInitNew(::g->gameskill, epsd, map);
+    }    
+  }
+  return false;
 }
 
 
 
 int ST_calcPainOffset(void)
 {
-	int		health;
+  int   health;
 
-	health = ::g->plyr->health > 100 ? 100 : ::g->plyr->health;
+  health = ::g->plyr->health > 100 ? 100 : ::g->plyr->health;
 
-	if (health != ::g->oldhealth)
-	{
-		::g->lastcalc = ST_FACESTRIDE * (((100 - health) * ST_NUMPAINFACES) / 101);
-		::g->oldhealth = health;
-	}
-	return ::g->lastcalc;
+  if (health != ::g->oldhealth)
+  {
+    ::g->lastcalc = ST_FACESTRIDE * (((100 - health) * ST_NUMPAINFACES) / 101);
+    ::g->oldhealth = health;
+  }
+  return ::g->lastcalc;
 }
 
 
@@ -592,244 +592,244 @@ int ST_calcPainOffset(void)
 //
 void ST_updateFaceWidget(void)
 {
-	int		i;
-	angle_t	badguyangle;
-	angle_t	diffang;
-	qboolean	doevilgrin;
+  int   i;
+  angle_t badguyangle;
+  angle_t diffang;
+  qboolean  doevilgrin;
 
-	if (::g->priority < 10)
-	{
-		// dead
-		if (!::g->plyr->health)
-		{
-			::g->priority = 9;
-			::g->st_faceindex = ST_DEADFACE;
-			::g->st_facecount = 1;
-		}
-	}
+  if (::g->priority < 10)
+  {
+    // dead
+    if (!::g->plyr->health)
+    {
+      ::g->priority = 9;
+      ::g->st_faceindex = ST_DEADFACE;
+      ::g->st_facecount = 1;
+    }
+  }
 
-	if (::g->priority < 9)
-	{
-		if (::g->plyr->bonuscount)
-		{
-			// picking up bonus
-			doevilgrin = false;
+  if (::g->priority < 9)
+  {
+    if (::g->plyr->bonuscount)
+    {
+      // picking up bonus
+      doevilgrin = false;
 
-			for (i=0;i<NUMWEAPONS;i++)
-			{
-				if (::g->oldweaponsowned[i] != ::g->plyr->weaponowned[i])
-				{
-					doevilgrin = true;
-					::g->oldweaponsowned[i] = ::g->plyr->weaponowned[i];
-				}
-			}
-			if (doevilgrin) 
-			{
-				// evil grin if just picked up weapon
-				::g->priority = 8;
-				::g->st_facecount = ST_EVILGRINCOUNT;
-				::g->st_faceindex = ST_calcPainOffset() + ST_EVILGRINOFFSET;
-			}
-		}
+      for (i=0;i<NUMWEAPONS;i++)
+      {
+        if (::g->oldweaponsowned[i] != ::g->plyr->weaponowned[i])
+        {
+          doevilgrin = true;
+          ::g->oldweaponsowned[i] = ::g->plyr->weaponowned[i];
+        }
+      }
+      if (doevilgrin) 
+      {
+        // evil grin if just picked up weapon
+        ::g->priority = 8;
+        ::g->st_facecount = ST_EVILGRINCOUNT;
+        ::g->st_faceindex = ST_calcPainOffset() + ST_EVILGRINOFFSET;
+      }
+    }
 
-	}
+  }
 
-	if (::g->priority < 8)
-	{
-		if (::g->plyr->damagecount
-			&& ::g->plyr->attacker
-			&& ::g->plyr->attacker != ::g->plyr->mo)
-		{
-			// being attacked
-			::g->priority = 7;
+  if (::g->priority < 8)
+  {
+    if (::g->plyr->damagecount
+      && ::g->plyr->attacker
+      && ::g->plyr->attacker != ::g->plyr->mo)
+    {
+      // being attacked
+      ::g->priority = 7;
 
-			if (::g->plyr->health - ::g->st_oldhealth > ST_MUCHPAIN)
-			{
-				::g->st_facecount = ST_TURNCOUNT;
-				::g->st_faceindex = ST_calcPainOffset() + ST_OUCHOFFSET;
-			}
-			else
-			{
-				badguyangle = R_PointToAngle2(::g->plyr->mo->x,
-					::g->plyr->mo->y,
-					::g->plyr->attacker->x,
-					::g->plyr->attacker->y);
+      if (::g->plyr->health - ::g->st_oldhealth > ST_MUCHPAIN)
+      {
+        ::g->st_facecount = ST_TURNCOUNT;
+        ::g->st_faceindex = ST_calcPainOffset() + ST_OUCHOFFSET;
+      }
+      else
+      {
+        badguyangle = R_PointToAngle2(::g->plyr->mo->x,
+          ::g->plyr->mo->y,
+          ::g->plyr->attacker->x,
+          ::g->plyr->attacker->y);
 
-				if (badguyangle > ::g->plyr->mo->angle)
-				{
-					// whether right or left
-					diffang = badguyangle - ::g->plyr->mo->angle;
-					i = diffang > ANG180; 
-				}
-				else
-				{
-					// whether left or right
-					diffang = ::g->plyr->mo->angle - badguyangle;
-					i = diffang <= ANG180; 
-				} // confusing, aint it?
+        if (badguyangle > ::g->plyr->mo->angle)
+        {
+          // whether right or left
+          diffang = badguyangle - ::g->plyr->mo->angle;
+          i = diffang > ANG180; 
+        }
+        else
+        {
+          // whether left or right
+          diffang = ::g->plyr->mo->angle - badguyangle;
+          i = diffang <= ANG180; 
+        } // confusing, aint it?
 
 
-				::g->st_facecount = ST_TURNCOUNT;
-				::g->st_faceindex = ST_calcPainOffset();
+        ::g->st_facecount = ST_TURNCOUNT;
+        ::g->st_faceindex = ST_calcPainOffset();
 
-				if (diffang < ANG45)
-				{
-					// head-on    
-					::g->st_faceindex += ST_RAMPAGEOFFSET;
-				}
-				else if (i)
-				{
-					// turn face right
-					::g->st_faceindex += ST_TURNOFFSET;
-				}
-				else
-				{
-					// turn face left
-					::g->st_faceindex += ST_TURNOFFSET+1;
-				}
-			}
-		}
-	}
+        if (diffang < ANG45)
+        {
+          // head-on    
+          ::g->st_faceindex += ST_RAMPAGEOFFSET;
+        }
+        else if (i)
+        {
+          // turn face right
+          ::g->st_faceindex += ST_TURNOFFSET;
+        }
+        else
+        {
+          // turn face left
+          ::g->st_faceindex += ST_TURNOFFSET+1;
+        }
+      }
+    }
+  }
 
-	if (::g->priority < 7)
-	{
-		// getting hurt because of your own damn stupidity
-		if (::g->plyr->damagecount)
-		{
-			if (::g->plyr->health - ::g->st_oldhealth > ST_MUCHPAIN)
-			{
-				::g->priority = 7;
-				::g->st_facecount = ST_TURNCOUNT;
-				::g->st_faceindex = ST_calcPainOffset() + ST_OUCHOFFSET;
-			}
-			else
-			{
-				::g->priority = 6;
-				::g->st_facecount = ST_TURNCOUNT;
-				::g->st_faceindex = ST_calcPainOffset() + ST_RAMPAGEOFFSET;
-			}
+  if (::g->priority < 7)
+  {
+    // getting hurt because of your own damn stupidity
+    if (::g->plyr->damagecount)
+    {
+      if (::g->plyr->health - ::g->st_oldhealth > ST_MUCHPAIN)
+      {
+        ::g->priority = 7;
+        ::g->st_facecount = ST_TURNCOUNT;
+        ::g->st_faceindex = ST_calcPainOffset() + ST_OUCHOFFSET;
+      }
+      else
+      {
+        ::g->priority = 6;
+        ::g->st_facecount = ST_TURNCOUNT;
+        ::g->st_faceindex = ST_calcPainOffset() + ST_RAMPAGEOFFSET;
+      }
 
-		}
+    }
 
-	}
+  }
 
-	if (::g->priority < 6)
-	{
-		// rapid firing
-		if (::g->plyr->attackdown)
-		{
-			if (::g->lastattackdown==-1)
-				::g->lastattackdown = ST_RAMPAGEDELAY;
-			else if (!--::g->lastattackdown)
-			{
-				::g->priority = 5;
-				::g->st_faceindex = ST_calcPainOffset() + ST_RAMPAGEOFFSET;
-				::g->st_facecount = 1;
-				::g->lastattackdown = 1;
-			}
-		}
-		else
-			::g->lastattackdown = -1;
+  if (::g->priority < 6)
+  {
+    // rapid firing
+    if (::g->plyr->attackdown)
+    {
+      if (::g->lastattackdown==-1)
+        ::g->lastattackdown = ST_RAMPAGEDELAY;
+      else if (!--::g->lastattackdown)
+      {
+        ::g->priority = 5;
+        ::g->st_faceindex = ST_calcPainOffset() + ST_RAMPAGEOFFSET;
+        ::g->st_facecount = 1;
+        ::g->lastattackdown = 1;
+      }
+    }
+    else
+      ::g->lastattackdown = -1;
 
-	}
+  }
 
-	if (::g->priority < 5)
-	{
-		// invulnerability
-		if ((::g->plyr->cheats & CF_GODMODE)
-			|| ::g->plyr->powers[pw_invulnerability])
-		{
-			::g->priority = 4;
+  if (::g->priority < 5)
+  {
+    // invulnerability
+    if ((::g->plyr->cheats & CF_GODMODE)
+      || ::g->plyr->powers[pw_invulnerability])
+    {
+      ::g->priority = 4;
 
-			::g->st_faceindex = ST_GODFACE;
-			::g->st_facecount = 1;
+      ::g->st_faceindex = ST_GODFACE;
+      ::g->st_facecount = 1;
 
-		}
+    }
 
-	}
+  }
 
-	// look left or look right if the facecount has timed out
-	if (!::g->st_facecount)
-	{
-		::g->st_faceindex = ST_calcPainOffset() + (::g->st_randomnumber % 3);
-		::g->st_facecount = ST_STRAIGHTFACECOUNT;
-		::g->priority = 0;
-	}
+  // look left or look right if the facecount has timed out
+  if (!::g->st_facecount)
+  {
+    ::g->st_faceindex = ST_calcPainOffset() + (::g->st_randomnumber % 3);
+    ::g->st_facecount = ST_STRAIGHTFACECOUNT;
+    ::g->priority = 0;
+  }
 
-	::g->st_facecount--;
+  ::g->st_facecount--;
 
 }
 
 void ST_updateWidgets(void)
 {
-	int		i;
+  int   i;
 
-	// must redirect the pointer if the ready weapon has changed.
-	//  if (::g->w_ready.data != ::g->plyr->readyweapon)
-	//  {
-	if (weaponinfo[::g->plyr->readyweapon].ammo == am_noammo)
-		::g->w_ready.num = &::g->largeammo;
-	else
-		::g->w_ready.num = &::g->plyr->ammo[weaponinfo[::g->plyr->readyweapon].ammo];
-	//{
-	// static int tic=0;
-	// static int dir=-1;
-	// if (!(tic&15))
-	//   ::g->plyr->ammo[weaponinfo[::g->plyr->readyweapon].ammo]+=dir;
-	// if (::g->plyr->ammo[weaponinfo[::g->plyr->readyweapon].ammo] == -100)
-	//   dir = 1;
-	// tic++;
-	// }
-	::g->w_ready.data = ::g->plyr->readyweapon;
+  // must redirect the pointer if the ready weapon has changed.
+  //  if (::g->w_ready.data != ::g->plyr->readyweapon)
+  //  {
+  if (weaponinfo[::g->plyr->readyweapon].ammo == am_noammo)
+    ::g->w_ready.num = &::g->largeammo;
+  else
+    ::g->w_ready.num = &::g->plyr->ammo[weaponinfo[::g->plyr->readyweapon].ammo];
+  //{
+  // static int tic=0;
+  // static int dir=-1;
+  // if (!(tic&15))
+  //   ::g->plyr->ammo[weaponinfo[::g->plyr->readyweapon].ammo]+=dir;
+  // if (::g->plyr->ammo[weaponinfo[::g->plyr->readyweapon].ammo] == -100)
+  //   dir = 1;
+  // tic++;
+  // }
+  ::g->w_ready.data = ::g->plyr->readyweapon;
 
-	// if (*::g->w_ready.on)
-	//  STlib_updateNum(&::g->w_ready, true);
-	// refresh weapon change
-	//  }
+  // if (*::g->w_ready.on)
+  //  STlib_updateNum(&::g->w_ready, true);
+  // refresh weapon change
+  //  }
 
-	// update keycard multiple widgets
-	for (i=0;i<3;i++)
-	{
-		::g->keyboxes[i] = ::g->plyr->cards[i] ? i : -1;
+  // update keycard multiple widgets
+  for (i=0;i<3;i++)
+  {
+    ::g->keyboxes[i] = ::g->plyr->cards[i] ? i : -1;
 
-		if (::g->plyr->cards[i+3])
-			::g->keyboxes[i] = i+3;
-	}
+    if (::g->plyr->cards[i+3])
+      ::g->keyboxes[i] = i+3;
+  }
 
-	// refresh everything if this is him coming back to life
-	ST_updateFaceWidget();
+  // refresh everything if this is him coming back to life
+  ST_updateFaceWidget();
 
-	// used by the ::g->w_armsbg widget
-	::g->st_notdeathmatch = !::g->deathmatch;
+  // used by the ::g->w_armsbg widget
+  ::g->st_notdeathmatch = !::g->deathmatch;
 
-	// used by ::g->w_arms[] widgets
-	::g->st_armson = ::g->st_statusbaron && !::g->deathmatch; 
+  // used by ::g->w_arms[] widgets
+  ::g->st_armson = ::g->st_statusbaron && !::g->deathmatch; 
 
-	// used by ::g->w_frags widget
-	::g->st_fragson = ::g->deathmatch && ::g->st_statusbaron; 
-	::g->st_fragscount = 0;
+  // used by ::g->w_frags widget
+  ::g->st_fragson = ::g->deathmatch && ::g->st_statusbaron; 
+  ::g->st_fragscount = 0;
 
-	for (i=0 ; i<MAXPLAYERS ; i++)
-	{
-		if (i != ::g->consoleplayer)
-			::g->st_fragscount += ::g->plyr->frags[i];
-		else
-			::g->st_fragscount -= ::g->plyr->frags[i];
-	}
+  for (i=0 ; i<MAXPLAYERS ; i++)
+  {
+    if (i != ::g->consoleplayer)
+      ::g->st_fragscount += ::g->plyr->frags[i];
+    else
+      ::g->st_fragscount -= ::g->plyr->frags[i];
+  }
 
-	// get rid of chat window if up because of message
-	if (!--::g->st_msgcounter)
-		::g->st_chat = ::g->st_oldchat;
+  // get rid of chat window if up because of message
+  if (!--::g->st_msgcounter)
+    ::g->st_chat = ::g->st_oldchat;
 
 }
 
 void ST_Ticker (void)
 {
 
-	::g->st_clock++;
-	::g->st_randomnumber = M_Random();
-	ST_updateWidgets();
-	::g->st_oldhealth = ::g->plyr->health;
+  ::g->st_clock++;
+  ::g->st_randomnumber = M_Random();
+  ST_updateWidgets();
+  ::g->st_oldhealth = ::g->plyr->health;
 
 }
 
@@ -837,251 +837,251 @@ void ST_Ticker (void)
 void ST_doPaletteStuff(void)
 {
 
-	int		palette;
-	byte*	pal;
-	int		cnt;
-	int		bzc;
+  int   palette;
+  byte* pal;
+  int   cnt;
+  int   bzc;
 
-	cnt = ::g->plyr->damagecount;
+  cnt = ::g->plyr->damagecount;
 
-	if (::g->plyr->powers[pw_strength])
-	{
-		// slowly fade the berzerk out
-		bzc = 12 - (::g->plyr->powers[pw_strength]>>6);
+  if (::g->plyr->powers[pw_strength])
+  {
+    // slowly fade the berzerk out
+    bzc = 12 - (::g->plyr->powers[pw_strength]>>6);
 
-		if (bzc > cnt)
-			cnt = bzc;
-	}
+    if (bzc > cnt)
+      cnt = bzc;
+  }
 
-	if (cnt)
-	{
-		palette = (cnt+7)>>3;
+  if (cnt)
+  {
+    palette = (cnt+7)>>3;
 
-		if (palette >= NUMREDPALS)
-			palette = NUMREDPALS-1;
+    if (palette >= NUMREDPALS)
+      palette = NUMREDPALS-1;
 
-		palette += STARTREDPALS;
-	}
+    palette += STARTREDPALS;
+  }
 
-	else if (::g->plyr->bonuscount)
-	{
-		palette = (::g->plyr->bonuscount+7)>>3;
+  else if (::g->plyr->bonuscount)
+  {
+    palette = (::g->plyr->bonuscount+7)>>3;
 
-		if (palette >= NUMBONUSPALS)
-			palette = NUMBONUSPALS-1;
+    if (palette >= NUMBONUSPALS)
+      palette = NUMBONUSPALS-1;
 
-		palette += STARTBONUSPALS;
-	}
+    palette += STARTBONUSPALS;
+  }
 
-	else if ( ::g->plyr->powers[pw_ironfeet] > 4*32
-		|| ::g->plyr->powers[pw_ironfeet]&8)
-		palette = RADIATIONPAL;
-	else
-		palette = 0;
+  else if ( ::g->plyr->powers[pw_ironfeet] > 4*32
+    || ::g->plyr->powers[pw_ironfeet]&8)
+    palette = RADIATIONPAL;
+  else
+    palette = 0;
 
-	if (palette != ::g->st_palette)
-	{
-		::g->st_palette = palette;
-		pal = (byte *) W_CacheLumpNum (::g->lu_palette, PU_CACHE_SHARED)+palette*768;
-		I_SetPalette (pal);
-	}
+  if (palette != ::g->st_palette)
+  {
+    ::g->st_palette = palette;
+    pal = (byte *) W_CacheLumpNum (::g->lu_palette, PU_CACHE_SHARED)+palette*768;
+    I_SetPalette (pal);
+  }
 
 }
 
 void ST_drawWidgets(qboolean refresh)
 {
-	int		i;
+  int   i;
 
-	::g->st_notdeathmatch = !::g->deathmatch;
+  ::g->st_notdeathmatch = !::g->deathmatch;
 
-	// used by ::g->w_arms[] widgets
-	::g->st_armson = ::g->st_statusbaron && !::g->deathmatch;
+  // used by ::g->w_arms[] widgets
+  ::g->st_armson = ::g->st_statusbaron && !::g->deathmatch;
 
-	// used by ::g->w_frags widget
-	::g->st_fragson = ::g->deathmatch && ::g->st_statusbaron; 
+  // used by ::g->w_frags widget
+  ::g->st_fragson = ::g->deathmatch && ::g->st_statusbaron; 
 
-	STlib_updateNum(&::g->w_ready, refresh);
+  STlib_updateNum(&::g->w_ready, refresh);
 
-	for (i=0;i<4;i++)
-	{
-		STlib_updateNum(&::g->w_ammo[i], refresh);
-		STlib_updateNum(&::g->w_maxammo[i], refresh);
-	}
+  for (i=0;i<4;i++)
+  {
+    STlib_updateNum(&::g->w_ammo[i], refresh);
+    STlib_updateNum(&::g->w_maxammo[i], refresh);
+  }
 
-	STlib_updatePercent(&::g->w_health, refresh);
-	STlib_updatePercent(&::g->w_armor, refresh);
+  STlib_updatePercent(&::g->w_health, refresh);
+  STlib_updatePercent(&::g->w_armor, refresh);
 
-	STlib_updateBinIcon(&::g->w_armsbg, refresh);
+  STlib_updateBinIcon(&::g->w_armsbg, refresh);
 
-	for (i=0;i<6;i++)
-		STlib_updateMultIcon(&::g->w_arms[i], refresh);
+  for (i=0;i<6;i++)
+    STlib_updateMultIcon(&::g->w_arms[i], refresh);
 
-	STlib_updateMultIcon(&::g->w_faces, refresh);
+  STlib_updateMultIcon(&::g->w_faces, refresh);
 
-	for (i=0;i<3;i++)
-		STlib_updateMultIcon(&::g->w_keyboxes[i], refresh);
+  for (i=0;i<3;i++)
+    STlib_updateMultIcon(&::g->w_keyboxes[i], refresh);
 
-	STlib_updateNum(&::g->w_frags, refresh);
+  STlib_updateNum(&::g->w_frags, refresh);
 
 }
 
 void ST_doRefresh(void)
 {
-	::g->st_firsttime = false;
+  ::g->st_firsttime = false;
 
-	// draw status bar background to off-screen buff
-	ST_refreshBackground();
+  // draw status bar background to off-screen buff
+  ST_refreshBackground();
 
-	// and refresh all widgets
-	ST_drawWidgets(true);
+  // and refresh all widgets
+  ST_drawWidgets(true);
 }
 
 void ST_diffDraw(void)
 {
-	// update all widgets
-	ST_drawWidgets(false);
+  // update all widgets
+  ST_drawWidgets(false);
 }
 
 void ST_Drawer (qboolean fullscreen, qboolean refresh)
 {
-	::g->st_statusbaron = (!fullscreen) || ::g->automapactive;
-	::g->st_firsttime = ::g->st_firsttime || refresh;
+  ::g->st_statusbaron = (!fullscreen) || ::g->automapactive;
+  ::g->st_firsttime = ::g->st_firsttime || refresh;
 
-	// Do red-/gold-shifts from damage/items
-	ST_doPaletteStuff();
+  // Do red-/gold-shifts from damage/items
+  ST_doPaletteStuff();
 
-	// If just after ST_Start(), refresh all
-	if (::g->st_firsttime) ST_doRefresh();
-	// Otherwise, update as little as possible
-	else ST_diffDraw();
+  // If just after ST_Start(), refresh all
+  if (::g->st_firsttime) ST_doRefresh();
+  // Otherwise, update as little as possible
+  else ST_diffDraw();
 }
 
 void ST_loadGraphics(void)
 {
-	static bool ST_HasBeenCalled = false;
+  static bool ST_HasBeenCalled = false;
 
-//	if (ST_HasBeenCalled == true)
-//		return;
-	ST_HasBeenCalled = true;
-	
-	int		i;
-	int		j;
-	int		facenum;
+//  if (ST_HasBeenCalled == true)
+//    return;
+  ST_HasBeenCalled = true;
+  
+  int   i;
+  int   j;
+  int   facenum;
 
-	char	namebuf[9];
+  char  namebuf[9];
 
-	// Load the numbers, tall and short
-	for (i=0;i<10;i++)
-	{
-		sprintf(namebuf, "STTNUM%d", i);
-		::g->tallnum[i] = (patch_t *) W_CacheLumpName(namebuf, PU_STATIC_SHARED);
+  // Load the numbers, tall and short
+  for (i=0;i<10;i++)
+  {
+    sprintf(namebuf, "STTNUM%d", i);
+    ::g->tallnum[i] = (patch_t *) W_CacheLumpName(namebuf, PU_STATIC_SHARED);
 
-		sprintf(namebuf, "STYSNUM%d", i);
-		::g->shortnum[i] = (patch_t *) W_CacheLumpName(namebuf, PU_STATIC_SHARED);
-	}
+    sprintf(namebuf, "STYSNUM%d", i);
+    ::g->shortnum[i] = (patch_t *) W_CacheLumpName(namebuf, PU_STATIC_SHARED);
+  }
 
-	// Load percent key.
-	//Note: why not load STMINUS here, too?
-	::g->tallpercent = (patch_t *) W_CacheLumpName("STTPRCNT", PU_STATIC_SHARED);
+  // Load percent key.
+  //Note: why not load STMINUS here, too?
+  ::g->tallpercent = (patch_t *) W_CacheLumpName("STTPRCNT", PU_STATIC_SHARED);
 
-	// key cards
-	for (i=0;i<NUMCARDS;i++)
-	{
-		sprintf(namebuf, "STKEYS%d", i);
-		::g->keys[i] = (patch_t *) W_CacheLumpName(namebuf, PU_STATIC_SHARED);
-	}
+  // key cards
+  for (i=0;i<NUMCARDS;i++)
+  {
+    sprintf(namebuf, "STKEYS%d", i);
+    ::g->keys[i] = (patch_t *) W_CacheLumpName(namebuf, PU_STATIC_SHARED);
+  }
 
-	// ::g->arms background
-	::g->armsbg = (patch_t *) W_CacheLumpName("STARMS", PU_STATIC_SHARED);
+  // ::g->arms background
+  ::g->armsbg = (patch_t *) W_CacheLumpName("STARMS", PU_STATIC_SHARED);
 
-	// ::g->arms ownership widgets
-	for (i=0;i<6;i++)
-	{
-		sprintf(namebuf, "STGNUM%d", i+2);
+  // ::g->arms ownership widgets
+  for (i=0;i<6;i++)
+  {
+    sprintf(namebuf, "STGNUM%d", i+2);
 
-		// gray #
-		::g->arms[i][0] = (patch_t *) W_CacheLumpName(namebuf, PU_STATIC_SHARED);
+    // gray #
+    ::g->arms[i][0] = (patch_t *) W_CacheLumpName(namebuf, PU_STATIC_SHARED);
 
-		// yellow #
-		::g->arms[i][1] = ::g->shortnum[i+2]; 
-	}
+    // yellow #
+    ::g->arms[i][1] = ::g->shortnum[i+2]; 
+  }
 
-	// face backgrounds for different color ::g->players
-	sprintf(namebuf, "STFB%d", ::g->consoleplayer);
-	::g->faceback = (patch_t *) W_CacheLumpName(namebuf, PU_STATIC_SHARED);
+  // face backgrounds for different color ::g->players
+  sprintf(namebuf, "STFB%d", ::g->consoleplayer);
+  ::g->faceback = (patch_t *) W_CacheLumpName(namebuf, PU_STATIC_SHARED);
 
-	// status bar background bits
-	::g->sbar = (patch_t *) W_CacheLumpName("STBAR", PU_STATIC_SHARED);
+  // status bar background bits
+  ::g->sbar = (patch_t *) W_CacheLumpName("STBAR", PU_STATIC_SHARED);
 
-	// face states
-	facenum = 0;
-	for (i=0;i<ST_NUMPAINFACES;i++)
-	{
-		for (j=0;j<ST_NUMSTRAIGHTFACES;j++)
-		{
-			sprintf(namebuf, "STFST%d%d", i, j);
-			::g->faces[facenum++] = (patch_t*)W_CacheLumpName(namebuf, PU_STATIC_SHARED);
-		}
-		sprintf(namebuf, "STFTR%d0", i);	// turn right
-		::g->faces[facenum++] = (patch_t*)W_CacheLumpName(namebuf, PU_STATIC_SHARED);
-		sprintf(namebuf, "STFTL%d0", i);	// turn left
-		::g->faces[facenum++] = (patch_t*)W_CacheLumpName(namebuf, PU_STATIC_SHARED);
-		sprintf(namebuf, "STFOUCH%d", i);	// ouch!
-		::g->faces[facenum++] = (patch_t*)W_CacheLumpName(namebuf, PU_STATIC_SHARED);
-		sprintf(namebuf, "STFEVL%d", i);	// evil grin ;)
-		::g->faces[facenum++] = (patch_t*)W_CacheLumpName(namebuf, PU_STATIC_SHARED);
-		sprintf(namebuf, "STFKILL%d", i);	// pissed off
-		::g->faces[facenum++] = (patch_t*)W_CacheLumpName(namebuf, PU_STATIC_SHARED);
-	}
-	::g->faces[facenum++] = (patch_t*)W_CacheLumpName("STFGOD0", PU_STATIC_SHARED);
-	::g->faces[facenum++] = (patch_t*)W_CacheLumpName("STFDEAD0", PU_STATIC_SHARED);
+  // face states
+  facenum = 0;
+  for (i=0;i<ST_NUMPAINFACES;i++)
+  {
+    for (j=0;j<ST_NUMSTRAIGHTFACES;j++)
+    {
+      sprintf(namebuf, "STFST%d%d", i, j);
+      ::g->faces[facenum++] = (patch_t*)W_CacheLumpName(namebuf, PU_STATIC_SHARED);
+    }
+    sprintf(namebuf, "STFTR%d0", i);  // turn right
+    ::g->faces[facenum++] = (patch_t*)W_CacheLumpName(namebuf, PU_STATIC_SHARED);
+    sprintf(namebuf, "STFTL%d0", i);  // turn left
+    ::g->faces[facenum++] = (patch_t*)W_CacheLumpName(namebuf, PU_STATIC_SHARED);
+    sprintf(namebuf, "STFOUCH%d", i); // ouch!
+    ::g->faces[facenum++] = (patch_t*)W_CacheLumpName(namebuf, PU_STATIC_SHARED);
+    sprintf(namebuf, "STFEVL%d", i);  // evil grin ;)
+    ::g->faces[facenum++] = (patch_t*)W_CacheLumpName(namebuf, PU_STATIC_SHARED);
+    sprintf(namebuf, "STFKILL%d", i); // pissed off
+    ::g->faces[facenum++] = (patch_t*)W_CacheLumpName(namebuf, PU_STATIC_SHARED);
+  }
+  ::g->faces[facenum++] = (patch_t*)W_CacheLumpName("STFGOD0", PU_STATIC_SHARED);
+  ::g->faces[facenum++] = (patch_t*)W_CacheLumpName("STFDEAD0", PU_STATIC_SHARED);
 
 }
 
 void ST_loadData(void)
 {
-	::g->lu_palette = W_GetNumForName ("PLAYPAL");
-	ST_loadGraphics();
+  ::g->lu_palette = W_GetNumForName ("PLAYPAL");
+  ST_loadGraphics();
 }
 
 void ST_unloadGraphics(void)
 {
-	// These things are always reloaded... so just don't bother to clean them up!
+  // These things are always reloaded... so just don't bother to clean them up!
 }
 
 void ST_unloadData(void)
 {
-	ST_unloadGraphics();
+  ST_unloadGraphics();
 }
 
 void ST_initData(void)
 {
 
-	int		i;
+  int   i;
 
-	::g->st_firsttime = true;
-	::g->plyr = &::g->players[::g->consoleplayer];
+  ::g->st_firsttime = true;
+  ::g->plyr = &::g->players[::g->consoleplayer];
 
-	::g->st_clock = 0;
-	::g->st_chatstate = StartChatState;
-	::g->st_gamestate = FirstPersonState;
+  ::g->st_clock = 0;
+  ::g->st_chatstate = StartChatState;
+  ::g->st_gamestate = FirstPersonState;
 
-	::g->st_statusbaron = true;
-	::g->st_oldchat = ::g->st_chat = false;
-	::g->st_cursoron = false;
+  ::g->st_statusbaron = true;
+  ::g->st_oldchat = ::g->st_chat = false;
+  ::g->st_cursoron = false;
 
-	::g->st_faceindex = 0;
-	::g->st_palette = -1;
+  ::g->st_faceindex = 0;
+  ::g->st_palette = -1;
 
-	::g->st_oldhealth = -1;
+  ::g->st_oldhealth = -1;
 
-	for (i=0;i<NUMWEAPONS;i++)
-		::g->oldweaponsowned[i] = ::g->plyr->weaponowned[i];
+  for (i=0;i<NUMWEAPONS;i++)
+    ::g->oldweaponsowned[i] = ::g->plyr->weaponowned[i];
 
-	for (i=0;i<3;i++)
-		::g->keyboxes[i] = -1;
+  for (i=0;i<3;i++)
+    ::g->keyboxes[i] = -1;
 
-	STlib_init();
+  STlib_init();
 
 }
 
@@ -1090,159 +1090,159 @@ void ST_initData(void)
 void ST_createWidgets(void)
 {
 
-	int i;
+  int i;
 
-	// ready weapon ammo
-	STlib_initNum(&::g->w_ready,
-		ST_AMMOX,
-		ST_AMMOY,
-		::g->tallnum,
-		&::g->plyr->ammo[weaponinfo[::g->plyr->readyweapon].ammo],
-		&::g->st_statusbaron,
-		ST_AMMOWIDTH );
+  // ready weapon ammo
+  STlib_initNum(&::g->w_ready,
+    ST_AMMOX,
+    ST_AMMOY,
+    ::g->tallnum,
+    &::g->plyr->ammo[weaponinfo[::g->plyr->readyweapon].ammo],
+    &::g->st_statusbaron,
+    ST_AMMOWIDTH );
 
-	// the last weapon type
-	::g->w_ready.data = ::g->plyr->readyweapon; 
+  // the last weapon type
+  ::g->w_ready.data = ::g->plyr->readyweapon; 
 
-	// health percentage
-	STlib_initPercent(&::g->w_health,
-		ST_HEALTHX,
-		ST_HEALTHY,
-		::g->tallnum,
-		&::g->plyr->health,
-		&::g->st_statusbaron,
-		::g->tallpercent);
+  // health percentage
+  STlib_initPercent(&::g->w_health,
+    ST_HEALTHX,
+    ST_HEALTHY,
+    ::g->tallnum,
+    &::g->plyr->health,
+    &::g->st_statusbaron,
+    ::g->tallpercent);
 
-	// ::g->arms background
-	STlib_initBinIcon(&::g->w_armsbg,
-		ST_ARMSBGX,
-		ST_ARMSBGY,
-		::g->armsbg,
-		&::g->st_notdeathmatch,
-		&::g->st_statusbaron);
+  // ::g->arms background
+  STlib_initBinIcon(&::g->w_armsbg,
+    ST_ARMSBGX,
+    ST_ARMSBGY,
+    ::g->armsbg,
+    &::g->st_notdeathmatch,
+    &::g->st_statusbaron);
 
-	// weapons owned
-	for(i=0;i<6;i++)
-	{
-		STlib_initMultIcon(&::g->w_arms[i],
-			ST_ARMSX+(i%3)*ST_ARMSXSPACE,
-			ST_ARMSY+(i/3)*ST_ARMSYSPACE,
-			::g->arms[i], (int *) &::g->plyr->weaponowned[i+1],
-			&::g->st_armson);
-	}
+  // weapons owned
+  for(i=0;i<6;i++)
+  {
+    STlib_initMultIcon(&::g->w_arms[i],
+      ST_ARMSX+(i%3)*ST_ARMSXSPACE,
+      ST_ARMSY+(i/3)*ST_ARMSYSPACE,
+      ::g->arms[i], (int *) &::g->plyr->weaponowned[i+1],
+      &::g->st_armson);
+  }
 
-	// frags sum
-	STlib_initNum(&::g->w_frags,
-		ST_FRAGSX,
-		ST_FRAGSY,
-		::g->tallnum,
-		&::g->st_fragscount,
-		&::g->st_fragson,
-		ST_FRAGSWIDTH);
+  // frags sum
+  STlib_initNum(&::g->w_frags,
+    ST_FRAGSX,
+    ST_FRAGSY,
+    ::g->tallnum,
+    &::g->st_fragscount,
+    &::g->st_fragson,
+    ST_FRAGSWIDTH);
 
-	// ::g->faces
-	STlib_initMultIcon(&::g->w_faces,
-		ST_FACESX,
-		ST_FACESY,
-		::g->faces,
-		&::g->st_faceindex,
-		&::g->st_statusbaron);
+  // ::g->faces
+  STlib_initMultIcon(&::g->w_faces,
+    ST_FACESX,
+    ST_FACESY,
+    ::g->faces,
+    &::g->st_faceindex,
+    &::g->st_statusbaron);
 
-	// armor percentage - should be colored later
-	STlib_initPercent(&::g->w_armor,
-		ST_ARMORX,
-		ST_ARMORY,
-		::g->tallnum,
-		&::g->plyr->armorpoints,
-		&::g->st_statusbaron, ::g->tallpercent);
+  // armor percentage - should be colored later
+  STlib_initPercent(&::g->w_armor,
+    ST_ARMORX,
+    ST_ARMORY,
+    ::g->tallnum,
+    &::g->plyr->armorpoints,
+    &::g->st_statusbaron, ::g->tallpercent);
 
-	// ::g->keyboxes 0-2
-	STlib_initMultIcon(&::g->w_keyboxes[0],
-		ST_KEY0X,
-		ST_KEY0Y,
-		::g->keys,
-		&::g->keyboxes[0],
-		&::g->st_statusbaron);
+  // ::g->keyboxes 0-2
+  STlib_initMultIcon(&::g->w_keyboxes[0],
+    ST_KEY0X,
+    ST_KEY0Y,
+    ::g->keys,
+    &::g->keyboxes[0],
+    &::g->st_statusbaron);
 
-	STlib_initMultIcon(&::g->w_keyboxes[1],
-		ST_KEY1X,
-		ST_KEY1Y,
-		::g->keys,
-		&::g->keyboxes[1],
-		&::g->st_statusbaron);
+  STlib_initMultIcon(&::g->w_keyboxes[1],
+    ST_KEY1X,
+    ST_KEY1Y,
+    ::g->keys,
+    &::g->keyboxes[1],
+    &::g->st_statusbaron);
 
-	STlib_initMultIcon(&::g->w_keyboxes[2],
-		ST_KEY2X,
-		ST_KEY2Y,
-		::g->keys,
-		&::g->keyboxes[2],
-		&::g->st_statusbaron);
+  STlib_initMultIcon(&::g->w_keyboxes[2],
+    ST_KEY2X,
+    ST_KEY2Y,
+    ::g->keys,
+    &::g->keyboxes[2],
+    &::g->st_statusbaron);
 
-	// ammo count (all four kinds)
-	STlib_initNum(&::g->w_ammo[0],
-		ST_AMMO0X,
-		ST_AMMO0Y,
-		::g->shortnum,
-		&::g->plyr->ammo[0],
-		&::g->st_statusbaron,
-		ST_AMMO0WIDTH);
+  // ammo count (all four kinds)
+  STlib_initNum(&::g->w_ammo[0],
+    ST_AMMO0X,
+    ST_AMMO0Y,
+    ::g->shortnum,
+    &::g->plyr->ammo[0],
+    &::g->st_statusbaron,
+    ST_AMMO0WIDTH);
 
-	STlib_initNum(&::g->w_ammo[1],
-		ST_AMMO1X,
-		ST_AMMO1Y,
-		::g->shortnum,
-		&::g->plyr->ammo[1],
-		&::g->st_statusbaron,
-		ST_AMMO1WIDTH);
+  STlib_initNum(&::g->w_ammo[1],
+    ST_AMMO1X,
+    ST_AMMO1Y,
+    ::g->shortnum,
+    &::g->plyr->ammo[1],
+    &::g->st_statusbaron,
+    ST_AMMO1WIDTH);
 
-	STlib_initNum(&::g->w_ammo[2],
-		ST_AMMO2X,
-		ST_AMMO2Y,
-		::g->shortnum,
-		&::g->plyr->ammo[2],
-		&::g->st_statusbaron,
-		ST_AMMO2WIDTH);
+  STlib_initNum(&::g->w_ammo[2],
+    ST_AMMO2X,
+    ST_AMMO2Y,
+    ::g->shortnum,
+    &::g->plyr->ammo[2],
+    &::g->st_statusbaron,
+    ST_AMMO2WIDTH);
 
-	STlib_initNum(&::g->w_ammo[3],
-		ST_AMMO3X,
-		ST_AMMO3Y,
-		::g->shortnum,
-		&::g->plyr->ammo[3],
-		&::g->st_statusbaron,
-		ST_AMMO3WIDTH);
+  STlib_initNum(&::g->w_ammo[3],
+    ST_AMMO3X,
+    ST_AMMO3Y,
+    ::g->shortnum,
+    &::g->plyr->ammo[3],
+    &::g->st_statusbaron,
+    ST_AMMO3WIDTH);
 
-	// max ammo count (all four kinds)
-	STlib_initNum(&::g->w_maxammo[0],
-		ST_MAXAMMO0X,
-		ST_MAXAMMO0Y,
-		::g->shortnum,
-		&::g->plyr->maxammo[0],
-		&::g->st_statusbaron,
-		ST_MAXAMMO0WIDTH);
+  // max ammo count (all four kinds)
+  STlib_initNum(&::g->w_maxammo[0],
+    ST_MAXAMMO0X,
+    ST_MAXAMMO0Y,
+    ::g->shortnum,
+    &::g->plyr->maxammo[0],
+    &::g->st_statusbaron,
+    ST_MAXAMMO0WIDTH);
 
-	STlib_initNum(&::g->w_maxammo[1],
-		ST_MAXAMMO1X,
-		ST_MAXAMMO1Y,
-		::g->shortnum,
-		&::g->plyr->maxammo[1],
-		&::g->st_statusbaron,
-		ST_MAXAMMO1WIDTH);
+  STlib_initNum(&::g->w_maxammo[1],
+    ST_MAXAMMO1X,
+    ST_MAXAMMO1Y,
+    ::g->shortnum,
+    &::g->plyr->maxammo[1],
+    &::g->st_statusbaron,
+    ST_MAXAMMO1WIDTH);
 
-	STlib_initNum(&::g->w_maxammo[2],
-		ST_MAXAMMO2X,
-		ST_MAXAMMO2Y,
-		::g->shortnum,
-		&::g->plyr->maxammo[2],
-		&::g->st_statusbaron,
-		ST_MAXAMMO2WIDTH);
+  STlib_initNum(&::g->w_maxammo[2],
+    ST_MAXAMMO2X,
+    ST_MAXAMMO2Y,
+    ::g->shortnum,
+    &::g->plyr->maxammo[2],
+    &::g->st_statusbaron,
+    ST_MAXAMMO2WIDTH);
 
-	STlib_initNum(&::g->w_maxammo[3],
-		ST_MAXAMMO3X,
-		ST_MAXAMMO3Y,
-		::g->shortnum,
-		&::g->plyr->maxammo[3],
-		&::g->st_statusbaron,
-		ST_MAXAMMO3WIDTH);
+  STlib_initNum(&::g->w_maxammo[3],
+    ST_MAXAMMO3X,
+    ST_MAXAMMO3Y,
+    ::g->shortnum,
+    &::g->plyr->maxammo[3],
+    &::g->st_statusbaron,
+    ST_MAXAMMO3WIDTH);
 
 }
 
@@ -1251,224 +1251,224 @@ void ST_createWidgets(void)
 void ST_Start (void)
 {
 
-	if (!::g->st_stopped)
-		ST_Stop();
+  if (!::g->st_stopped)
+    ST_Stop();
 
-	ST_initData();
-	ST_createWidgets();
-	::g->st_stopped = false;
+  ST_initData();
+  ST_createWidgets();
+  ::g->st_stopped = false;
 
 }
 
 void ST_Stop (void)
 {
-	if (::g->st_stopped)
-		return;
+  if (::g->st_stopped)
+    return;
 
-	I_SetPalette ((byte*)W_CacheLumpNum ((int)::g->lu_palette, PU_CACHE_SHARED));
+  I_SetPalette ((byte*)W_CacheLumpNum ((int)::g->lu_palette, PU_CACHE_SHARED));
 
-	::g->st_stopped = true;
+  ::g->st_stopped = true;
 }
 
 void ST_Init (void)
 {
-	::g->veryfirsttime = 0;
-	ST_loadData();
-	::g->screens[4] = (byte *) DoomLib::Z_Malloc( SCREENWIDTH * SCREENHEIGHT /*ST_WIDTH*ST_HEIGHT*/, PU_STATIC, 0);
-	memset( ::g->screens[4], 0, SCREENWIDTH * SCREENHEIGHT );
+  ::g->veryfirsttime = 0;
+  ST_loadData();
+  ::g->screens[4] = (byte *) DoomLib::Z_Malloc( SCREENWIDTH * SCREENHEIGHT /*ST_WIDTH*ST_HEIGHT*/, PU_STATIC, 0);
+  memset( ::g->screens[4], 0, SCREENWIDTH * SCREENHEIGHT );
 }
 
 
 CONSOLE_COMMAND_SHIP( idqd, "cheat for toggleable god mode", 0 ) {
-	int oldPlayer = DoomLib::GetPlayer();
-	DoomLib::SetPlayer( 0 );
-	if ( ::g == NULL ) {
-		return;
-	}
+  int oldPlayer = DoomLib::GetPlayer();
+  DoomLib::SetPlayer( 0 );
+  if ( ::g == NULL ) {
+    return;
+  }
 
-	if (::g->gamestate != GS_LEVEL) {
-		return;
-	}
+  if (::g->gamestate != GS_LEVEL) {
+    return;
+  }
 
-	::g->plyr->cheats ^= CF_GODMODE;
-	if (::g->plyr->cheats & CF_GODMODE)
-	{
-		if (::g->plyr->mo)
-			::g->plyr->mo->health = 100;
+  ::g->plyr->cheats ^= CF_GODMODE;
+  if (::g->plyr->cheats & CF_GODMODE)
+  {
+    if (::g->plyr->mo)
+      ::g->plyr->mo->health = 100;
 
-		::g->plyr->health = 100;
-		::g->plyr->message = STSTR_DQDON;
-	}
-	else 
-		::g->plyr->message = STSTR_DQDOFF;
+    ::g->plyr->health = 100;
+    ::g->plyr->message = STSTR_DQDON;
+  }
+  else 
+    ::g->plyr->message = STSTR_DQDOFF;
 
-	DoomLib::SetPlayer( oldPlayer );
+  DoomLib::SetPlayer( oldPlayer );
 }
 
 CONSOLE_COMMAND_SHIP( idfa, "cheat for killer fucking arsenal", 0 ) {
-	int oldPlayer = DoomLib::GetPlayer();
-	DoomLib::SetPlayer( 0 );
-	if ( ::g == NULL ) {
-		return;
-	}
+  int oldPlayer = DoomLib::GetPlayer();
+  DoomLib::SetPlayer( 0 );
+  if ( ::g == NULL ) {
+    return;
+  }
 
-	if (::g->gamestate != GS_LEVEL) {
-		return;
-	}
+  if (::g->gamestate != GS_LEVEL) {
+    return;
+  }
 
-	int i = 0;
-	::g->plyr->armorpoints = 200;
-	::g->plyr->armortype = 2;
+  int i = 0;
+  ::g->plyr->armorpoints = 200;
+  ::g->plyr->armortype = 2;
 
-	for (i=0;i<NUMWEAPONS;i++)
-		::g->plyr->weaponowned[i] = true;
+  for (i=0;i<NUMWEAPONS;i++)
+    ::g->plyr->weaponowned[i] = true;
 
-	for (i=0;i<NUMAMMO;i++)
-		::g->plyr->ammo[i] = ::g->plyr->maxammo[i];
+  for (i=0;i<NUMAMMO;i++)
+    ::g->plyr->ammo[i] = ::g->plyr->maxammo[i];
 
-	::g->plyr->message = STSTR_FAADDED;
+  ::g->plyr->message = STSTR_FAADDED;
 
-	DoomLib::SetPlayer( oldPlayer );
+  DoomLib::SetPlayer( oldPlayer );
 }
 
 CONSOLE_COMMAND_SHIP( idkfa, "cheat for key full ammo", 0 ) {
-	int oldPlayer = DoomLib::GetPlayer();
-	DoomLib::SetPlayer( 0 );
-	if ( ::g == NULL ) {
-		return;
-	}
+  int oldPlayer = DoomLib::GetPlayer();
+  DoomLib::SetPlayer( 0 );
+  if ( ::g == NULL ) {
+    return;
+  }
 
-	if (::g->gamestate != GS_LEVEL) {
-		return;
-	}
+  if (::g->gamestate != GS_LEVEL) {
+    return;
+  }
 
-	int i = 0;
-	::g->plyr->armorpoints = 200;
-	::g->plyr->armortype = 2;
+  int i = 0;
+  ::g->plyr->armorpoints = 200;
+  ::g->plyr->armortype = 2;
 
-	for (i=0;i<NUMWEAPONS;i++)
-		::g->plyr->weaponowned[i] = true;
+  for (i=0;i<NUMWEAPONS;i++)
+    ::g->plyr->weaponowned[i] = true;
 
-	for (i=0;i<NUMAMMO;i++)
-		::g->plyr->ammo[i] = ::g->plyr->maxammo[i];
+  for (i=0;i<NUMAMMO;i++)
+    ::g->plyr->ammo[i] = ::g->plyr->maxammo[i];
 
-	for (i=0;i<NUMCARDS;i++)
-		::g->plyr->cards[i] = true;
+  for (i=0;i<NUMCARDS;i++)
+    ::g->plyr->cards[i] = true;
 
-	::g->plyr->message = STSTR_KFAADDED;
+  ::g->plyr->message = STSTR_KFAADDED;
 
-	DoomLib::SetPlayer( oldPlayer );
+  DoomLib::SetPlayer( oldPlayer );
 }
 
 
 CONSOLE_COMMAND_SHIP( idclip, "cheat for no clip", 0 ) {
-	int oldPlayer = DoomLib::GetPlayer();
-	DoomLib::SetPlayer( 0 );
-	if ( ::g == NULL ) {
-		return;
-	}
+  int oldPlayer = DoomLib::GetPlayer();
+  DoomLib::SetPlayer( 0 );
+  if ( ::g == NULL ) {
+    return;
+  }
 
-	if (::g->gamestate != GS_LEVEL) {
-		return;
-	}
+  if (::g->gamestate != GS_LEVEL) {
+    return;
+  }
 
-	::g->plyr->cheats ^= CF_NOCLIP;
+  ::g->plyr->cheats ^= CF_NOCLIP;
 
-	if (::g->plyr->cheats & CF_NOCLIP)
-		::g->plyr->message = STSTR_NCON;
-	else
-		::g->plyr->message = STSTR_NCOFF;
+  if (::g->plyr->cheats & CF_NOCLIP)
+    ::g->plyr->message = STSTR_NCON;
+  else
+    ::g->plyr->message = STSTR_NCOFF;
 
-	DoomLib::SetPlayer( oldPlayer );
+  DoomLib::SetPlayer( oldPlayer );
 }
 CONSOLE_COMMAND_SHIP( idmypos, "for player position", 0 ) {
-	int oldPlayer = DoomLib::GetPlayer();
-	DoomLib::SetPlayer( 0 );
-	if ( ::g == NULL ) {
-		return;
-	}
+  int oldPlayer = DoomLib::GetPlayer();
+  DoomLib::SetPlayer( 0 );
+  if ( ::g == NULL ) {
+    return;
+  }
 
-	if (::g->gamestate != GS_LEVEL) {
-		return;
-	}
+  if (::g->gamestate != GS_LEVEL) {
+    return;
+  }
 
-	static char	buf[ST_MSGWIDTH];
-	sprintf(buf, "ang=0x%x;x,y=(0x%x,0x%x)",
-		::g->players[::g->consoleplayer].mo->angle,
-		::g->players[::g->consoleplayer].mo->x,
-		::g->players[::g->consoleplayer].mo->y);
-	::g->plyr->message = buf;
+  static char buf[ST_MSGWIDTH];
+  sprintf(buf, "ang=0x%x;x,y=(0x%x,0x%x)",
+    ::g->players[::g->consoleplayer].mo->angle,
+    ::g->players[::g->consoleplayer].mo->x,
+    ::g->players[::g->consoleplayer].mo->y);
+  ::g->plyr->message = buf;
 
-	DoomLib::SetPlayer( oldPlayer );
+  DoomLib::SetPlayer( oldPlayer );
 }
 
 CONSOLE_COMMAND_SHIP( idclev, "warp to next level", 0 ) {
-	int oldPlayer = DoomLib::GetPlayer();
-	DoomLib::SetPlayer( 0 );
-	if ( ::g == NULL ) {
-		return;
-	}
+  int oldPlayer = DoomLib::GetPlayer();
+  DoomLib::SetPlayer( 0 );
+  if ( ::g == NULL ) {
+    return;
+  }
 
-	if (::g->gamestate != GS_LEVEL) {
-		return;
-	}
+  if (::g->gamestate != GS_LEVEL) {
+    return;
+  }
 
-	int		epsd;
-	int		map;
+  int   epsd;
+  int   map;
 
-	if (::g->gamemode == commercial)
-	{
-		
-		if( args.Argc() > 1 ) {
-			epsd = 1;
-			map = atoi( args.Argv( 1 ) );
-		} else {
-			idLib::Printf( "idclev takes map as first argument \n"  );
-			return;
-		}
+  if (::g->gamemode == commercial)
+  {
+    
+    if( args.Argc() > 1 ) {
+      epsd = 1;
+      map = atoi( args.Argv( 1 ) );
+    } else {
+      idLib::Printf( "idclev takes map as first argument \n"  );
+      return;
+    }
 
-		if( map > 32 ) {
-			map = 1;
-		}
-	}
-	else
-	{
-		if( args.Argc() > 2 ) {
-			epsd = atoi( args.Argv( 1 ) );
-			map = atoi( args.Argv( 2 ) );
-		} else {
-			idLib::Printf( "idclev takes episode and map as first two arguments \n"  );
-			return;
-		}
-	}
+    if( map > 32 ) {
+      map = 1;
+    }
+  }
+  else
+  {
+    if( args.Argc() > 2 ) {
+      epsd = atoi( args.Argv( 1 ) );
+      map = atoi( args.Argv( 2 ) );
+    } else {
+      idLib::Printf( "idclev takes episode and map as first two arguments \n"  );
+      return;
+    }
+  }
 
-	// Catch invalid maps.
-	if (epsd < 1)
-		return;
+  // Catch invalid maps.
+  if (epsd < 1)
+    return;
 
-	if (map < 1)
-		return;
+  if (map < 1)
+    return;
 
-	// Ohmygod - this is not going to work.
-	if ((::g->gamemode == retail)
-		&& ((epsd > 4) || (map > 9)))
-		return;
+  // Ohmygod - this is not going to work.
+  if ((::g->gamemode == retail)
+    && ((epsd > 4) || (map > 9)))
+    return;
 
-	if ((::g->gamemode == registered)
-		&& ((epsd > 3) || (map > 9)))
-		return;
+  if ((::g->gamemode == registered)
+    && ((epsd > 3) || (map > 9)))
+    return;
 
-	if ((::g->gamemode == shareware)
-		&& ((epsd > 1) || (map > 9)))
-		return;
+  if ((::g->gamemode == shareware)
+    && ((epsd > 1) || (map > 9)))
+    return;
 
-	if ((::g->gamemode == commercial)
-		&& (( epsd > 1) || (map > 34)))
-		return;
+  if ((::g->gamemode == commercial)
+    && (( epsd > 1) || (map > 34)))
+    return;
 
-	// So be it.
-	::g->plyr->message = STSTR_CLEV;
-	G_DeferedInitNew(::g->gameskill, epsd, map);
+  // So be it.
+  ::g->plyr->message = STSTR_CLEV;
+  G_DeferedInitNew(::g->gameskill, epsd, map);
 
-	DoomLib::SetPlayer( oldPlayer );
+  DoomLib::SetPlayer( oldPlayer );
 }

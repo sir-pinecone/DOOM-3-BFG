@@ -66,49 +66,49 @@ static int cmsg(int type, int verbosity_level, char *fmt, ...);
 
 ControlMode ctl= 
 {
-	"SDL interface", 's',
-		1,0,0,
-		ctl_open,NULL, ctl_close, ctl_read, cmsg,
-		ctl_refresh, ctl_reset, ctl_file_name, ctl_total_time, ctl_current_time, 
-		ctl_note, 
-		ctl_master_volume, ctl_program, ctl_volume, 
-		ctl_expression, ctl_panning, ctl_sustain, ctl_pitch_bend
+  "SDL interface", 's',
+    1,0,0,
+    ctl_open,NULL, ctl_close, ctl_read, cmsg,
+    ctl_refresh, ctl_reset, ctl_file_name, ctl_total_time, ctl_current_time, 
+    ctl_note, 
+    ctl_master_volume, ctl_program, ctl_volume, 
+    ctl_expression, ctl_panning, ctl_sustain, ctl_pitch_bend
 };
 
 static int ctl_open(int using_stdin, int using_stdout)
 {
-	ctl.opened=1;
-	return 0;
+  ctl.opened=1;
+  return 0;
 }
 
 static void ctl_close(void)
 { 
-	ctl.opened=0;
+  ctl.opened=0;
 }
 
 static int ctl_read(int *valp)
 {
-	return RC_NO_RETURN_VALUE;
+  return RC_NO_RETURN_VALUE;
 }
 extern void SendDebugMsg(const char*);
 extern bool debugOutput;
 static int cmsg(int type, int verbosity_level, char *fmt, ...)
 {
 #ifdef _DEBUG
-	va_list ap;
+  va_list ap;
 
-	va_start(ap, fmt);
-	idStr::vsnPrintf(timidity_error, TIMIDITY_ERROR_MAX_CHARS - 1, fmt, ap);
-	va_end(ap);
+  va_start(ap, fmt);
+  idStr::vsnPrintf(timidity_error, TIMIDITY_ERROR_MAX_CHARS - 1, fmt, ap);
+  va_end(ap);
 
-	strcat( timidity_error, "\n" );
+  strcat( timidity_error, "\n" );
 
-	if ( debugOutput && verbosity_level <= VERB_VERBOSE ) {
-		safeOutputDebug( timidity_error );
-	}
+  if ( debugOutput && verbosity_level <= VERB_VERBOSE ) {
+    safeOutputDebug( timidity_error );
+  }
 #endif
 
-	return 0;
+  return 0;
 }
 
 static void ctl_refresh(void) { }

@@ -36,14 +36,14 @@ If you have questions concerning this license or the applicable additional terms
 //
 boolean
 M_WriteFile
-( char const*	name,
-  void*		source,
-  int		length );
+( char const* name,
+  void*   source,
+  int   length );
 
 int
-	M_ReadFile
-	( char const*	name,
-	byte**	buffer );
+  M_ReadFile
+  ( char const* name,
+  byte**  buffer );
 
 qboolean M_WriteSaveGame( void* source, int length );
 int M_ReadSaveGame ( byte** buffer );
@@ -56,10 +56,10 @@ void M_SaveDefaults (void);
 
 int
 M_DrawText
-( int		x,
-  int		y,
-  qboolean	direct,
-  char*		string );
+( int   x,
+  int   y,
+  qboolean  direct,
+  char*   string );
 
 
 #endif

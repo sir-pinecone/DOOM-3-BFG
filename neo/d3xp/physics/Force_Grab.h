@@ -33,7 +33,7 @@ If you have questions concerning this license or the applicable additional terms
 /*
 ===============================================================================
 
-	Drag force
+  Drag force
 
 ===============================================================================
 */
@@ -41,39 +41,39 @@ If you have questions concerning this license or the applicable additional terms
 class idForce_Grab : public idForce {
 
 public:
-	CLASS_PROTOTYPE( idForce_Grab );
+  CLASS_PROTOTYPE( idForce_Grab );
 
-	void				Save( idSaveGame *savefile ) const;
-	void				Restore( idRestoreGame *savefile );
+  void        Save( idSaveGame *savefile ) const;
+  void        Restore( idRestoreGame *savefile );
 
-						idForce_Grab();
-	virtual				~idForce_Grab();
-						// initialize the drag force
-	void				Init( float damping );
-						// set physics object being dragged
-	void				SetPhysics( idPhysics *physics, int id, const idVec3 &goal );
-						// update the goal position
-	void				SetGoalPosition( const idVec3 &goal );
+            idForce_Grab();
+  virtual       ~idForce_Grab();
+            // initialize the drag force
+  void        Init( float damping );
+            // set physics object being dragged
+  void        SetPhysics( idPhysics *physics, int id, const idVec3 &goal );
+            // update the goal position
+  void        SetGoalPosition( const idVec3 &goal );
 
 
 public: // common force interface
-	virtual void		Evaluate( int time );
-	virtual void		RemovePhysics( const idPhysics *phys );
+  virtual void    Evaluate( int time );
+  virtual void    RemovePhysics( const idPhysics *phys );
 
-	// Get the distance from object to goal position
-	float				GetDistanceToGoal();
+  // Get the distance from object to goal position
+  float       GetDistanceToGoal();
 
 private:
 
-	// properties
-	float				damping;
-	idVec3				goalPosition;
+  // properties
+  float       damping;
+  idVec3        goalPosition;
 
-	float				distanceToGoal;
+  float       distanceToGoal;
 
-	// positioning
-	idPhysics *			physics;		// physics object
-	int					id;				// clip model id of physics object
+  // positioning
+  idPhysics *     physics;    // physics object
+  int         id;       // clip model id of physics object
 };
 
 #endif /* !__FORCE_GRAB_H__ */

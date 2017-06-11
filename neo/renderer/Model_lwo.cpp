@@ -35,7 +35,7 @@ If you have questions concerning this license or the applicable additional terms
 /*
 ======================================================================
 
-	Converted from lwobject sample prog from LW 6.5 SDK.
+  Converted from lwobject sample prog from LW 6.5 SDK.
 
 ======================================================================
 */
@@ -52,30 +52,30 @@ void lwFreeClip( lwClip *clip )
    if ( clip ) {
       lwListFree( clip->ifilter, (void (__cdecl *)(void *))lwFreePlugin );
       lwListFree( clip->pfilter, (void (__cdecl *)(void *))lwFreePlugin );
-	  switch( clip->type ) {
-		case ID_STIL: {
-	      if ( clip->source.still.name ) Mem_Free( clip->source.still.name );
-		  break;
-		}
-		case ID_ISEQ: {
+    switch( clip->type ) {
+    case ID_STIL: {
+        if ( clip->source.still.name ) Mem_Free( clip->source.still.name );
+      break;
+    }
+    case ID_ISEQ: {
           if ( clip->source.seq.suffix ) Mem_Free( clip->source.seq.suffix );
           if ( clip->source.seq.prefix ) Mem_Free( clip->source.seq.prefix );
-		  break;
-		}
-		case ID_ANIM: {
-		  if ( clip->source.anim.server ) Mem_Free( clip->source.anim.server );
+      break;
+    }
+    case ID_ANIM: {
+      if ( clip->source.anim.server ) Mem_Free( clip->source.anim.server );
           if ( clip->source.anim.name ) Mem_Free( clip->source.anim.name );
-		  break;
-	    }
-		case ID_XREF: {
-		  if ( clip->source.xref.string ) Mem_Free( clip->source.xref.string );
-		  break;
-		}
-		case ID_STCC: {
+      break;
+      }
+    case ID_XREF: {
+      if ( clip->source.xref.string ) Mem_Free( clip->source.xref.string );
+      break;
+    }
+    case ID_STCC: {
           if ( clip->source.cycle.name ) Mem_Free( clip->source.cycle.name );
-		  break;
-	    }
-	  }
+      break;
+      }
+    }
       Mem_Free( clip );
    }
 }
@@ -309,7 +309,7 @@ Free the memory used by an lwEnvelope.
 ====================================================================== */
 
 void lwFree( void *ptr ) {
-	Mem_Free( ptr );
+  Mem_Free( ptr );
 }
 
 void lwFreeEnvelope( lwEnvelope *env )
@@ -773,7 +773,7 @@ float evalEnvelope( lwEnvelope *env, float time )
 
    /* if there's no key, the value is 0 */
    if ( env->nkeys == 0 || skey == NULL ) {
-	   return 0.0f;
+     return 0.0f;
    }
 
    /* if there's only one key, the value is constant */
@@ -783,7 +783,7 @@ float evalEnvelope( lwEnvelope *env, float time )
 
    /* find the last keys */
    while ( ekey->next != NULL ) {
-	   ekey = ekey->next;
+     ekey = ekey->next;
    }
 
    /* use pre-behavior if time is before first key time */
@@ -812,13 +812,13 @@ float evalEnvelope( lwEnvelope *env, float time )
             break;
 
          case BEH_LINEAR:
-			 if ( skey->next != NULL ) {
-				out = outgoing( skey, skey->next )
-					/ ( skey->next->time - skey->time );
-				return out * ( time - skey->time ) + skey->value;
-			 } else {
-				 return 0.0f;
-			 }
+       if ( skey->next != NULL ) {
+        out = outgoing( skey, skey->next )
+          / ( skey->next->time - skey->time );
+        return out * ( time - skey->time ) + skey->value;
+       } else {
+         return 0.0f;
+       }
       }
    }
 
@@ -859,13 +859,13 @@ float evalEnvelope( lwEnvelope *env, float time )
 
    key0 = env->key;
    if ( key0 == NULL || key0->next == NULL ) {
-	   return 0.0f;
+     return 0.0f;
    }
    while ( time > key0->next->time )
       key0 = key0->next;
    key1 = key0->next;
    if ( key1 == NULL ) {
-	   return 0.0f;
+     return 0.0f;
    }
 
    /* check for singularities first */
@@ -1055,7 +1055,7 @@ int getI1( idFile *fp )
    int i, c;
 
    if ( flen == FLEN_ERROR ) return 0;
-	c = 0;
+  c = 0;
    i = fp->Read(&c, 1);
    if ( i < 0 ) {
       flen = FLEN_ERROR;
@@ -1102,7 +1102,7 @@ unsigned char getU1( idFile *fp )
    int i, c;
 
    if ( flen == FLEN_ERROR ) return 0;
-	  c = 0;
+    c = 0;
    i = fp->Read(&c, 1);
    if ( i < 0 ) {
       flen = FLEN_ERROR;
@@ -1150,35 +1150,35 @@ int getVX( idFile *fp )
 
    if ( flen == FLEN_ERROR ) return 0;
 
-	c = 0;
+  c = 0;
    if (fp->Read(&c, 1) == -1) {
-	   return 0;
+     return 0;
    }
 
    if ( c != 0xFF ) {
       i = c << 8;
-	  c = 0;
-	  if (fp->Read(&c, 1) == -1) {
-		  return 0;
-	  }
+    c = 0;
+    if (fp->Read(&c, 1) == -1) {
+      return 0;
+    }
       i |= c;
       flen += 2;
    }
    else {
-	  c = 0;
-	  if (fp->Read(&c, 1) == -1) {
-		  return 0;
-	  }
+    c = 0;
+    if (fp->Read(&c, 1) == -1) {
+      return 0;
+    }
       i = c << 16;
-	  c = 0;
-	  if (fp->Read(&c, 1) == -1) {
-		  return 0;
-	  }
+    c = 0;
+    if (fp->Read(&c, 1) == -1) {
+      return 0;
+    }
       i |= c << 8;
-	  c = 0;
-	  if (fp->Read(&c, 1) == -1) {
-		  return 0;
-	  }
+    c = 0;
+    if (fp->Read(&c, 1) == -1) {
+      return 0;
+    }
       i |= c;
       flen += 4;
    }
@@ -1200,7 +1200,7 @@ float getF4( idFile *fp )
    flen += 4;
 
    if ( IEEE_FLT_IS_DENORMAL( f ) ) {
-	   f = 0.0f;
+     f = 0.0f;
    }
    return f;
 }
@@ -1215,12 +1215,12 @@ char *getS0( idFile *fp )
 
    pos = fp->Tell();
    for ( i = 1; ; i++ ) {
-	   c = 0;
-	   if (fp->Read(&c, 1) == -1) {
-		   flen = FLEN_ERROR;
-		   return NULL;
-	   }
-	   if ( c == 0 ) break;
+     c = 0;
+     if (fp->Read(&c, 1) == -1) {
+       flen = FLEN_ERROR;
+       return NULL;
+     }
+     if ( c == 0 ) break;
    }
 
    if ( i == 1 ) {
@@ -1254,7 +1254,7 @@ char *getS0( idFile *fp )
 
 int sgetI1( unsigned char **bp )
 {
-	assert( bp != NULL && *bp != NULL ); // remove compiler warning
+  assert( bp != NULL && *bp != NULL ); // remove compiler warning
    int i;
 
    if ( flen == FLEN_ERROR ) return 0;
@@ -1268,7 +1268,7 @@ int sgetI1( unsigned char **bp )
 
 short sgetI2( unsigned char **bp )
 {
-	assert( bp != NULL && *bp != NULL ); // remove compiler warning
+  assert( bp != NULL && *bp != NULL ); // remove compiler warning
    short i;
 
    if ( flen == FLEN_ERROR ) return 0;
@@ -1282,8 +1282,8 @@ short sgetI2( unsigned char **bp )
 
 int sgetI4( unsigned char **bp )
 {
-	assert( bp != NULL && *bp != NULL ); // remove compiler warning
-	short i;
+  assert( bp != NULL && *bp != NULL ); // remove compiler warning
+  short i;
 
    if ( flen == FLEN_ERROR ) return 0;
    memcpy( &i, *bp, sizeof( i ) );
@@ -1364,7 +1364,7 @@ float sgetF4( unsigned char **bp )
    (*bp) += 4;
 
    if ( IEEE_FLT_IS_DENORMAL( f ) ) {
-	   f = 0.0f;
+     f = 0.0f;
    }
    return f;
 }
@@ -1468,7 +1468,7 @@ lwObject *lwGetObject( const char *filename, unsigned int *failID, int *failpos 
 
    fp = fileSystem->OpenFileRead( filename );
    if ( !fp ) {
-	   return NULL;
+     return NULL;
    }
 
    /* read the first 12 bytes */
@@ -1491,7 +1491,7 @@ lwObject *lwGetObject( const char *filename, unsigned int *failID, int *failpos 
    }
 
    if ( type != ID_LWO2 ) {
-	  fileSystem->CloseFile( fp );
+    fileSystem->CloseFile( fp );
       if ( type == ID_LWOB )
          return lwGetObject5( filename, failID, failpos );
       else {
@@ -2001,7 +2001,7 @@ lwSurface *lwGetSurface5( idFile *fp, int cksize, lwObject *obj )
             break;
 
          case ID_TFLG:
-			 assert( tex != NULL );
+       assert( tex != NULL );
             flags = getU2( fp );
 
             if ( flags & 1 ) i = 0;
@@ -2023,25 +2023,25 @@ lwSurface *lwGetSurface5( idFile *fp, int cksize, lwObject *obj )
             break;
 
          case ID_TSIZ:
-			 assert( tex != NULL );
+       assert( tex != NULL );
             for ( i = 0; i < 3; i++ )
                tex->tmap.size.val[ i ] = getF4( fp );
             break;
 
          case ID_TCTR:
-			 assert( tex != NULL );
+       assert( tex != NULL );
             for ( i = 0; i < 3; i++ )
                tex->tmap.center.val[ i ] = getF4( fp );
             break;
 
          case ID_TFAL:
-			 assert( tex != NULL );
+       assert( tex != NULL );
             for ( i = 0; i < 3; i++ )
                tex->tmap.falloff.val[ i ] = getF4( fp );
             break;
 
          case ID_TVEL:
-			 assert( tex != NULL );
+       assert( tex != NULL );
             for ( i = 0; i < 3; i++ )
                v[ i ] = getF4( fp );
             tex->tmap.center.eindex = add_tvel( tex->tmap.center.val, v,
@@ -2049,53 +2049,53 @@ lwSurface *lwGetSurface5( idFile *fp, int cksize, lwObject *obj )
             break;
 
          case ID_TCLR:
-			 assert( tex != NULL );
+       assert( tex != NULL );
             if ( tex->type == ID_PROC )
                for ( i = 0; i < 3; i++ )
                   tex->param.proc.value[ i ] = getU1( fp ) / 255.0f;
             break;
 
          case ID_TVAL:
-			 assert( tex != NULL );
+       assert( tex != NULL );
             tex->param.proc.value[ 0 ] = getI2( fp ) / 256.0f;
             break;
 
          case ID_TAMP:
-			 assert( tex != NULL );
+       assert( tex != NULL );
             if ( tex->type == ID_IMAP )
                tex->param.imap.amplitude.val = getF4( fp );
             break;
 
          case ID_TIMG:
-			 assert( tex != NULL );
+       assert( tex != NULL );
             s = getS0( fp );
             tex->param.imap.cindex = add_clip( s, &obj->clip, &obj->nclips );
             break;
 
          case ID_TAAS:
-			 assert( tex != NULL );
+       assert( tex != NULL );
             tex->param.imap.aa_strength = getF4( fp );
             tex->param.imap.aas_flags = 1;
             break;
 
          case ID_TREF:
-			 assert( tex != NULL );
+       assert( tex != NULL );
             tex->tmap.ref_object = (char*)getbytes( fp, sz );
             break;
 
          case ID_TOPC:
-			 assert( tex != NULL );
+       assert( tex != NULL );
             tex->opacity.val = getF4( fp );
             break;
 
          case ID_TFP0:
-			 assert( tex != NULL );
+       assert( tex != NULL );
             if ( tex->type == ID_IMAP )
                tex->param.imap.wrapw.val = getF4( fp );
             break;
 
          case ID_TFP1:
-			 assert( tex != NULL );
+       assert( tex != NULL );
             if ( tex->type == ID_IMAP )
                tex->param.imap.wraph.val = getF4( fp );
             break;
@@ -2109,7 +2109,7 @@ lwSurface *lwGetSurface5( idFile *fp, int cksize, lwObject *obj )
             break;
 
          case ID_SDAT:
-			 assert( shdr != NULL );
+       assert( shdr != NULL );
             shdr->data = getbytes( fp, sz );
             break;
 
@@ -2264,7 +2264,7 @@ lwObject *lwGetObject5( const char *filename, unsigned int *failID, int *failpos
    /* read the first 12 bytes */
    fp = fileSystem->OpenFileRead( filename );
    if ( !fp ) {
-	   return NULL;
+     return NULL;
    }
 
    set_flen( 0 );
@@ -2432,41 +2432,41 @@ added to the array in the lwPointList.
 
 int lwGetPoints( idFile *fp, int cksize, lwPointList *point )
 {
-	float *f;
-	int np, i, j;
+  float *f;
+  int np, i, j;
 
-	if ( cksize == 1 ) return 1;
+  if ( cksize == 1 ) return 1;
 
-	/* extend the point array to hold the new points */
+  /* extend the point array to hold the new points */
 
-	np = cksize / 12;
-	point->offset = point->count;
-	point->count += np;
-	lwPoint *oldpt = point->pt;
-	point->pt = (lwPoint*)Mem_Alloc( point->count * sizeof( lwPoint ), TAG_MODEL );
-	if ( !point->pt ) return 0;
-	if ( oldpt ) {
-		memcpy( point->pt, oldpt, point->offset * sizeof( lwPoint ) );
-		Mem_Free( oldpt );
-	}
-	memset( &point->pt[ point->offset ], 0, np * sizeof( lwPoint ) );
+  np = cksize / 12;
+  point->offset = point->count;
+  point->count += np;
+  lwPoint *oldpt = point->pt;
+  point->pt = (lwPoint*)Mem_Alloc( point->count * sizeof( lwPoint ), TAG_MODEL );
+  if ( !point->pt ) return 0;
+  if ( oldpt ) {
+    memcpy( point->pt, oldpt, point->offset * sizeof( lwPoint ) );
+    Mem_Free( oldpt );
+  }
+  memset( &point->pt[ point->offset ], 0, np * sizeof( lwPoint ) );
 
-	/* read the whole chunk */
+  /* read the whole chunk */
 
-	f = ( float * ) getbytes( fp, cksize );
-	if ( !f ) return 0;
-	BigRevBytes( f, 4, np * 3 );
+  f = ( float * ) getbytes( fp, cksize );
+  if ( !f ) return 0;
+  BigRevBytes( f, 4, np * 3 );
 
-	/* assign position values */
+  /* assign position values */
 
-	for ( i = 0, j = 0; i < np; i++, j += 3 ) {
-		point->pt[ i ].pos[ 0 ] = f[ j ];
-		point->pt[ i ].pos[ 1 ] = f[ j + 1 ];
-		point->pt[ i ].pos[ 2 ] = f[ j + 2 ];
-	}
+  for ( i = 0, j = 0; i < np; i++, j += 3 ) {
+    point->pt[ i ].pos[ 0 ] = f[ j ];
+    point->pt[ i ].pos[ 1 ] = f[ j + 1 ];
+    point->pt[ i ].pos[ 2 ] = f[ j + 2 ];
+  }
 
-	Mem_Free( f );
-	return 1;
+  Mem_Free( f );
+  return 1;
 }
 
 
@@ -2480,23 +2480,23 @@ box hasn't already been initialized.
 
 void lwGetBoundingBox( lwPointList *point, float bbox[] )
 {
-	int i, j;
+  int i, j;
 
-	if ( point->count == 0 ) return;
+  if ( point->count == 0 ) return;
 
-	for ( i = 0; i < 6; i++ )
-		if ( bbox[ i ] != 0.0f ) return;
+  for ( i = 0; i < 6; i++ )
+    if ( bbox[ i ] != 0.0f ) return;
 
-	bbox[ 0 ] = bbox[ 1 ] = bbox[ 2 ] = 1e20f;
-	bbox[ 3 ] = bbox[ 4 ] = bbox[ 5 ] = -1e20f;
-	for ( i = 0; i < point->count; i++ ) {
-		for ( j = 0; j < 3; j++ ) {
-			if ( bbox[ j ] > point->pt[ i ].pos[ j ] )
-			bbox[ j ] = point->pt[ i ].pos[ j ];
-			if ( bbox[ j + 3 ] < point->pt[ i ].pos[ j ] )
-			bbox[ j + 3 ] = point->pt[ i ].pos[ j ];
-		}
-	}
+  bbox[ 0 ] = bbox[ 1 ] = bbox[ 2 ] = 1e20f;
+  bbox[ 3 ] = bbox[ 4 ] = bbox[ 5 ] = -1e20f;
+  for ( i = 0; i < point->count; i++ ) {
+    for ( j = 0; j < 3; j++ ) {
+      if ( bbox[ j ] > point->pt[ i ].pos[ j ] )
+      bbox[ j ] = point->pt[ i ].pos[ j ];
+      if ( bbox[ j + 3 ] < point->pt[ i ].pos[ j ] )
+      bbox[ j + 3 ] = point->pt[ i ].pos[ j ];
+    }
+  }
 }
 
 
@@ -2509,36 +2509,36 @@ Allocate or extend the polygon arrays to hold new records.
 
 int lwAllocPolygons( lwPolygonList *plist, int npols, int nverts )
 {
-	int i;
+  int i;
 
-	plist->offset = plist->count;
-	plist->count += npols;
-	lwPolygon *oldpol = plist->pol;
-	plist->pol = (lwPolygon*)Mem_Alloc( plist->count * sizeof( lwPolygon ), TAG_MODEL );
-	if ( !plist->pol ) return 0;
-	if ( oldpol ) {
-		memcpy( plist->pol, oldpol, plist->offset * sizeof( lwPolygon ) );
-		Mem_Free( oldpol );
-	}
-	memset( plist->pol + plist->offset, 0, npols * sizeof( lwPolygon ) );
+  plist->offset = plist->count;
+  plist->count += npols;
+  lwPolygon *oldpol = plist->pol;
+  plist->pol = (lwPolygon*)Mem_Alloc( plist->count * sizeof( lwPolygon ), TAG_MODEL );
+  if ( !plist->pol ) return 0;
+  if ( oldpol ) {
+    memcpy( plist->pol, oldpol, plist->offset * sizeof( lwPolygon ) );
+    Mem_Free( oldpol );
+  }
+  memset( plist->pol + plist->offset, 0, npols * sizeof( lwPolygon ) );
 
-	plist->voffset = plist->vcount;
-	plist->vcount += nverts;
-	lwPolVert *oldpolv = plist->pol[0].v;
-	plist->pol[0].v = (lwPolVert*)Mem_Alloc( plist->vcount * sizeof( lwPolVert ), TAG_MODEL );
-	if ( !plist->pol[ 0 ].v ) return 0;
-	if ( oldpolv ) {
-		memcpy( plist->pol[0].v, oldpolv, plist->voffset * sizeof( lwPolVert ) );
-		Mem_Free( oldpolv );
-	}
-	memset( plist->pol[ 0 ].v + plist->voffset, 0, nverts * sizeof( lwPolVert ) );
+  plist->voffset = plist->vcount;
+  plist->vcount += nverts;
+  lwPolVert *oldpolv = plist->pol[0].v;
+  plist->pol[0].v = (lwPolVert*)Mem_Alloc( plist->vcount * sizeof( lwPolVert ), TAG_MODEL );
+  if ( !plist->pol[ 0 ].v ) return 0;
+  if ( oldpolv ) {
+    memcpy( plist->pol[0].v, oldpolv, plist->voffset * sizeof( lwPolVert ) );
+    Mem_Free( oldpolv );
+  }
+  memset( plist->pol[ 0 ].v + plist->voffset, 0, nverts * sizeof( lwPolVert ) );
 
-	/* fix up the old vertex pointers */
+  /* fix up the old vertex pointers */
 
-	for ( i = 1; i < plist->offset; i++ )
-		plist->pol[ i ].v = plist->pol[ i - 1 ].v + plist->pol[ i - 1 ].nverts;
+  for ( i = 1; i < plist->offset; i++ )
+    plist->pol[ i ].v = plist->pol[ i - 1 ].v + plist->pol[ i - 1 ].nverts;
 
-	return 1;
+  return 1;
 }
 
 
@@ -2636,7 +2636,7 @@ void lwGetPolyNormals( lwPointList *point, lwPolygonList *polygon )
       if ( polygon->pol[ i ].nverts < 3 ) continue;
       for ( j = 0; j < 3; j++ ) {
 
-		  // FIXME: track down why indexes are way out of range
+      // FIXME: track down why indexes are way out of range
          p1[ j ] = point->pt[ polygon->pol[ i ].v[ 0 ].index ].pos[ j ];
          p2[ j ] = point->pt[ polygon->pol[ i ].v[ 1 ].index ].pos[ j ];
          pn[ j ] = point->pt[ polygon->pol[ i ].v[ polygon->pol[ i ].nverts - 1 ].index ].pos[ j ];
@@ -2803,18 +2803,18 @@ Free memory used by an lwTagList.
 
 void lwFreeTags( lwTagList *tlist )
 {
-	int i;
+  int i;
 
-	if ( tlist ) {
-		if ( tlist->tag ) {
-			for ( i = 0; i < tlist->count; i++ )
-				if ( tlist->tag[ i ] ) {
-					Mem_Free( tlist->tag[ i ] );
-				}
-			Mem_Free( tlist->tag );
-		}
-		memset( tlist, 0, sizeof( lwTagList ));
-	}
+  if ( tlist ) {
+    if ( tlist->tag ) {
+      for ( i = 0; i < tlist->count; i++ )
+        if ( tlist->tag[ i ] ) {
+          Mem_Free( tlist->tag[ i ] );
+        }
+      Mem_Free( tlist->tag );
+    }
+    memset( tlist, 0, sizeof( lwTagList ));
+  }
 }
 
 
@@ -2828,53 +2828,53 @@ added to the lwTagList array.
 
 int lwGetTags( idFile *fp, int cksize, lwTagList *tlist )
 {
-	char *buf, *bp;
-	int i, len, ntags;
+  char *buf, *bp;
+  int i, len, ntags;
 
-	if ( cksize == 0 ) return 1;
+  if ( cksize == 0 ) return 1;
 
-	/* read the whole chunk */
+  /* read the whole chunk */
 
-	set_flen( 0 );
-	buf = (char*)getbytes( fp, cksize );
-	if ( !buf ) return 0;
+  set_flen( 0 );
+  buf = (char*)getbytes( fp, cksize );
+  if ( !buf ) return 0;
 
-	/* count the strings */
+  /* count the strings */
 
-	ntags = 0;
-	bp = buf;
-	while ( bp < buf + cksize ) {
-		len = strlen( bp ) + 1;
-		len += len & 1;
-		bp += len;
-		++ntags;
-	}
+  ntags = 0;
+  bp = buf;
+  while ( bp < buf + cksize ) {
+    len = strlen( bp ) + 1;
+    len += len & 1;
+    bp += len;
+    ++ntags;
+  }
 
-	/* expand the string array to hold the new tags */
+  /* expand the string array to hold the new tags */
 
-	tlist->offset = tlist->count;
-	tlist->count += ntags;
-	char **oldtag = tlist->tag;
-	tlist->tag = (char**)Mem_Alloc( tlist->count * sizeof( char * ), TAG_MODEL );
-	if ( !tlist->tag ) goto Fail;
-	if ( oldtag ) {
-		memcpy( tlist->tag, oldtag, tlist->offset * sizeof( char * ) );
-		Mem_Free( oldtag );
-	}
-	memset( &tlist->tag[ tlist->offset ], 0, ntags * sizeof( char * ) );
+  tlist->offset = tlist->count;
+  tlist->count += ntags;
+  char **oldtag = tlist->tag;
+  tlist->tag = (char**)Mem_Alloc( tlist->count * sizeof( char * ), TAG_MODEL );
+  if ( !tlist->tag ) goto Fail;
+  if ( oldtag ) {
+    memcpy( tlist->tag, oldtag, tlist->offset * sizeof( char * ) );
+    Mem_Free( oldtag );
+  }
+  memset( &tlist->tag[ tlist->offset ], 0, ntags * sizeof( char * ) );
 
-	/* copy the new tags to the tag array */
+  /* copy the new tags to the tag array */
 
-	bp = buf;
-	for ( i = 0; i < ntags; i++ )
-		tlist->tag[ i + tlist->offset ] = sgetS0( (unsigned char**)&bp );
+  bp = buf;
+  for ( i = 0; i < ntags; i++ )
+    tlist->tag[ i + tlist->offset ] = sgetS0( (unsigned char**)&bp );
 
-	Mem_Free( buf );
-	return 1;
+  Mem_Free( buf );
+  return 1;
 
 Fail:
-	if ( buf ) Mem_Free( buf );
-	return 0;
+  if ( buf ) Mem_Free( buf );
+  return 0;
 }
 
 
@@ -2887,33 +2887,33 @@ Read polygon tags from a PTAG chunk in an LWO2 file.
 
 int lwGetPolygonTags( idFile *fp, int cksize, lwTagList *tlist, lwPolygonList *plist )
 {
-	unsigned int type;
-	int rlen = 0, i, j;
+  unsigned int type;
+  int rlen = 0, i, j;
 
-	set_flen( 0 );
-	type = getU4( fp );
-	rlen = get_flen();
-	if ( rlen < 0 ) return 0;
+  set_flen( 0 );
+  type = getU4( fp );
+  rlen = get_flen();
+  if ( rlen < 0 ) return 0;
 
-	if ( type != ID_SURF && type != ID_PART && type != ID_SMGP ) {
-		fp->Seek( cksize - 4, FS_SEEK_CUR );
-		return 1;
-	}
+  if ( type != ID_SURF && type != ID_PART && type != ID_SMGP ) {
+    fp->Seek( cksize - 4, FS_SEEK_CUR );
+    return 1;
+  }
 
-	while ( rlen < cksize ) {
-		i = getVX( fp ) + plist->offset;
-		j = getVX( fp ) + tlist->offset;
-		rlen = get_flen();
-		if ( rlen < 0 || rlen > cksize ) return 0;
+  while ( rlen < cksize ) {
+    i = getVX( fp ) + plist->offset;
+    j = getVX( fp ) + tlist->offset;
+    rlen = get_flen();
+    if ( rlen < 0 || rlen > cksize ) return 0;
 
-		switch ( type ) {
-			case ID_SURF:  plist->pol[ i ].surf = ( lwSurface * ) j;  break;
-			case ID_PART:  plist->pol[ i ].part = j;  break;
-			case ID_SMGP:  plist->pol[ i ].smoothgrp = j;  break;
-		}
-	}
+    switch ( type ) {
+      case ID_SURF:  plist->pol[ i ].surf = ( lwSurface * ) j;  break;
+      case ID_PART:  plist->pol[ i ].part = j;  break;
+      case ID_SMGP:  plist->pol[ i ].smoothgrp = j;  break;
+    }
+  }
 
-	return 1;
+  return 1;
 }
 
 
@@ -2926,12 +2926,12 @@ Free the memory used by an lwPlugin.
 
 void lwFreePlugin( lwPlugin *p )
 {
-	if ( p ) {
-		if ( p->ord ) Mem_Free( p->ord );
-		if ( p->name ) Mem_Free( p->name );
-		if ( p->data ) Mem_Free( p->data );
-		Mem_Free( p );
-	}
+  if ( p ) {
+    if ( p->ord ) Mem_Free( p->ord );
+    if ( p->name ) Mem_Free( p->name );
+    if ( p->data ) Mem_Free( p->data );
+    Mem_Free( p );
+  }
 }
 
 
@@ -2944,24 +2944,24 @@ Free the memory used by an lwTexture.
 
 void lwFreeTexture( lwTexture *t )
 {
-	if ( t ) {
-		if ( t->ord ) Mem_Free( t->ord );
-		switch ( t->type ) {
-			case ID_IMAP:
-			if ( t->param.imap.vmap_name ) Mem_Free( t->param.imap.vmap_name );
-			break;
-			case ID_PROC:
-			if ( t->param.proc.name ) Mem_Free( t->param.proc.name );
-			if ( t->param.proc.data ) Mem_Free( t->param.proc.data );
-			break;
-			case ID_GRAD:
-			if ( t->param.grad.key ) Mem_Free( t->param.grad.key );
-			if ( t->param.grad.ikey ) Mem_Free( t->param.grad.ikey );
-			break;
-		}
-		if ( t->tmap.ref_object ) Mem_Free( t->tmap.ref_object );
-		Mem_Free( t );
-	}
+  if ( t ) {
+    if ( t->ord ) Mem_Free( t->ord );
+    switch ( t->type ) {
+      case ID_IMAP:
+      if ( t->param.imap.vmap_name ) Mem_Free( t->param.imap.vmap_name );
+      break;
+      case ID_PROC:
+      if ( t->param.proc.name ) Mem_Free( t->param.proc.name );
+      if ( t->param.proc.data ) Mem_Free( t->param.proc.data );
+      break;
+      case ID_GRAD:
+      if ( t->param.grad.key ) Mem_Free( t->param.grad.key );
+      if ( t->param.grad.ikey ) Mem_Free( t->param.grad.ikey );
+      break;
+    }
+    if ( t->tmap.ref_object ) Mem_Free( t->tmap.ref_object );
+    Mem_Free( t );
+  }
 }
 
 
@@ -2974,25 +2974,25 @@ Free the memory used by an lwSurface.
 
 void lwFreeSurface( lwSurface *surf )
 {
-	if ( surf ) {
-		if ( surf->name ) Mem_Free( surf->name );
-		if ( surf->srcname ) Mem_Free( surf->srcname );
+  if ( surf ) {
+    if ( surf->name ) Mem_Free( surf->name );
+    if ( surf->srcname ) Mem_Free( surf->srcname );
 
-		lwListFree( surf->shader, (void (__cdecl *)(void *))lwFreePlugin );
+    lwListFree( surf->shader, (void (__cdecl *)(void *))lwFreePlugin );
 
-		lwListFree( surf->color.tex, (void (__cdecl *)(void *))lwFreeTexture );
-		lwListFree( surf->luminosity.tex, (void (__cdecl *)(void *))lwFreeTexture );
-		lwListFree( surf->diffuse.tex, (void (__cdecl *)(void *))lwFreeTexture );
-		lwListFree( surf->specularity.tex, (void (__cdecl *)(void *))lwFreeTexture );
-		lwListFree( surf->glossiness.tex, (void (__cdecl *)(void *))lwFreeTexture );
-		lwListFree( surf->reflection.val.tex, (void (__cdecl *)(void *))lwFreeTexture );
-		lwListFree( surf->transparency.val.tex, (void (__cdecl *)(void *))lwFreeTexture );
-		lwListFree( surf->eta.tex, (void (__cdecl *)(void *))lwFreeTexture );
-		lwListFree( surf->translucency.tex, (void (__cdecl *)(void *))lwFreeTexture );
-		lwListFree( surf->bump.tex, (void (__cdecl *)(void *))lwFreeTexture );
+    lwListFree( surf->color.tex, (void (__cdecl *)(void *))lwFreeTexture );
+    lwListFree( surf->luminosity.tex, (void (__cdecl *)(void *))lwFreeTexture );
+    lwListFree( surf->diffuse.tex, (void (__cdecl *)(void *))lwFreeTexture );
+    lwListFree( surf->specularity.tex, (void (__cdecl *)(void *))lwFreeTexture );
+    lwListFree( surf->glossiness.tex, (void (__cdecl *)(void *))lwFreeTexture );
+    lwListFree( surf->reflection.val.tex, (void (__cdecl *)(void *))lwFreeTexture );
+    lwListFree( surf->transparency.val.tex, (void (__cdecl *)(void *))lwFreeTexture );
+    lwListFree( surf->eta.tex, (void (__cdecl *)(void *))lwFreeTexture );
+    lwListFree( surf->translucency.tex, (void (__cdecl *)(void *))lwFreeTexture );
+    lwListFree( surf->bump.tex, (void (__cdecl *)(void *))lwFreeTexture );
 
-		Mem_Free( surf );
-	}
+    Mem_Free( surf );
+  }
 }
 
 
@@ -3007,84 +3007,84 @@ texture types.
 
 int lwGetTHeader( idFile *fp, int hsz, lwTexture *tex )
 {
-	unsigned int id;
-	unsigned short sz;
-	int pos, rlen;
+  unsigned int id;
+  unsigned short sz;
+  int pos, rlen;
 
 
-	/* remember where we started */
+  /* remember where we started */
 
-	set_flen( 0 );
-	pos = fp->Tell();
+  set_flen( 0 );
+  pos = fp->Tell();
 
-	/* ordinal string */
+  /* ordinal string */
 
-	tex->ord = getS0( fp );
+  tex->ord = getS0( fp );
 
-	/* first subchunk header */
+  /* first subchunk header */
 
-	id = getU4( fp );
-	sz = getU2( fp );
-	if ( 0 > get_flen() ) return 0;
+  id = getU4( fp );
+  sz = getU2( fp );
+  if ( 0 > get_flen() ) return 0;
 
-	/* process subchunks as they're encountered */
+  /* process subchunks as they're encountered */
 
-	while ( 1 ) {
-		sz += sz & 1;
-		set_flen( 0 );
+  while ( 1 ) {
+    sz += sz & 1;
+    set_flen( 0 );
 
-		switch ( id ) {
-			case ID_CHAN:
-				tex->chan = getU4( fp );
-				break;
+    switch ( id ) {
+      case ID_CHAN:
+        tex->chan = getU4( fp );
+        break;
 
-			case ID_OPAC:
-				tex->opac_type = getU2( fp );
-				tex->opacity.val = getF4( fp );
-				tex->opacity.eindex = getVX( fp );
-				break;
+      case ID_OPAC:
+        tex->opac_type = getU2( fp );
+        tex->opacity.val = getF4( fp );
+        tex->opacity.eindex = getVX( fp );
+        break;
 
-			case ID_ENAB:
-				tex->enabled = getU2( fp );
-				break;
+      case ID_ENAB:
+        tex->enabled = getU2( fp );
+        break;
 
-			case ID_NEGA:
-				tex->negative = getU2( fp );
-				break;
+      case ID_NEGA:
+        tex->negative = getU2( fp );
+        break;
 
-			case ID_AXIS:
-				tex->axis = getU2( fp );
-				break;
+      case ID_AXIS:
+        tex->axis = getU2( fp );
+        break;
 
-			default:
-				break;
-		}
+      default:
+        break;
+    }
 
-		/* error while reading current subchunk? */
+    /* error while reading current subchunk? */
 
-		rlen = get_flen();
-		if ( rlen < 0 || rlen > sz ) return 0;
+    rlen = get_flen();
+    if ( rlen < 0 || rlen > sz ) return 0;
 
-		/* skip unread parts of the current subchunk */
+    /* skip unread parts of the current subchunk */
 
-		if ( rlen < sz )
-			fp->Seek( sz - rlen, FS_SEEK_CUR );
+    if ( rlen < sz )
+      fp->Seek( sz - rlen, FS_SEEK_CUR );
 
-		/* end of the texture header subchunk? */
+    /* end of the texture header subchunk? */
 
-		if ( hsz <= fp->Tell() - pos )
-			break;
+    if ( hsz <= fp->Tell() - pos )
+      break;
 
-		/* get the next subchunk header */
+    /* get the next subchunk header */
 
-		set_flen( 0 );
-		id = getU4( fp );
-		sz = getU2( fp );
-		if ( 6 != get_flen() ) return 0;
-	}
+    set_flen( 0 );
+    id = getU4( fp );
+    sz = getU2( fp );
+    if ( 6 != get_flen() ) return 0;
+  }
 
-	set_flen( fp->Tell() - pos );
-	return 1;
+  set_flen( fp->Tell() - pos );
+  return 1;
 }
 
 
@@ -3098,82 +3098,82 @@ defines the mapping from texture to world or object coordinates.
 
 int lwGetTMap( idFile *fp, int tmapsz, lwTMap *tmap )
 {
-	unsigned int id;
-	unsigned short sz;
-	int rlen, pos, i;
+  unsigned int id;
+  unsigned short sz;
+  int rlen, pos, i;
 
-	pos = fp->Tell();
-	id = getU4( fp );
-	sz = getU2( fp );
-	if ( 0 > get_flen() ) return 0;
+  pos = fp->Tell();
+  id = getU4( fp );
+  sz = getU2( fp );
+  if ( 0 > get_flen() ) return 0;
 
-	while ( 1 ) {
-		sz += sz & 1;
-		set_flen( 0 );
+  while ( 1 ) {
+    sz += sz & 1;
+    set_flen( 0 );
 
-		switch ( id ) {
-			case ID_SIZE:
-				for ( i = 0; i < 3; i++ )
-				tmap->size.val[ i ] = getF4( fp );
-				tmap->size.eindex = getVX( fp );
-				break;
+    switch ( id ) {
+      case ID_SIZE:
+        for ( i = 0; i < 3; i++ )
+        tmap->size.val[ i ] = getF4( fp );
+        tmap->size.eindex = getVX( fp );
+        break;
 
-			case ID_CNTR:
-				for ( i = 0; i < 3; i++ )
-				tmap->center.val[ i ] = getF4( fp );
-				tmap->center.eindex = getVX( fp );
-				break;
+      case ID_CNTR:
+        for ( i = 0; i < 3; i++ )
+        tmap->center.val[ i ] = getF4( fp );
+        tmap->center.eindex = getVX( fp );
+        break;
 
-			case ID_ROTA:
-				for ( i = 0; i < 3; i++ )
-				tmap->rotate.val[ i ] = getF4( fp );
-				tmap->rotate.eindex = getVX( fp );
-				break;
+      case ID_ROTA:
+        for ( i = 0; i < 3; i++ )
+        tmap->rotate.val[ i ] = getF4( fp );
+        tmap->rotate.eindex = getVX( fp );
+        break;
 
-			case ID_FALL:
-				tmap->fall_type = getU2( fp );
-				for ( i = 0; i < 3; i++ )
-				tmap->falloff.val[ i ] = getF4( fp );
-				tmap->falloff.eindex = getVX( fp );
-				break;
+      case ID_FALL:
+        tmap->fall_type = getU2( fp );
+        for ( i = 0; i < 3; i++ )
+        tmap->falloff.val[ i ] = getF4( fp );
+        tmap->falloff.eindex = getVX( fp );
+        break;
 
-			case ID_OREF:
-				tmap->ref_object = getS0( fp );
-				break;
+      case ID_OREF:
+        tmap->ref_object = getS0( fp );
+        break;
 
-			case ID_CSYS:
-				tmap->coord_sys = getU2( fp );
-				break;
+      case ID_CSYS:
+        tmap->coord_sys = getU2( fp );
+        break;
 
-			default:
-				break;
-		}
+      default:
+        break;
+    }
 
-		/* error while reading the current subchunk? */
+    /* error while reading the current subchunk? */
 
-		rlen = get_flen();
-		if ( rlen < 0 || rlen > sz ) return 0;
+    rlen = get_flen();
+    if ( rlen < 0 || rlen > sz ) return 0;
 
-		/* skip unread parts of the current subchunk */
+    /* skip unread parts of the current subchunk */
 
-		if ( rlen < sz )
-			fp->Seek( sz - rlen, FS_SEEK_CUR );
+    if ( rlen < sz )
+      fp->Seek( sz - rlen, FS_SEEK_CUR );
 
-		/* end of the TMAP subchunk? */
+    /* end of the TMAP subchunk? */
 
-		if ( tmapsz <= fp->Tell() - pos )
-			break;
+    if ( tmapsz <= fp->Tell() - pos )
+      break;
 
-		/* get the next subchunk header */
+    /* get the next subchunk header */
 
-		set_flen( 0 );
-		id = getU4( fp );
-		sz = getU2( fp );
-		if ( 6 != get_flen() ) return 0;
-	}
+    set_flen( 0 );
+    id = getU4( fp );
+    sz = getU2( fp );
+    if ( 6 != get_flen() ) return 0;
+  }
 
-	set_flen( fp->Tell() - pos );
-	return 1;
+  set_flen( fp->Tell() - pos );
+  return 1;
 }
 
 
@@ -3186,103 +3186,103 @@ Read an lwImageMap from a SURF.BLOK in an LWO2 file.
 
 int lwGetImageMap( idFile *fp, int rsz, lwTexture *tex )
 {
-	unsigned int id;
-	unsigned short sz;
-	int rlen, pos;
+  unsigned int id;
+  unsigned short sz;
+  int rlen, pos;
 
-	pos = fp->Tell();
-	id = getU4( fp );
-	sz = getU2( fp );
-	if ( 0 > get_flen() ) return 0;
+  pos = fp->Tell();
+  id = getU4( fp );
+  sz = getU2( fp );
+  if ( 0 > get_flen() ) return 0;
 
-	while ( 1 ) {
-		sz += sz & 1;
-		set_flen( 0 );
+  while ( 1 ) {
+    sz += sz & 1;
+    set_flen( 0 );
 
-		switch ( id ) {
-			case ID_TMAP:
-				if ( !lwGetTMap( fp, sz, &tex->tmap )) return 0;
-				break;
+    switch ( id ) {
+      case ID_TMAP:
+        if ( !lwGetTMap( fp, sz, &tex->tmap )) return 0;
+        break;
 
-			case ID_PROJ:
-				tex->param.imap.projection = getU2( fp );
-				break;
+      case ID_PROJ:
+        tex->param.imap.projection = getU2( fp );
+        break;
 
-			case ID_VMAP:
-				tex->param.imap.vmap_name = getS0( fp );
-				break;
+      case ID_VMAP:
+        tex->param.imap.vmap_name = getS0( fp );
+        break;
 
-			case ID_AXIS:
-				tex->param.imap.axis = getU2( fp );
-				break;
+      case ID_AXIS:
+        tex->param.imap.axis = getU2( fp );
+        break;
 
-			case ID_IMAG:
-				tex->param.imap.cindex = getVX( fp );
-				break;
+      case ID_IMAG:
+        tex->param.imap.cindex = getVX( fp );
+        break;
 
-			case ID_WRAP:
-				tex->param.imap.wrapw_type = getU2( fp );
-				tex->param.imap.wraph_type = getU2( fp );
-				break;
+      case ID_WRAP:
+        tex->param.imap.wrapw_type = getU2( fp );
+        tex->param.imap.wraph_type = getU2( fp );
+        break;
 
-			case ID_WRPW:
-				tex->param.imap.wrapw.val = getF4( fp );
-				tex->param.imap.wrapw.eindex = getVX( fp );
-				break;
+      case ID_WRPW:
+        tex->param.imap.wrapw.val = getF4( fp );
+        tex->param.imap.wrapw.eindex = getVX( fp );
+        break;
 
-			case ID_WRPH:
-				tex->param.imap.wraph.val = getF4( fp );
-				tex->param.imap.wraph.eindex = getVX( fp );
-				break;
+      case ID_WRPH:
+        tex->param.imap.wraph.val = getF4( fp );
+        tex->param.imap.wraph.eindex = getVX( fp );
+        break;
 
-			case ID_AAST:
-				tex->param.imap.aas_flags = getU2( fp );
-				tex->param.imap.aa_strength = getF4( fp );
-				break;
+      case ID_AAST:
+        tex->param.imap.aas_flags = getU2( fp );
+        tex->param.imap.aa_strength = getF4( fp );
+        break;
 
-			case ID_PIXB:
-				tex->param.imap.pblend = getU2( fp );
-				break;
+      case ID_PIXB:
+        tex->param.imap.pblend = getU2( fp );
+        break;
 
-			case ID_STCK:
-				tex->param.imap.stck.val = getF4( fp );
-				tex->param.imap.stck.eindex = getVX( fp );
-				break;
+      case ID_STCK:
+        tex->param.imap.stck.val = getF4( fp );
+        tex->param.imap.stck.eindex = getVX( fp );
+        break;
 
-			case ID_TAMP:
-				tex->param.imap.amplitude.val = getF4( fp );
-				tex->param.imap.amplitude.eindex = getVX( fp );
-				break;
+      case ID_TAMP:
+        tex->param.imap.amplitude.val = getF4( fp );
+        tex->param.imap.amplitude.eindex = getVX( fp );
+        break;
 
-			default:
-				break;
-		}
+      default:
+        break;
+    }
 
-		/* error while reading the current subchunk? */
+    /* error while reading the current subchunk? */
 
-		rlen = get_flen();
-		if ( rlen < 0 || rlen > sz ) return 0;
+    rlen = get_flen();
+    if ( rlen < 0 || rlen > sz ) return 0;
 
-		/* skip unread parts of the current subchunk */
+    /* skip unread parts of the current subchunk */
 
-		if ( rlen < sz )
-			fp->Seek( sz - rlen, FS_SEEK_CUR );
+    if ( rlen < sz )
+      fp->Seek( sz - rlen, FS_SEEK_CUR );
 
-		/* end of the image map? */
+    /* end of the image map? */
 
-		if ( rsz <= fp->Tell() - pos )
-			break;
+    if ( rsz <= fp->Tell() - pos )
+      break;
 
-		/* get the next subchunk header */
+    /* get the next subchunk header */
 
-		set_flen( 0 );
-		id = getU4( fp );
-		sz = getU2( fp );
-		if ( 6 != get_flen() ) return 0;
-	}
+    set_flen( 0 );
+    id = getU4( fp );
+    sz = getU2( fp );
+    if ( 6 != get_flen() ) return 0;
+  }
 
-	set_flen( fp->Tell() - pos );
-	return 1;
+  set_flen( fp->Tell() - pos );
+  return 1;
 }
 
 

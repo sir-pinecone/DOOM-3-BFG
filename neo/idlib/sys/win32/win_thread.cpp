@@ -36,10 +36,10 @@ If you have questions concerning this license or the applicable additional terms
 #define MS_VC_EXCEPTION 0x406D1388
 
 typedef struct tagTHREADNAME_INFO {
-	DWORD dwType;		// Must be 0x1000.
-	LPCSTR szName;		// Pointer to name (in user addr space).
-	DWORD dwThreadID;	// Thread ID (-1=caller thread).
-	DWORD dwFlags;		// Reserved for future use, must be zero.
+  DWORD dwType;   // Must be 0x1000.
+  LPCSTR szName;    // Pointer to name (in user addr space).
+  DWORD dwThreadID; // Thread ID (-1=caller thread).
+  DWORD dwFlags;    // Reserved for future use, must be zero.
 } THREADNAME_INFO;
 /*
 ========================
@@ -47,19 +47,19 @@ Sys_SetThreadName
 ========================
 */
 void Sys_SetThreadName( DWORD threadID, const char * name ) {
-	THREADNAME_INFO info;
-	info.dwType = 0x1000;
-	info.szName = name;
-	info.dwThreadID = threadID;
-	info.dwFlags = 0;
+  THREADNAME_INFO info;
+  info.dwType = 0x1000;
+  info.szName = name;
+  info.dwThreadID = threadID;
+  info.dwFlags = 0;
 
-	__try {
-		RaiseException( MS_VC_EXCEPTION, 0, sizeof(info)/sizeof(DWORD), (const ULONG_PTR *)&info );
-	}
-	// this much is just to keep /analyze quiet
-	__except( GetExceptionCode() == MS_VC_EXCEPTION ? EXCEPTION_EXECUTE_HANDLER : EXCEPTION_CONTINUE_SEARCH ) {
-		info.dwFlags = 0;
-	}
+  __try {
+    RaiseException( MS_VC_EXCEPTION, 0, sizeof(info)/sizeof(DWORD), (const ULONG_PTR *)&info );
+  }
+  // this much is just to keep /analyze quiet
+  __except( GetExceptionCode() == MS_VC_EXCEPTION ? EXCEPTION_EXECUTE_HANDLER : EXCEPTION_CONTINUE_SEARCH ) {
+    info.dwFlags = 0;
+  }
 }
 
 /*
@@ -68,7 +68,7 @@ Sys_SetCurrentThreadName
 ========================
 */
 void Sys_SetCurrentThreadName( const char * name ) {
-	Sys_SetThreadName( GetCurrentThreadId(), name );
+  Sys_SetThreadName( GetCurrentThreadId(), name );
 }
 
 /*
@@ -78,48 +78,48 @@ Sys_Createthread
 */
 uintptr_t Sys_CreateThread( xthread_t function, void *parms, xthreadPriority priority, const char *name, core_t core, int stackSize, bool suspended ) {
 
-	DWORD flags = ( suspended ? CREATE_SUSPENDED : 0 );
-	// Without this flag the 'dwStackSize' parameter to CreateThread specifies the "Stack Commit Size"
-	// and the "Stack Reserve Size" is set to the value specified at link-time.
-	// With this flag the 'dwStackSize' parameter to CreateThread specifies the "Stack Reserve Size"
-	// and the “Stack Commit Size” is set to the value specified at link-time.
-	// For various reasons (some of which historic) we reserve a large amount of stack space in the
-	// project settings. By setting this flag and by specifying 64 kB for the "Stack Commit Size" in
-	// the project settings we can create new threads with a much smaller reserved (and committed)
-	// stack space. It is very important that the "Stack Commit Size" is set to a small value in
-	// the project settings. If it is set to a large value we may be both reserving and committing
-	// a lot of memory by setting the STACK_SIZE_PARAM_IS_A_RESERVATION flag. There are some
-	// 50 threads allocated for normal game play. If, for instance, the commit size is set to 16 MB
-	// then by adding this flag we would be reserving and committing 50 x 16 = 800 MB of memory.
-	// On the other hand, if this flag is not set and the "Stack Reserve Size" is set to 16 MB in the
-	// project settings, then we would still be reserving 50 x 16 = 800 MB of virtual address space.
-	flags |= STACK_SIZE_PARAM_IS_A_RESERVATION;
+  DWORD flags = ( suspended ? CREATE_SUSPENDED : 0 );
+  // Without this flag the 'dwStackSize' parameter to CreateThread specifies the "Stack Commit Size"
+  // and the "Stack Reserve Size" is set to the value specified at link-time.
+  // With this flag the 'dwStackSize' parameter to CreateThread specifies the "Stack Reserve Size"
+  // and the “Stack Commit Size” is set to the value specified at link-time.
+  // For various reasons (some of which historic) we reserve a large amount of stack space in the
+  // project settings. By setting this flag and by specifying 64 kB for the "Stack Commit Size" in
+  // the project settings we can create new threads with a much smaller reserved (and committed)
+  // stack space. It is very important that the "Stack Commit Size" is set to a small value in
+  // the project settings. If it is set to a large value we may be both reserving and committing
+  // a lot of memory by setting the STACK_SIZE_PARAM_IS_A_RESERVATION flag. There are some
+  // 50 threads allocated for normal game play. If, for instance, the commit size is set to 16 MB
+  // then by adding this flag we would be reserving and committing 50 x 16 = 800 MB of memory.
+  // On the other hand, if this flag is not set and the "Stack Reserve Size" is set to 16 MB in the
+  // project settings, then we would still be reserving 50 x 16 = 800 MB of virtual address space.
+  flags |= STACK_SIZE_PARAM_IS_A_RESERVATION;
 
-	DWORD threadId;
-	HANDLE handle = CreateThread(	NULL,	// LPSECURITY_ATTRIBUTES lpsa, //-V513
-									stackSize,
-									(LPTHREAD_START_ROUTINE)function,
-									parms,
-									flags,
-									&threadId);
-	if ( handle == 0 ) {
-		idLib::common->FatalError( "CreateThread error: %i", GetLastError() );
-		return (uintptr_t)0;
-	}
-	Sys_SetThreadName( threadId, name );
-	if ( priority == THREAD_HIGHEST ) {
-		SetThreadPriority( (HANDLE)handle, THREAD_PRIORITY_HIGHEST );		//  we better sleep enough to do this
-	} else if ( priority == THREAD_ABOVE_NORMAL ) {
-		SetThreadPriority( (HANDLE)handle, THREAD_PRIORITY_ABOVE_NORMAL );
-	} else if ( priority == THREAD_BELOW_NORMAL ) {
-		SetThreadPriority( (HANDLE)handle, THREAD_PRIORITY_BELOW_NORMAL );
-	} else if ( priority == THREAD_LOWEST ) {
-		SetThreadPriority( (HANDLE)handle, THREAD_PRIORITY_LOWEST );
-	}
+  DWORD threadId;
+  HANDLE handle = CreateThread( NULL, // LPSECURITY_ATTRIBUTES lpsa, //-V513
+                  stackSize,
+                  (LPTHREAD_START_ROUTINE)function,
+                  parms,
+                  flags,
+                  &threadId);
+  if ( handle == 0 ) {
+    idLib::common->FatalError( "CreateThread error: %i", GetLastError() );
+    return (uintptr_t)0;
+  }
+  Sys_SetThreadName( threadId, name );
+  if ( priority == THREAD_HIGHEST ) {
+    SetThreadPriority( (HANDLE)handle, THREAD_PRIORITY_HIGHEST );   //  we better sleep enough to do this
+  } else if ( priority == THREAD_ABOVE_NORMAL ) {
+    SetThreadPriority( (HANDLE)handle, THREAD_PRIORITY_ABOVE_NORMAL );
+  } else if ( priority == THREAD_BELOW_NORMAL ) {
+    SetThreadPriority( (HANDLE)handle, THREAD_PRIORITY_BELOW_NORMAL );
+  } else if ( priority == THREAD_LOWEST ) {
+    SetThreadPriority( (HANDLE)handle, THREAD_PRIORITY_LOWEST );
+  }
 
-	// Under Windows, we don't set the thread affinity and let the OS deal with scheduling
+  // Under Windows, we don't set the thread affinity and let the OS deal with scheduling
 
-	return (uintptr_t)handle;
+  return (uintptr_t)handle;
 }
 
 
@@ -129,7 +129,7 @@ Sys_GetCurrentThreadID
 ========================
 */
 uintptr_t Sys_GetCurrentThreadID() {
-	return GetCurrentThreadId();
+  return GetCurrentThreadId();
 }
 
 /*
@@ -138,7 +138,7 @@ Sys_WaitForThread
 ========================
 */
 void Sys_WaitForThread( uintptr_t threadHandle ) {
-	WaitForSingleObject( (HANDLE)threadHandle, INFINITE );
+  WaitForSingleObject( (HANDLE)threadHandle, INFINITE );
 }
 
 /*
@@ -147,11 +147,11 @@ Sys_DestroyThread
 ========================
 */
 void Sys_DestroyThread( uintptr_t threadHandle ) {
-	if ( threadHandle == 0 ) {
-		return;
-	}
-	WaitForSingleObject( (HANDLE)threadHandle, INFINITE );
-	CloseHandle( (HANDLE)threadHandle );
+  if ( threadHandle == 0 ) {
+    return;
+  }
+  WaitForSingleObject( (HANDLE)threadHandle, INFINITE );
+  CloseHandle( (HANDLE)threadHandle );
 }
 
 /*
@@ -160,13 +160,13 @@ Sys_Yield
 ========================
 */
 void Sys_Yield() {
-	SwitchToThread();
+  SwitchToThread();
 }
 
 /*
 ================================================================================================
 
-	Signal
+  Signal
 
 ================================================================================================
 */
@@ -177,7 +177,7 @@ Sys_SignalCreate
 ========================
 */
 void Sys_SignalCreate( signalHandle_t & handle, bool manualReset ) {
-	handle = CreateEvent( NULL, manualReset, FALSE, NULL );
+  handle = CreateEvent( NULL, manualReset, FALSE, NULL );
 }
 
 /*
@@ -186,7 +186,7 @@ Sys_SignalDestroy
 ========================
 */
 void Sys_SignalDestroy( signalHandle_t &handle ) {
-	CloseHandle( handle );
+  CloseHandle( handle );
 }
 
 /*
@@ -195,7 +195,7 @@ Sys_SignalRaise
 ========================
 */
 void Sys_SignalRaise( signalHandle_t & handle ) {
-	SetEvent( handle );
+  SetEvent( handle );
 }
 
 /*
@@ -204,8 +204,8 @@ Sys_SignalClear
 ========================
 */
 void Sys_SignalClear( signalHandle_t & handle ) {
-	// events are created as auto-reset so this should never be needed
-	ResetEvent( handle );
+  // events are created as auto-reset so this should never be needed
+  ResetEvent( handle );
 }
 
 /*
@@ -214,15 +214,15 @@ Sys_SignalWait
 ========================
 */
 bool Sys_SignalWait( signalHandle_t & handle, int timeout ) {
-	DWORD result = WaitForSingleObject( handle, timeout == idSysSignal::WAIT_INFINITE ? INFINITE : timeout );
-	assert( result == WAIT_OBJECT_0 || ( timeout != idSysSignal::WAIT_INFINITE && result == WAIT_TIMEOUT ) );
-	return ( result == WAIT_OBJECT_0 );
+  DWORD result = WaitForSingleObject( handle, timeout == idSysSignal::WAIT_INFINITE ? INFINITE : timeout );
+  assert( result == WAIT_OBJECT_0 || ( timeout != idSysSignal::WAIT_INFINITE && result == WAIT_TIMEOUT ) );
+  return ( result == WAIT_OBJECT_0 );
 }
 
 /*
 ================================================================================================
 
-	Mutex
+  Mutex
 
 ================================================================================================
 */
@@ -233,7 +233,7 @@ Sys_MutexCreate
 ========================
 */
 void Sys_MutexCreate( mutexHandle_t & handle ) {
-	InitializeCriticalSection( &handle );
+  InitializeCriticalSection( &handle );
 }
 
 /*
@@ -242,7 +242,7 @@ Sys_MutexDestroy
 ========================
 */
 void Sys_MutexDestroy( mutexHandle_t & handle ) {
-	DeleteCriticalSection( &handle );
+  DeleteCriticalSection( &handle );
 }
 
 /*
@@ -251,13 +251,13 @@ Sys_MutexLock
 ========================
 */
 bool Sys_MutexLock( mutexHandle_t & handle, bool blocking ) {
-	if ( TryEnterCriticalSection( &handle ) == 0 ) {
-		if ( !blocking ) {
-			return false;
-		}
-		EnterCriticalSection( &handle );
-	}
-	return true;
+  if ( TryEnterCriticalSection( &handle ) == 0 ) {
+    if ( !blocking ) {
+      return false;
+    }
+    EnterCriticalSection( &handle );
+  }
+  return true;
 }
 
 /*
@@ -266,13 +266,13 @@ Sys_MutexUnlock
 ========================
 */
 void Sys_MutexUnlock( mutexHandle_t & handle ) {
-	LeaveCriticalSection( & handle );
+  LeaveCriticalSection( & handle );
 }
 
 /*
 ================================================================================================
 
-	Interlocked Integer
+  Interlocked Integer
 
 ================================================================================================
 */
@@ -283,7 +283,7 @@ Sys_InterlockedIncrement
 ========================
 */
 interlockedInt_t Sys_InterlockedIncrement( interlockedInt_t & value ) {
-	return InterlockedIncrementAcquire( & value );
+  return InterlockedIncrementAcquire( & value );
 }
 
 /*
@@ -292,7 +292,7 @@ Sys_InterlockedDecrement
 ========================
 */
 interlockedInt_t Sys_InterlockedDecrement( interlockedInt_t & value ) {
-	return InterlockedDecrementRelease( & value );
+  return InterlockedDecrementRelease( & value );
 }
 
 /*
@@ -301,7 +301,7 @@ Sys_InterlockedAdd
 ========================
 */
 interlockedInt_t Sys_InterlockedAdd( interlockedInt_t & value, interlockedInt_t i ) {
-	return InterlockedExchangeAdd( & value, i ) + i;
+  return InterlockedExchangeAdd( & value, i ) + i;
 }
 
 /*
@@ -310,7 +310,7 @@ Sys_InterlockedSub
 ========================
 */
 interlockedInt_t Sys_InterlockedSub( interlockedInt_t & value, interlockedInt_t i ) {
-	return InterlockedExchangeAdd( & value, - i ) - i;
+  return InterlockedExchangeAdd( & value, - i ) - i;
 }
 
 /*
@@ -319,7 +319,7 @@ Sys_InterlockedExchange
 ========================
 */
 interlockedInt_t Sys_InterlockedExchange( interlockedInt_t & value, interlockedInt_t exchange ) {
-	return InterlockedExchange( & value, exchange );
+  return InterlockedExchange( & value, exchange );
 }
 
 /*
@@ -328,13 +328,13 @@ Sys_InterlockedCompareExchange
 ========================
 */
 interlockedInt_t Sys_InterlockedCompareExchange( interlockedInt_t & value, interlockedInt_t comparand, interlockedInt_t exchange ) {
-	return InterlockedCompareExchange( & value, exchange, comparand );
+  return InterlockedCompareExchange( & value, exchange, comparand );
 }
 
 /*
 ================================================================================================
 
-	Interlocked Pointer
+  Interlocked Pointer
 
 ================================================================================================
 */
@@ -345,7 +345,7 @@ Sys_InterlockedExchangePointer
 ========================
 */
 void *Sys_InterlockedExchangePointer( void *& ptr, void * exchange ) {
-	return InterlockedExchangePointer( & ptr, exchange );
+  return InterlockedExchangePointer( & ptr, exchange );
 }
 
 /*
@@ -354,5 +354,5 @@ Sys_InterlockedCompareExchangePointer
 ========================
 */
 void * Sys_InterlockedCompareExchangePointer( void * & ptr, void * comparand, void * exchange ) {
-	return InterlockedCompareExchangePointer( & ptr, exchange, comparand );
+  return InterlockedCompareExchangePointer( & ptr, exchange, comparand );
 }

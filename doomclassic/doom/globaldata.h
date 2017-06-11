@@ -56,7 +56,7 @@ If you have questions concerning this license or the applicable additional terms
 #include "structs.h"
 
 struct Globals {
-	void InitGlobals();
+  void InitGlobals();
 #include "vars.h"
 };
 

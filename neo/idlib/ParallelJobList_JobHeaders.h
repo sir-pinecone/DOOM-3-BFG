@@ -31,23 +31,23 @@ If you have questions concerning this license or the applicable additional terms
 /*
 ================================================================================================
 
-	Minimum set of headers needed to compile the code for a job.
+  Minimum set of headers needed to compile the code for a job.
 
 ================================================================================================
 */
 
 #include "sys/sys_defines.h"
 
-#include <stddef.h>					// for offsetof
+#include <stddef.h>         // for offsetof
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
 
-#include <basetsd.h>				// for UINT_PTR
+#include <basetsd.h>        // for UINT_PTR
 #include <intrin.h>
-#pragma warning( disable : 4100 )	// unreferenced formal parameter
-#pragma warning( disable : 4127 )	// conditional expression is constant
+#pragma warning( disable : 4100 ) // unreferenced formal parameter
+#pragma warning( disable : 4127 ) // conditional expression is constant
 
 
 

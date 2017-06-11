@@ -34,24 +34,24 @@ If you have questions concerning this license or the applicable additional terms
 #include <map>
 
 static columnDef_t columnDefTime[] = { 
-	{ "Time", 64, AGGREGATE_MIN, STATS_COLUMN_DISPLAY_TIME_MILLISECONDS }
+  { "Time", 64, AGGREGATE_MIN, STATS_COLUMN_DISPLAY_TIME_MILLISECONDS }
 };
 
-const static int NUMLEVELS_ULTIMATE_DOOM		= 36;						
-const static int NUMLEVELS_DOOM2_HELL_ON_EARTH	= 32;
-const static int NUMLEVELS_FINALDOOM_TNT		= 32;
-const static int NUMLEVELS_FINALDOOM_PLUTONIA	= 32;
-const static int NUMLEVELS_DOOM2_MASTER_LEVELS	= 21;
-const static int NUMLEVELS_DOOM2_NERVE			= 9;
+const static int NUMLEVELS_ULTIMATE_DOOM    = 36;           
+const static int NUMLEVELS_DOOM2_HELL_ON_EARTH  = 32;
+const static int NUMLEVELS_FINALDOOM_TNT    = 32;
+const static int NUMLEVELS_FINALDOOM_PLUTONIA = 32;
+const static int NUMLEVELS_DOOM2_MASTER_LEVELS  = 21;
+const static int NUMLEVELS_DOOM2_NERVE      = 9;
 
 
 const static int NUM_LEVEL_LIST[] = {
-	NUMLEVELS_ULTIMATE_DOOM,
-	NUMLEVELS_DOOM2_HELL_ON_EARTH,
-	NUMLEVELS_FINALDOOM_TNT,
-	NUMLEVELS_FINALDOOM_PLUTONIA,
-	NUMLEVELS_DOOM2_MASTER_LEVELS,
-	NUMLEVELS_DOOM2_NERVE
+  NUMLEVELS_ULTIMATE_DOOM,
+  NUMLEVELS_DOOM2_HELL_ON_EARTH,
+  NUMLEVELS_FINALDOOM_TNT,
+  NUMLEVELS_FINALDOOM_PLUTONIA,
+  NUMLEVELS_DOOM2_MASTER_LEVELS,
+  NUMLEVELS_DOOM2_NERVE
 };
 
 /*
@@ -64,44 +64,44 @@ Expansion is the base value that the leaderboard ID comes from
 ========================
 */
 const int GenerateLeaderboardID( int expansion, int episode, int map, int skill ) {
-	
-	int realMapNumber = ( episode * map - 1 );
+  
+  int realMapNumber = ( episode * map - 1 );
 
-	if( common->GetGameSKU() == GAME_SKU_DOOM1_BFG  ) {
+  if( common->GetGameSKU() == GAME_SKU_DOOM1_BFG  ) {
 
-		// Doom levels start at 620 .. yeah.. hack.
-		int block = 615;
-		int mapAndSkill = ( realMapNumber * ( (int)sk_nightmare + 1 ) )  + skill ;
+    // Doom levels start at 620 .. yeah.. hack.
+    int block = 615;
+    int mapAndSkill = ( realMapNumber * ( (int)sk_nightmare + 1 ) )  + skill ;
 
-		return block + mapAndSkill;
-	} else if( common->GetGameSKU() == GAME_SKU_DOOM2_BFG ) {
+    return block + mapAndSkill;
+  } else if( common->GetGameSKU() == GAME_SKU_DOOM2_BFG ) {
 
-		if( expansion == 1 ) {
-			// Doom 2 Levels start at 800.. Yep.. another hack.
-			int block = 795;
-			int mapAndSkill = ( realMapNumber * ( (int)sk_nightmare + 1 ) )  + skill ;
+    if( expansion == 1 ) {
+      // Doom 2 Levels start at 800.. Yep.. another hack.
+      int block = 795;
+      int mapAndSkill = ( realMapNumber * ( (int)sk_nightmare + 1 ) )  + skill ;
 
-			return block + mapAndSkill;
-		} else {
-			// Nerve Levels start at 960... another hack!
-			int block = 955;
-			int mapAndSkill = ( realMapNumber * ( (int)sk_nightmare + 1 ) )  + skill ;
+      return block + mapAndSkill;
+    } else {
+      // Nerve Levels start at 960... another hack!
+      int block = 955;
+      int mapAndSkill = ( realMapNumber * ( (int)sk_nightmare + 1 ) )  + skill ;
 
-			return block + mapAndSkill;
-		}
+      return block + mapAndSkill;
+    }
 
-	} else {
+  } else {
 
-		// DCC Content
-		int block = 0;
-		if( expansion  > 0 ){
-			for( int expi = 0; expi < expansion; expi++ ) {
-				block += NUM_LEVEL_LIST[ expi ] * ( (int)sk_nightmare + 1);
-			}
-		}
-		int mapAndSkill = ( realMapNumber * ( (int)sk_nightmare + 1 ) )  + skill ;
-		return block + mapAndSkill;
-	}
+    // DCC Content
+    int block = 0;
+    if( expansion  > 0 ){
+      for( int expi = 0; expi < expansion; expi++ ) {
+        block += NUM_LEVEL_LIST[ expi ] * ( (int)sk_nightmare + 1);
+      }
+    }
+    int mapAndSkill = ( realMapNumber * ( (int)sk_nightmare + 1 ) )  + skill ;
+    return block + mapAndSkill;
+  }
 }
 
 /*
@@ -115,19 +115,19 @@ and stores into an STL Map, with leaderboard ID as the Hash/key value.
 */
 void InitLeaderboards() {
 
-	for( int expi = 0; expi < ARRAY_COUNT( NUM_LEVEL_LIST ); expi++ ) {
-	
-		for( int udi = 1; udi <= NUM_LEVEL_LIST[expi] ; udi++ ) {
+  for( int expi = 0; expi < ARRAY_COUNT( NUM_LEVEL_LIST ); expi++ ) {
+  
+    for( int udi = 1; udi <= NUM_LEVEL_LIST[expi] ; udi++ ) {
 
-			for( int skilli = 0; skilli <= sk_nightmare; skilli++ ) {
+      for( int skilli = 0; skilli <= sk_nightmare; skilli++ ) {
 
-				// Create the Time Trial leaderboard for each level.
-				int timeTrial_leaderboardID = GenerateLeaderboardID( expi, 1, udi, skilli ); 
-				leaderboardDefinition_t * timeTrial_Leaderboard = new leaderboardDefinition_t( timeTrial_leaderboardID,	ARRAY_COUNT( columnDefTime ), columnDefTime, RANK_LEAST_FIRST,	false, true );
+        // Create the Time Trial leaderboard for each level.
+        int timeTrial_leaderboardID = GenerateLeaderboardID( expi, 1, udi, skilli ); 
+        leaderboardDefinition_t * timeTrial_Leaderboard = new leaderboardDefinition_t( timeTrial_leaderboardID, ARRAY_COUNT( columnDefTime ), columnDefTime, RANK_LEAST_FIRST,  false, true );
 
-			}
-		}	
-	}
+      }
+    } 
+  }
 }
 
 /*
@@ -141,7 +141,7 @@ Expansion is the base value that the leaderboard ID comes from
 */
 const leaderboardDefinition_t * GetLeaderboard( int expansion, int episode, int map, int skill ) {
 
-	int leaderboardID = GenerateLeaderboardID( expansion, episode, map, skill );
+  int leaderboardID = GenerateLeaderboardID( expansion, episode, map, skill );
 
-	return Sys_FindLeaderboardDef( leaderboardID );;
+  return Sys_FindLeaderboardDef( leaderboardID );;
 }

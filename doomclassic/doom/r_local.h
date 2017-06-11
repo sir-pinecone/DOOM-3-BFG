@@ -51,5 +51,5 @@ If you have questions concerning this license or the applicable additional terms
 #include "r_things.h"
 #include "r_draw.h"
 
-#endif		// __R_LOCAL__
+#endif    // __R_LOCAL__
 

@@ -35,7 +35,7 @@ If you have questions concerning this license or the applicable additional terms
 #endif
 
 
-qboolean	P_GivePower(player_t*, int);
+qboolean  P_GivePower(player_t*, int);
 
 
 

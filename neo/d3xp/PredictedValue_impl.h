@@ -38,8 +38,8 @@ idPredictedValue::idPredictedValue
 */
 template< class type_ >
 idPredictedValue< type_ >::idPredictedValue() :
-	value(),
-	clientPredictedMilliseconds( 0 ) {
+  value(),
+  clientPredictedMilliseconds( 0 ) {
 }
 
 /*
@@ -49,8 +49,8 @@ idPredictedValue::idPredictedValue
 */
 template< class type_ >
 idPredictedValue< type_ >::idPredictedValue( const type_ & value_ ) :
-	value( value_ ),
-	clientPredictedMilliseconds( 0 ) {
+  value( value_ ),
+  clientPredictedMilliseconds( 0 ) {
 }
 
 /*
@@ -60,9 +60,9 @@ idPredictedValue::UpdatePredictionTime
 */
 template< class type_ >
 void idPredictedValue< type_ >::UpdatePredictionTime() {
-	if ( gameLocal.GetLocalPlayer() != NULL ) {
-		clientPredictedMilliseconds = gameLocal.GetLocalPlayer()->usercmd.clientGameMilliseconds;
-	}
+  if ( gameLocal.GetLocalPlayer() != NULL ) {
+    clientPredictedMilliseconds = gameLocal.GetLocalPlayer()->usercmd.clientGameMilliseconds;
+  }
 }
 
 /*
@@ -72,8 +72,8 @@ idPredictedValue::Set
 */
 template< class type_ >
 void idPredictedValue< type_ >::Set( const type_ & newValue ) {
-	value = newValue;
-	UpdatePredictionTime();
+  value = newValue;
+  UpdatePredictionTime();
 }
 
 /*
@@ -83,8 +83,8 @@ idPredictedValue::operator=
 */
 template< class type_ >
 idPredictedValue< type_ > & idPredictedValue< type_ >::operator=( const type_ & newValue ) {
-	Set( newValue );
-	return *this;
+  Set( newValue );
+  return *this;
 }
 
 /*
@@ -94,8 +94,8 @@ idPredictedValue::operator+=
 */
 template< class type_ >
 idPredictedValue< type_ > & idPredictedValue< type_ >::operator+=( const type_ & toAdd ) {
-	Set( value + toAdd );
-	return *this;
+  Set( value + toAdd );
+  return *this;
 }
 
 /*
@@ -105,8 +105,8 @@ idPredictedValue::operator-=
 */
 template< class type_ >
 idPredictedValue< type_ > & idPredictedValue< type_ >::operator-=( const type_ & toSubtract ) {
-	Set( value - toSubtract );
-	return *this;
+  Set( value - toSubtract );
+  return *this;
 }
 
 /*
@@ -123,17 +123,17 @@ Returns true if the value was set, false if not.
 */
 template< class type_ >
 bool idPredictedValue< type_ >::UpdateFromSnapshot( const type_ & valueFromSnapshot, int clientNumber ) {
-	if ( clientNumber != gameLocal.GetLocalClientNum() ) {
-		value = valueFromSnapshot;
-		return true;
-	}
-		
-	if ( gameLocal.GetLastClientUsercmdMilliseconds( clientNumber ) >= clientPredictedMilliseconds ) {
-		value = valueFromSnapshot;
-		return true;
-	}
+  if ( clientNumber != gameLocal.GetLocalClientNum() ) {
+    value = valueFromSnapshot;
+    return true;
+  }
+    
+  if ( gameLocal.GetLastClientUsercmdMilliseconds( clientNumber ) >= clientPredictedMilliseconds ) {
+    value = valueFromSnapshot;
+    return true;
+  }
 
-	return false;
+  return false;
 }
 
 /*
@@ -146,7 +146,7 @@ We only care if the values are equal, not the frame number.
 */
 template< class firstType_, class secondType_ >
 bool operator==( const idPredictedValue< firstType_ > & lhs, const idPredictedValue< secondType_ > & rhs ) {
-	return lhs.Get() == rhs.Get();
+  return lhs.Get() == rhs.Get();
 }
 
 /*
@@ -159,7 +159,7 @@ We only care if the values are equal, not the frame number.
 */
 template< class firstType_, class secondType_ >
 bool operator!=( const idPredictedValue< firstType_ > & lhs, const idPredictedValue< secondType_ > & rhs ) {
-	return lhs.Get() != rhs.Get();
+  return lhs.Get() != rhs.Get();
 }
 
 /*
@@ -172,7 +172,7 @@ We only care if the values are equal, not the frame number.
 */
 template< class firstType_, class secondType_ >
 bool operator==( const idPredictedValue< firstType_ > & lhs, const secondType_ & rhs ) {
-	return lhs.Get() == rhs;
+  return lhs.Get() == rhs;
 }
 
 /*
@@ -185,7 +185,7 @@ We only care if the values are equal, not the frame number.
 */
 template< class firstType_, class secondType_ >
 bool operator==( const firstType_ lhs, const idPredictedValue< secondType_ > & rhs ) {
-	return lhs == rhs.Get();
+  return lhs == rhs.Get();
 }
 
 /*
@@ -198,7 +198,7 @@ We only care if the values are equal, not the frame number.
 */
 template< class firstType_, class secondType_ >
 bool operator!=( const idPredictedValue< firstType_ > & lhs, const secondType_ & rhs ) {
-	return lhs.Get() != rhs;
+  return lhs.Get() != rhs;
 }
 
 /*
@@ -211,7 +211,7 @@ We only care if the values are equal, not the frame number.
 */
 template< class firstType_, class secondType_ >
 bool operator!=( const firstType_ lhs, const idPredictedValue< secondType_ > & rhs ) {
-	return lhs != rhs.Get();
+  return lhs != rhs.Get();
 }
 
 

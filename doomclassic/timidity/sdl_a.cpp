@@ -38,19 +38,19 @@ static void purge_output(void);
 
 
 PlayMode dpm = {
-	DEFAULT_RATE, PE_16BIT|PE_SIGNED,
-		"SDL audio", 0, "d:\\out.wav",
+  DEFAULT_RATE, PE_16BIT|PE_SIGNED,
+    "SDL audio", 0, "d:\\out.wav",
 
-		open_output,
-		close_output,
-		output_data,
-		flush_output,
-		purge_output  
+    open_output,
+    close_output,
+    output_data,
+    flush_output,
+    purge_output  
 };
 
 /* Dummies */
 static int open_output(void){
-	return 0;
+  return 0;
 }
 
 static void output_data(int *buf, int count, int* bytes_written){}

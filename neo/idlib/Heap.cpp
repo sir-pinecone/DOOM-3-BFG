@@ -31,7 +31,7 @@ If you have questions concerning this license or the applicable additional terms
 
 //===============================================================
 //
-//	memory allocation all in one place
+//  memory allocation all in one place
 //
 //===============================================================
 
@@ -43,11 +43,11 @@ Mem_Alloc16
 ==================
 */
 void * Mem_Alloc16( const int size, const memTag_t tag ) {
-	if ( !size ) {
-		return NULL;
-	}
-	const int paddedSize = ( size + 15 ) & ~15;
-	return _aligned_malloc( paddedSize, 16 );
+  if ( !size ) {
+    return NULL;
+  }
+  const int paddedSize = ( size + 15 ) & ~15;
+  return _aligned_malloc( paddedSize, 16 );
 }
 
 /*
@@ -56,10 +56,10 @@ Mem_Free16
 ==================
 */
 void Mem_Free16( void *ptr ) {
-	if ( ptr == NULL ) {
-		return;
-	}
-	_aligned_free( ptr );
+  if ( ptr == NULL ) {
+    return;
+  }
+  _aligned_free( ptr );
 }
 
 /*
@@ -68,9 +68,9 @@ Mem_ClearedAlloc
 ==================
 */
 void * Mem_ClearedAlloc( const int size, const memTag_t tag ) {
-	void * mem = Mem_Alloc( size, tag );
-	SIMDProcessor->Memset( mem, 0, size );
-	return mem;
+  void * mem = Mem_Alloc( size, tag );
+  SIMDProcessor->Memset( mem, 0, size );
+  return mem;
 }
 
 /*
@@ -79,8 +79,8 @@ Mem_CopyString
 ==================
 */
 char *Mem_CopyString( const char *in ) {
-	char * out = (char *)Mem_Alloc( strlen(in) + 1, TAG_STRING );
-	strcpy( out, in );
-	return out;
+  char * out = (char *)Mem_Alloc( strlen(in) + 1, TAG_STRING );
+  strcpy( out, in );
+  return out;
 }
 

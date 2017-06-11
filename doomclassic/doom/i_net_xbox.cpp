@@ -48,20 +48,20 @@ If you have questions concerning this license or the applicable additional terms
 #include "doomlib.h"
 #include "../Main/Main.h"
 
-void	NetSend (void);
+void  NetSend (void);
 qboolean NetListen (void);
 
 //
 // NETWORKING
 //
-int	DOOMPORT = 1002;	// DHM - Nerve :: On original XBox, ports 1000 - 1255 saved you a byte on every packet.  360 too?
+int DOOMPORT = 1002;  // DHM - Nerve :: On original XBox, ports 1000 - 1255 saved you a byte on every packet.  360 too?
 
 
 
 unsigned long GetServerIP() { return ::g->sendaddress[::g->doomcom.consoleplayer].sin_addr.s_addr; }
 
-void	(*netget) (void);
-void	(*netsend) (void);
+void  (*netget) (void);
+void  (*netsend) (void);
 
 
 //
@@ -69,34 +69,34 @@ void	(*netsend) (void);
 //
 int UDPsocket (void)
 {
-	int	s;
+  int s;
 
-	// allocate a socket
-	s = socket (AF_INET, SOCK_DGRAM, IPPROTO_UDP);
-	if (s == INVALID_SOCKET) {
-		int err = WSAGetLastError ();
-		I_Error ("can't create socket: %s",strerror(errno));
-	}
+  // allocate a socket
+  s = socket (AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+  if (s == INVALID_SOCKET) {
+    int err = WSAGetLastError ();
+    I_Error ("can't create socket: %s",strerror(errno));
+  }
 
-	return s;
+  return s;
 }
 
 //
 // BindToLocalPort
 //
-void BindToLocalPort( int	s, int	port )
+void BindToLocalPort( int s, int  port )
 {
-	int			v;
-	struct sockaddr_in	address;
+  int     v;
+  struct sockaddr_in  address;
 
-	memset (&address, 0, sizeof(address));
-	address.sin_family = AF_INET;
-	address.sin_addr.s_addr = INADDR_ANY;
-	address.sin_port = port;
+  memset (&address, 0, sizeof(address));
+  address.sin_family = AF_INET;
+  address.sin_addr.s_addr = INADDR_ANY;
+  address.sin_port = port;
 
-	v = bind (s, (sockaddr*)&address, sizeof(address));
-	//if (v == -1)
-		//I_Error ("BindToPort: bind: %s", strerror(errno));
+  v = bind (s, (sockaddr*)&address, sizeof(address));
+  //if (v == -1)
+    //I_Error ("BindToPort: bind: %s", strerror(errno));
 }
 
 
@@ -105,40 +105,40 @@ void BindToLocalPort( int	s, int	port )
 //
 void PacketSend (void)
 {
-	int		c;
-	doomdata_t	sw;
+  int   c;
+  doomdata_t  sw;
 
-	// byte swap
-	sw.checksum = htonl(::g->netbuffer->checksum);
-	sw.sourceDest = DoomLib::BuildSourceDest(::g->doomcom.remotenode);
-	sw.player = ::g->netbuffer->player;
-	sw.retransmitfrom = ::g->netbuffer->retransmitfrom;
-	sw.starttic = ::g->netbuffer->starttic;
-	sw.numtics = ::g->netbuffer->numtics;
-	for (c=0 ; c< ::g->netbuffer->numtics ; c++)
-	{
-		sw.cmds[c].forwardmove = ::g->netbuffer->cmds[c].forwardmove;
-		sw.cmds[c].sidemove = ::g->netbuffer->cmds[c].sidemove;
-		sw.cmds[c].angleturn = htons(::g->netbuffer->cmds[c].angleturn);
-		//sw.cmds[c].consistancy = htons(::g->netbuffer->cmds[c].consistancy);
-		sw.cmds[c].buttons = ::g->netbuffer->cmds[c].buttons;
-	}
+  // byte swap
+  sw.checksum = htonl(::g->netbuffer->checksum);
+  sw.sourceDest = DoomLib::BuildSourceDest(::g->doomcom.remotenode);
+  sw.player = ::g->netbuffer->player;
+  sw.retransmitfrom = ::g->netbuffer->retransmitfrom;
+  sw.starttic = ::g->netbuffer->starttic;
+  sw.numtics = ::g->netbuffer->numtics;
+  for (c=0 ; c< ::g->netbuffer->numtics ; c++)
+  {
+    sw.cmds[c].forwardmove = ::g->netbuffer->cmds[c].forwardmove;
+    sw.cmds[c].sidemove = ::g->netbuffer->cmds[c].sidemove;
+    sw.cmds[c].angleturn = htons(::g->netbuffer->cmds[c].angleturn);
+    //sw.cmds[c].consistancy = htons(::g->netbuffer->cmds[c].consistancy);
+    sw.cmds[c].buttons = ::g->netbuffer->cmds[c].buttons;
+  }
 
-	// Send Socket
-	{
-		//DWORD num_sent;
-		WSABUF buffer;
+  // Send Socket
+  {
+    //DWORD num_sent;
+    WSABUF buffer;
 
-		buffer.buf = (char*)&sw;
-		buffer.len = ::g->doomcom.datalength;
+    buffer.buf = (char*)&sw;
+    buffer.len = ::g->doomcom.datalength;
 
-		//if ( globalNetworking ) {
-		//	c = WSASendTo(::g->sendsocket, &buffer, 1, &num_sent, 0, (sockaddr*)&::g->sendaddress[::g->doomcom.remotenode],
-		//					sizeof(::g->sendaddress[::g->doomcom.remotenode]), 0, 0);
-		//} else {
-			c = DoomLib::Send( buffer.buf, buffer.len, (sockaddr_in*)&::g->sendaddress[::g->doomcom.remotenode], ::g->doomcom.remotenode ); 
-		//}
-	}
+    //if ( globalNetworking ) {
+    //  c = WSASendTo(::g->sendsocket, &buffer, 1, &num_sent, 0, (sockaddr*)&::g->sendaddress[::g->doomcom.remotenode],
+    //          sizeof(::g->sendaddress[::g->doomcom.remotenode]), 0, 0);
+    //} else {
+      c = DoomLib::Send( buffer.buf, buffer.len, (sockaddr_in*)&::g->sendaddress[::g->doomcom.remotenode], ::g->doomcom.remotenode ); 
+    //}
+  }
 }
 
 
@@ -147,90 +147,90 @@ void PacketSend (void)
 //
 void PacketGet (void)
 {
-	int			i;
-	int			c;
-	struct sockaddr_in	fromaddress;
-	int			fromlen;
-	doomdata_t		sw;
-	WSABUF buffer;
-	DWORD num_recieved, flags = 0;
+  int     i;
+  int     c;
+  struct sockaddr_in  fromaddress;
+  int     fromlen;
+  doomdata_t    sw;
+  WSABUF buffer;
+  DWORD num_recieved, flags = 0;
 
-	// Try and read a socket
-	buffer.buf = (char*)&sw;
-	buffer.len = sizeof(sw);
-	fromlen = sizeof(fromaddress);
+  // Try and read a socket
+  buffer.buf = (char*)&sw;
+  buffer.len = sizeof(sw);
+  fromlen = sizeof(fromaddress);
 
-	//if ( globalNetworking ) {
-	//	c = WSARecvFrom(::g->insocket, &buffer, 1, &num_recieved, &flags, (struct sockaddr*)&fromaddress, &fromlen, 0, 0);
-	//} else {
-		c = DoomLib::Recv( (char*)&sw, &num_recieved );
-	//}
-	if (c == SOCKET_ERROR )
-	{
-		/*if ( globalNetworking ) {
-			int err = WSAGetLastError();
-			if (err != WSAEWOULDBLOCK)
-				I_Error ("GetPacket: %s",strerror(errno));
-		}*/
+  //if ( globalNetworking ) {
+  //  c = WSARecvFrom(::g->insocket, &buffer, 1, &num_recieved, &flags, (struct sockaddr*)&fromaddress, &fromlen, 0, 0);
+  //} else {
+    c = DoomLib::Recv( (char*)&sw, &num_recieved );
+  //}
+  if (c == SOCKET_ERROR )
+  {
+    /*if ( globalNetworking ) {
+      int err = WSAGetLastError();
+      if (err != WSAEWOULDBLOCK)
+        I_Error ("GetPacket: %s",strerror(errno));
+    }*/
 
-		::g->doomcom.remotenode = -1;		// no packet
-		return;
-	}
+    ::g->doomcom.remotenode = -1;   // no packet
+    return;
+  }
 
-	
+  
 
-	// find remote node number
-	/*for (i=0 ; i<::g->doomcom.numnodes ; i++)
-		if ( fromaddress.sin_addr.s_addr == ::g->sendaddress[i].sin_addr.s_addr )
-			break;
+  // find remote node number
+  /*for (i=0 ; i<::g->doomcom.numnodes ; i++)
+    if ( fromaddress.sin_addr.s_addr == ::g->sendaddress[i].sin_addr.s_addr )
+      break;
 
-	if (i == ::g->doomcom.numnodes)
-	{
-		// packet is not from one of the ::g->players (new game broadcast)
-		::g->doomcom.remotenode = -1;		// no packet
-		return;
-	}*/
+  if (i == ::g->doomcom.numnodes)
+  {
+    // packet is not from one of the ::g->players (new game broadcast)
+    ::g->doomcom.remotenode = -1;   // no packet
+    return;
+  }*/
 
-	//if ( ::g->consoleplayer == 1 ) {
-		//int x = 0;
-	//}
+  //if ( ::g->consoleplayer == 1 ) {
+    //int x = 0;
+  //}
 
-	int source;
-	int dest;
-	DoomLib::GetSourceDest( sw.sourceDest, &source, &dest );
+  int source;
+  int dest;
+  DoomLib::GetSourceDest( sw.sourceDest, &source, &dest );
 
-	i = source;
+  i = source;
 
-	//if ( ::g->consoleplayer == 1 ) {
-		//if ( i == 2 ) {
-			//int suck = 0;
-		//}
-	//}
+  //if ( ::g->consoleplayer == 1 ) {
+    //if ( i == 2 ) {
+      //int suck = 0;
+    //}
+  //}
 
-	::g->doomcom.remotenode = i;			// good packet from a game player
-	::g->doomcom.datalength = (short)num_recieved;
+  ::g->doomcom.remotenode = i;      // good packet from a game player
+  ::g->doomcom.datalength = (short)num_recieved;
 
-	// byte swap
-	::g->netbuffer->checksum = ntohl(sw.checksum);
-	::g->netbuffer->player = sw.player;
-	::g->netbuffer->retransmitfrom = sw.retransmitfrom;
-	::g->netbuffer->starttic = sw.starttic;
-	::g->netbuffer->numtics = sw.numtics;
+  // byte swap
+  ::g->netbuffer->checksum = ntohl(sw.checksum);
+  ::g->netbuffer->player = sw.player;
+  ::g->netbuffer->retransmitfrom = sw.retransmitfrom;
+  ::g->netbuffer->starttic = sw.starttic;
+  ::g->netbuffer->numtics = sw.numtics;
 
-	for (c=0 ; c< ::g->netbuffer->numtics ; c++)
-	{
-		::g->netbuffer->cmds[c].forwardmove = sw.cmds[c].forwardmove;
-		::g->netbuffer->cmds[c].sidemove = sw.cmds[c].sidemove;
-		::g->netbuffer->cmds[c].angleturn = ntohs(sw.cmds[c].angleturn);
-		//::g->netbuffer->cmds[c].consistancy = ntohs(sw.cmds[c].consistancy);
-		::g->netbuffer->cmds[c].buttons = sw.cmds[c].buttons;
-	}
+  for (c=0 ; c< ::g->netbuffer->numtics ; c++)
+  {
+    ::g->netbuffer->cmds[c].forwardmove = sw.cmds[c].forwardmove;
+    ::g->netbuffer->cmds[c].sidemove = sw.cmds[c].sidemove;
+    ::g->netbuffer->cmds[c].angleturn = ntohs(sw.cmds[c].angleturn);
+    //::g->netbuffer->cmds[c].consistancy = ntohs(sw.cmds[c].consistancy);
+    ::g->netbuffer->cmds[c].buttons = sw.cmds[c].buttons;
+  }
 }
 
 static int I_TrySetupNetwork(void)
 {
-	// DHM - Moved to Session
-	return 1;
+  // DHM - Moved to Session
+  return 1;
 }
 
 //
@@ -238,128 +238,128 @@ static int I_TrySetupNetwork(void)
 //
 void I_InitNetwork (void)
 {
-	qboolean		trueval = true;
-	int			i;
-	int			p;
-	int a = 0;
-	//    struct hostent*	hostentry;	// host information entry
+  qboolean    trueval = true;
+  int     i;
+  int     p;
+  int a = 0;
+  //    struct hostent* hostentry;  // host information entry
 
-	memset (&::g->doomcom, 0, sizeof(::g->doomcom) );
+  memset (&::g->doomcom, 0, sizeof(::g->doomcom) );
 
-	// set up for network
-	i = M_CheckParm ("-dup");
-	if (i && i< ::g->myargc-1)
-	{
-		::g->doomcom.ticdup = ::g->myargv[i+1][0]-'0';
-		if (::g->doomcom.ticdup < 1)
-			::g->doomcom.ticdup = 1;
-		if (::g->doomcom.ticdup > 9)
-			::g->doomcom.ticdup = 9;
-	}
-	else
-		::g->doomcom.ticdup = 1;
+  // set up for network
+  i = M_CheckParm ("-dup");
+  if (i && i< ::g->myargc-1)
+  {
+    ::g->doomcom.ticdup = ::g->myargv[i+1][0]-'0';
+    if (::g->doomcom.ticdup < 1)
+      ::g->doomcom.ticdup = 1;
+    if (::g->doomcom.ticdup > 9)
+      ::g->doomcom.ticdup = 9;
+  }
+  else
+    ::g->doomcom.ticdup = 1;
 
-	if (M_CheckParm ("-extratic"))
-		::g->doomcom.extratics = 1;
-	else
-		::g->doomcom.extratics = 0;
+  if (M_CheckParm ("-extratic"))
+    ::g->doomcom.extratics = 1;
+  else
+    ::g->doomcom.extratics = 0;
 
-	p = M_CheckParm ("-port");
-	if (p && p<::g->myargc-1)
-	{
-		DOOMPORT = atoi (::g->myargv[p+1]);
-		I_Printf ("using alternate port %i\n",DOOMPORT);
-	}
+  p = M_CheckParm ("-port");
+  if (p && p<::g->myargc-1)
+  {
+    DOOMPORT = atoi (::g->myargv[p+1]);
+    I_Printf ("using alternate port %i\n",DOOMPORT);
+  }
 
-	// parse network game options,
-	//  -net <::g->consoleplayer> <host> <host> ...
-	i = M_CheckParm ("-net");
-	if (!i || !I_TrySetupNetwork())
-	{
-		// single player game
-		::g->netgame = false;
-		::g->doomcom.id = DOOMCOM_ID;
-		::g->doomcom.numplayers = ::g->doomcom.numnodes = 1;
-		::g->doomcom.deathmatch = false;
-		::g->doomcom.consoleplayer = 0;
-		return;
-	}
+  // parse network game options,
+  //  -net <::g->consoleplayer> <host> <host> ...
+  i = M_CheckParm ("-net");
+  if (!i || !I_TrySetupNetwork())
+  {
+    // single player game
+    ::g->netgame = false;
+    ::g->doomcom.id = DOOMCOM_ID;
+    ::g->doomcom.numplayers = ::g->doomcom.numnodes = 1;
+    ::g->doomcom.deathmatch = false;
+    ::g->doomcom.consoleplayer = 0;
+    return;
+  }
 
-	netsend = PacketSend;
-	netget = PacketGet;
+  netsend = PacketSend;
+  netget = PacketGet;
 
-	::g->netgame = true;
+  ::g->netgame = true;
 
-	{
-		++i; // skip the '-net'
-		::g->doomcom.numnodes = 0;
-		::g->doomcom.consoleplayer = atoi( ::g->myargv[i] );
-		// skip the console number
-		++i;
-		::g->doomcom.numnodes = 0;
-		for (; i < ::g->myargc; ++i)
-		{
-			::g->sendaddress[::g->doomcom.numnodes].sin_family = AF_INET;
-			::g->sendaddress[::g->doomcom.numnodes].sin_port = htons(DOOMPORT);
-			::g->sendaddress[::g->doomcom.numnodes].sin_addr.s_addr = inet_addr (::g->myargv[i]);//39, 17
-			::g->doomcom.numnodes++;
-		}
-		
-		::g->doomcom.id = DOOMCOM_ID;
-		::g->doomcom.numplayers = ::g->doomcom.numnodes;
-	}
+  {
+    ++i; // skip the '-net'
+    ::g->doomcom.numnodes = 0;
+    ::g->doomcom.consoleplayer = atoi( ::g->myargv[i] );
+    // skip the console number
+    ++i;
+    ::g->doomcom.numnodes = 0;
+    for (; i < ::g->myargc; ++i)
+    {
+      ::g->sendaddress[::g->doomcom.numnodes].sin_family = AF_INET;
+      ::g->sendaddress[::g->doomcom.numnodes].sin_port = htons(DOOMPORT);
+      ::g->sendaddress[::g->doomcom.numnodes].sin_addr.s_addr = inet_addr (::g->myargv[i]);//39, 17
+      ::g->doomcom.numnodes++;
+    }
+    
+    ::g->doomcom.id = DOOMCOM_ID;
+    ::g->doomcom.numplayers = ::g->doomcom.numnodes;
+  }
 
-	if ( globalNetworking ) {
-		// Setup sockets
-		::g->insocket = UDPsocket ();
-		BindToLocalPort (::g->insocket,htons(DOOMPORT));
-		ioctlsocket (::g->insocket, FIONBIO, (u_long*)&trueval);
+  if ( globalNetworking ) {
+    // Setup sockets
+    ::g->insocket = UDPsocket ();
+    BindToLocalPort (::g->insocket,htons(DOOMPORT));
+    ioctlsocket (::g->insocket, FIONBIO, (u_long*)&trueval);
 
-		::g->sendsocket = UDPsocket ();
+    ::g->sendsocket = UDPsocket ();
 
-		I_Printf( "[+] Setting up sockets for player %d\n", DoomLib::GetPlayer() );
-	}
+    I_Printf( "[+] Setting up sockets for player %d\n", DoomLib::GetPlayer() );
+  }
 }
 
 // DHM - Nerve
 void I_ShutdownNetwork( void ) {
-	if ( globalNetworking ) {
+  if ( globalNetworking ) {
 
-		int curPlayer = DoomLib::GetPlayer();
+    int curPlayer = DoomLib::GetPlayer();
 
-		for (int player = 0; player < App->Game->Interface.GetNumPlayers(); ++player)
-		{
-			DoomLib::SetPlayer( player );
+    for (int player = 0; player < App->Game->Interface.GetNumPlayers(); ++player)
+    {
+      DoomLib::SetPlayer( player );
 
-			if ( ::g->insocket != INVALID_SOCKET ) {
-				I_Printf( "[-] Shut down insocket for player %d\n", DoomLib::GetPlayer() );
-				shutdown( ::g->insocket, SD_BOTH );
-				closesocket( ::g->insocket );
-			}
-			if ( ::g->sendsocket != INVALID_SOCKET ) {
-				I_Printf( "[-] Shut down sendsocket for player %d\n", DoomLib::GetPlayer() );
-				shutdown( ::g->sendsocket, SD_BOTH );
-				closesocket( ::g->sendsocket );
-			}
-		}
+      if ( ::g->insocket != INVALID_SOCKET ) {
+        I_Printf( "[-] Shut down insocket for player %d\n", DoomLib::GetPlayer() );
+        shutdown( ::g->insocket, SD_BOTH );
+        closesocket( ::g->insocket );
+      }
+      if ( ::g->sendsocket != INVALID_SOCKET ) {
+        I_Printf( "[-] Shut down sendsocket for player %d\n", DoomLib::GetPlayer() );
+        shutdown( ::g->sendsocket, SD_BOTH );
+        closesocket( ::g->sendsocket );
+      }
+    }
 
-		DoomLib::SetPlayer(curPlayer);
+    DoomLib::SetPlayer(curPlayer);
 
-		globalNetworking = false;
-	}
+    globalNetworking = false;
+  }
 }
 
 void I_NetCmd (void)
 {
-	if (::g->doomcom.command == CMD_SEND)
-	{
-		netsend ();
-	}
-	else if (::g->doomcom.command == CMD_GET)
-	{
-		netget ();
-	}
-	else
-		I_Error ("Bad net cmd: %i\n",::g->doomcom.command); 
+  if (::g->doomcom.command == CMD_SEND)
+  {
+    netsend ();
+  }
+  else if (::g->doomcom.command == CMD_GET)
+  {
+    netget ();
+  }
+  else
+    I_Error ("Bad net cmd: %i\n",::g->doomcom.command); 
 }
 

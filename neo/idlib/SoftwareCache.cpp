@@ -31,7 +31,7 @@ If you have questions concerning this license or the applicable additional terms
 /*
 ================================================================================================
 
-	Software Cache
+  Software Cache
 
 ================================================================================================
 */
@@ -39,9 +39,9 @@ If you have questions concerning this license or the applicable additional terms
 uint32 globalDmaTag;
 
 bool SpursEmulationAssertFailed( const char *filename, int line, const char *expression ) {
-	static bool halt = true;
-	if ( halt ) {
-		__debugbreak();
-	}
-	return true;
+  static bool halt = true;
+  if ( halt ) {
+    __debugbreak();
+  }
+  return true;
 }
