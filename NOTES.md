@@ -10,3 +10,4 @@
 
 * Download the game assets. Note the path to the parent directory that contains `base/`
 * Run the game exe from a console like so: `./Doom3BFG.exe +set fs_basepath "<PATH TO ASSETS>" +set r_fullscreen 0`
+* Or run the game from Visual Studio by changing the startup project to `Doom3BFG` with the command line args from above.
