@@ -29,6 +29,8 @@ If you have questions concerning this license or the applicable additional terms
 #pragma hdrstop
 #include "../idlib/precompiled.h"
 
+#pragma warning( disable: 4189 ) // local variable is initialized but not referenced
+
 #include "tr_local.h"
 #include "Model_local.h"
 
